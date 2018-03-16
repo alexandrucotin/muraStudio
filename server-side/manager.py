@@ -15,7 +15,7 @@ class Manager:
     
     # Creating tables
     def init_db(self):
-        database = connect(self.percorso)
+        database = connect(self.path)
         cursor = database.cursor()
         cursor.execute('''
             CREATE TABLE IF NOT EXISTS user (
