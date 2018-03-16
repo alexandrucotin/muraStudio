@@ -27,9 +27,13 @@ def close_connection(exception):
 
 # Landing page
 @app.route('/')
-@app.route('/home')
 def home():
     return send_from_directory('../client-side/html/', 'home.html')
+
+# Any page
+@app.route('/<page_name>')
+def send_page(page_name):
+    return send_from_directory('../client-side/html/', page_name + '.html')
 
 # Bootstrap
 @app.route('/bootstrap/<filename>')
@@ -48,6 +52,11 @@ def bootstrap_vendor(directory, filename):
 @app.route('/bootstrap/vendor/jquery/<filename>')
 def jquery(filename):
     return send_from_directory('../client-side/bootstrap/vendor/jquery/', filename)
+
+# Other files
+@app.route('/<directory>/<filename>')
+def send_file(directory, filename):
+    return send_from_directory('../client-side/' + directory + '/', filename)
 
 
 # STARTING SERVER
