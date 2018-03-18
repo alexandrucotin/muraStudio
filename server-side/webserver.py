@@ -1,14 +1,14 @@
 # -*- coding: utf-8 -*-
 
 from flask import Flask, g, send_from_directory
-# from flask_sslify import SSLify
+from flask_sslify import SSLify
 from manager import Manager
 
 
 # GLOBAL VARIABLES
 
 app = Flask(__name__)
-#ssLify = SSLify(app)
+ssLify = SSLify(app)
 manager = Manager(g)
 
 
