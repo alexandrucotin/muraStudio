@@ -1,18 +1,15 @@
-/**
- * Listen to scroll to change header opacity class*/
-
-function checkScroll(){
-    var startY = $('.navbar').height() * 2; //The point where the navbar changes in px
-
-    if($(window).scrollTop() > startY){
-        $('.navbar').addClass("scrolled");
-    }else{
-        $('.navbar').removeClass("scrolled");
+$(document).ready(function(){       
+   var scroll_start = 0;
+   var startchange = $('#startchange');
+   var offset = startchange.offset();
+    if (startchange.length){
+   $(document).scroll(function() { 
+      scroll_start = $(this).scrollTop();
+      if(scroll_start > offset.top) {
+          $(".navbar-default").css('background-color', '#f0f0f0');
+       } else {
+          $('.navbar-default').css('background-color', 'transparent');
+       }
+   });
     }
-};
-
-if ( $('.navbar').length > 0){
-    $(window).on("scroll load resize", function(){
-        checkScroll();
-    });
-}  
+});
