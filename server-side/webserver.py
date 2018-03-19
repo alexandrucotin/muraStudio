@@ -10,7 +10,7 @@ from json import dumps
 
 app = Flask(__name__)
 ssLify = SSLify(app)
-dashboard = Dashboard(g, 'database.db', 'piper_nigrum', 'semen')
+dashboard = Dashboard(g, 'database.db', 'piper_nigrum')
 
 
 # SESSION OPERARIONS

@@ -2,16 +2,15 @@
 
 from manager import Manager
 from hashlib import sha256
-from random import choice, seed
+from random import choice
 
 
 class Dashboard:
     
     # Initializing
-    def __init__(self, g, db_filename, pepper, seed):
+    def __init__(self, g, db_filename, pepper):
         self.manager = Manager(db_filename, pepper)
         self.pepper = pepper
-        seed(seed)
     
     # User login
     def valid_user(self, username, password):
