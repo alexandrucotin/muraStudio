@@ -37,4 +37,5 @@
 
 .data {
   border-bottom: 1px solid grey;
+  margin-top: -2px;
 }
