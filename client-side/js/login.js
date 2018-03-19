@@ -26,10 +26,6 @@ $(document).ready(function() {
                         $('#username, #password').css('border-color', 'red');
                         // TODO: error modal
                     }
-                },
-                error: function() {
-                    $('.caricamento').css('display', 'none');
-                    errore.messaggio('Errore del server!');
                 }
             });
         } else {
