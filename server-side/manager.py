@@ -7,10 +7,10 @@ from sqlite3 import connect
 class Manager:
     
     # Initializing
-    def __init__(self, g):
+    def __init__(self, g, db_filename):
         self.g = g
         path = dirname(realpath(__file__))
-        self.path = join(path, 'database.db')
+        self.path = join(path, db_filename)
         self.init_db()
     
     # Creating tables
@@ -21,7 +21,8 @@ class Manager:
             CREATE TABLE IF NOT EXISTS user (
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
                 username TEXT NOT NULL,
-                password TEXT NOT NULL
+                password TEXT NOT NULL,
+                salt TEXT NOT NULL
             )
         ''')
         database.commit()

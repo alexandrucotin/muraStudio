@@ -1,26 +1,27 @@
 # -*- coding: utf-8 -*-
 
-from flask import Flask, g, send_from_directory
+from flask import Flask, g, send_from_directory, request
 from flask_sslify import SSLify
-from manager import Manager
+from dashboard import Dashboard
+from json import dumps
 
 
 # GLOBAL VARIABLES
 
 app = Flask(__name__)
 ssLify = SSLify(app)
-manager = Manager(g)
+dashboard = Dashboard(g, 'database.db', 'piper_nigrum', 'semen')
 
 
 # SESSION OPERARIONS
 
 @app.before_request
 def open_connection():
-    manager.open_connection()
+    dashboard.open_connection()
 
 @app.teardown_request
 def close_connection(exception):
-    manager.close_connection()
+    dashboard.close_connection()
 
 
 # SENDING FILES
@@ -57,6 +58,16 @@ def jquery(filename):
 @app.route('/<directory>/<filename>')
 def send_file(directory, filename):
     return send_from_directory('../client-side/' + directory + '/', filename)
+
+
+# CONTEXTS
+
+@app.route('/user_login', methods = ['POST'])
+def user_login():
+    client_request = request.get_json(force = True)
+    username = client_request['username'].lower()
+    password = client_request['password']
+    return dumps({'valid_user': dashboard.valid_user(username, password)})
 
 
 # STARTING SERVER
