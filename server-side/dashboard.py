@@ -9,7 +9,7 @@ class Dashboard:
     
     # Initializing
     def __init__(self, g, db_filename, pepper):
-        self.manager = Manager(db_filename, pepper)
+        self.manager = Manager(g, db_filename)
         self.pepper = pepper
     
     # User login
