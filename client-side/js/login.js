@@ -4,7 +4,8 @@ $(document).ready(function() {
         var username = $('#username').val()
         var plain_password = $('#password').val()
         if (username.length > 0 && plain_password.length > 0) {
-            var password = SHA256(plain_password);
+            //var password = SHA256(plain_password);
+            var password = plain_password;
             var request = {
                 username: username,
                 password: password

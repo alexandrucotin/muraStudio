@@ -33,4 +33,3 @@ class Dashboard:
         for i in range(16):
             salt += choice(alphabet)
         return salt
-    

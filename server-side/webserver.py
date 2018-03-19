@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from flask import Flask, g, send_from_directory, request
-from flask_sslify import SSLify
+#from flask_sslify import SSLify
 from dashboard import Dashboard
 from json import dumps
 
@@ -9,7 +9,7 @@ from json import dumps
 # GLOBAL VARIABLES
 
 app = Flask(__name__)
-ssLify = SSLify(app)
+#ssLify = SSLify(app)
 dashboard = Dashboard(g, 'database.db', 'piper_nigrum')
 
 
