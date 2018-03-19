@@ -17,11 +17,11 @@ dashboard = Dashboard(g, 'database.db', 'piper_nigrum')
 
 @app.before_request
 def open_connection():
-    dashboard.open_connection()
+    dashboard.manager.open_connection()
 
 @app.teardown_request
 def close_connection(exception):
-    dashboard.close_connection()
+    dashboard.manager.close_connection()
 
 
 # SENDING FILES
