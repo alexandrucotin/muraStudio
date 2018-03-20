@@ -6,7 +6,7 @@
   content: '';
   position: absolute;
   top: 0; left: 0; right: 0; bottom: 0;
-  background: rgba(255,255,255,0.3);
+  background-color: rgba(146, 89, 166, 0.4);
   opacity: 0;
   transition: opacity .25s;
 }
