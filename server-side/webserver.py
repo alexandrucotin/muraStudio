@@ -2,7 +2,8 @@
 
 from flask import Flask, g, send_from_directory, request
 #from flask_sslify import SSLify
-from dashboard import Dashboard
+from manager import Manager
+from admin import Admin
 from json import dumps
 
 
@@ -10,18 +11,19 @@ from json import dumps
 
 app = Flask(__name__)
 #ssLify = SSLify(app)
-dashboard = Dashboard(g, 'database.db', 'piper_nigrum')
+manager = Manager(g, 'database.db')
+admin = Admin(manager, 'piper_nigrum', app)
 
 
 # SESSION OPERARIONS
 
 @app.before_request
 def open_connection():
-    dashboard.manager.open_connection()
+    manager.open_connection()
 
 @app.teardown_request
 def close_connection(exception):
-    dashboard.manager.close_connection()
+    manager.close_connection()
 
 
 # SENDING FILES
@@ -63,11 +65,12 @@ def send_file(directory, filename):
 # CONTEXTS
 
 @app.route('/user_login', methods = ['POST'])
+@app.route('/valid_user', methods = ['POST'])
 def user_login():
     client_request = request.get_json(force = True)
     username = client_request['username'].lower()
     password = client_request['password']
-    return dumps({'valid_user': dashboard.valid_user(username, password)})
+    return dumps({'valid_user': admin.valid_user(username, password)})
 
 
 # STARTING SERVER

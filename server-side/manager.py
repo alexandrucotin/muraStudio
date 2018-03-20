@@ -57,6 +57,9 @@ class Manager:
     def read_field(self, query, parameters = ()):
         return self.read_one(query, parameters)[0]
     
+    def read_presence(self, query, parameters = ()):
+        return len(self.read_many(query, parameters)) > 0
+    
     # Writing methods
     def write(self, query, parameters = ()):
         cursor = self.g.db.cursor()

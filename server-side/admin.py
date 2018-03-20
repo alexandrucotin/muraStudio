@@ -1,16 +1,30 @@
 # -*- coding: utf-8 -*-
 
-from manager import Manager
 from hashlib import sha256
 from random import choice
 
 
-class Dashboard:
+class Admin:
     
     # Initializing
-    def __init__(self, g, db_filename, pepper):
-        self.manager = Manager(g, db_filename)
+    def __init__(self, manager, pepper, app):
+        self.manager = manager
         self.pepper = pepper
+        self.add_admin(app)
+    
+    # Adding admin user
+    def add_admin(self, app):
+        with app.app_context():
+            self.manager.open_connection()
+            presence = self.manager.read_presence('SELECT * FROM user')
+            if not presence:
+                salt = self.generate_salt()
+                password = sha256(sha256('admin').hexdigest() + salt + self.pepper).hexdigest()
+                self.manager.write('''
+                    INSERT INTO user (username, password, salt)
+                    VALUES (?, ?, ?)
+                ''', ('admin', password, salt))
+            self.manager.close_connection()
     
     # User login
     def valid_user(self, username, password):
