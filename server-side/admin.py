@@ -53,6 +53,7 @@ class Admin:
         return self.manager.read_many('''
             SELECT id, title, date, description, text, image
             FROM news
+            ORDER BY id DESC
         ''')
     
     # Post news
