@@ -26,6 +26,17 @@ class Manager:
             )
         ''')
         database.commit()
+        cursor.execute('''
+            CREATE TABLE IF NOT EXISTS news (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                title TEXT NOT NULL,
+                date DATETIME DEFAULT CURRENT_TIMESTAMP,
+                description TEXT NOT NULL,
+                text TEXT NOT NULL,
+                image TEXT NOT NULL
+            )
+        ''')
+        database.commit()
         cursor.close()
         database.close()
     

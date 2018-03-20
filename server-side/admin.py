@@ -47,3 +47,10 @@ class Admin:
         for i in range(16):
             salt += choice(alphabet)
         return salt
+    
+    # Get news
+    def get_news(self):
+        return self.manager.read_many('''
+            SELECT id, title, date, description, text, image
+            FROM news
+        ''')

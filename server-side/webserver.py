@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from flask import Flask, g, send_from_directory, request
-from flask_sslify import SSLify
+#from flask_sslify import SSLify
 from manager import Manager
 from admin import Admin
 from json import dumps
@@ -10,7 +10,7 @@ from json import dumps
 # GLOBAL VARIABLES
 
 app = Flask(__name__)
-ssLify = SSLify(app)
+#ssLify = SSLify(app)
 manager = Manager(g, 'database.db')
 admin = Admin(manager, 'piper_nigrum', app)
 
@@ -64,6 +64,7 @@ def send_file(directory, filename):
 
 # CONTEXTS
 
+# User login
 @app.route('/user_login', methods = ['POST'])
 @app.route('/valid_user', methods = ['POST'])
 def user_login():
@@ -71,6 +72,11 @@ def user_login():
     username = client_request['username'].lower()
     password = client_request['password']
     return dumps({'valid_user': admin.valid_user(username, password)})
+
+# Get news
+@app.route('/get_news', methods = ['POST'])
+def get_news():
+    return dumps({'news': admin.get_news()})
 
 
 # STARTING SERVER
