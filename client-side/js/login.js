@@ -25,14 +25,14 @@ $(document).ready(function() {
                     } else {
                         $('#password').val('');
                         $('#username, #password').css('border-color', 'red');
-                        $('#error_modal').modal('show')
+                        $('#error_modal').modal('show');
                         //$('#error_modal').css('display', 'block');
                     }
                 }
             });
         } else {
             $('#username, #password').css('border-color', 'red');
-            $('#error_modal').modal('show')
+            $('#error_modal').modal('show');
         }
     });
     
