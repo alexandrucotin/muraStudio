@@ -7,7 +7,7 @@ var news = {
             contentType: 'application/json',
             dataType: 'json',
             success: function(response) {
-                response = news.format(response);
+                response = news.format_news(response);
                 $.get('/html/templates.html', function(content) {
                     var template = $(content).filter('#get_news').html();
                     $('#news').html(Mustache.render(template, response));
@@ -16,7 +16,7 @@ var news = {
         });
     },
     
-    format: function(response) {
+    format_news: function(response) {
         var news = response.news;
         if(news) {
             var new_list = [];
@@ -26,7 +26,7 @@ var news = {
                 new_list[i] = {
                     post_id: current[0],
                     title: current[1],
-                    date: current[2],
+                    date: news.format_date(current[2]),
                     description: current[3],
                     text: current[4],
                     image: current[5]
@@ -36,6 +36,13 @@ var news = {
             return response;
         }
         return [];
+    },
+    
+    format_date: function(date) {
+        var months = ['jan', 'feb', 'mar', 'apr', 'may', 'jun', 'jul', 'aug', 'sep', 'oct', 'nov', 'dec']
+        date = date.split(' ')[0].split('-');
+        var new_date = date[2] + ' ' + months[date[1] - 1] + '/' + date[0];
+        return new_date;
     }
 
 };
