@@ -41,7 +41,7 @@ var news = {
     format_date: function(date) {
         var months = ['jan', 'feb', 'mar', 'apr', 'may', 'jun', 'jul', 'aug', 'sep', 'oct', 'nov', 'dec']
         date = date.split(' ')[0].split('-');
-        var new_date = date[2] + ' ' + months[date[1] - 1] + '/' + date[0];
+        var new_date = date[2] + ' ' + months[date[1] - 1] + ' ' + date[0];
         return new_date;
     }
 
