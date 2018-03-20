@@ -5,8 +5,6 @@ from flask import Flask, g, send_from_directory, request
 from manager import Manager
 from admin import Admin
 from json import dumps
-from werkzeug.utils import secure_filename
-import os
 
 
 # GLOBAL VARIABLES
@@ -79,19 +77,6 @@ def user_login():
 @app.route('/get_news', methods = ['POST'])
 def get_news():
     return dumps({'news': admin.get_news()})
-
-# File upload
-@app.route('/upload_file', methods=['POST'])
-def upload_file():
-    if 'file' not in request.files:
-        return dumps({'error': 'No file part!'})
-    file = request.files['file']
-    if file.filename == '':
-        return dumps({'error': 'No file selected!'})
-    if file and admin.allowed_file(file.filename):
-        filename = secure_filename(file.filename)
-        file.save(os.path.join('../client-side/img/', filename))
-        return dumps({'success': True})
 
 
 # STARTING SERVER

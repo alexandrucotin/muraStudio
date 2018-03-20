@@ -54,8 +54,3 @@ class Admin:
             SELECT id, title, date, description, text, image
             FROM news
         ''')
-
-    # Allowed file
-    def allowed_file(self, filename):
-        allowed_files = set(['png', 'jpg', 'jpeg', 'gif'])
-        return '.' in filename and filename.rsplit('.', 1)[1].lower() in allowed_files 
