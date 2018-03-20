@@ -12,7 +12,6 @@ import os
 # GLOBAL VARIABLES
 
 app = Flask(__name__)
-app.config['UPLOAD_FOLDER'] = '../client-side/img/uploads'
 #ssLify = SSLify(app)
 manager = Manager(g, 'database.db')
 admin = Admin(manager, 'piper_nigrum', app)
@@ -91,7 +90,7 @@ def upload_file():
         return dumps({'error': 'No file selected!'})
     if file and admin.allowed_file(file.filename):
         filename = secure_filename(file.filename)
-        file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+        file.save(os.path.join('../client-side/img/', filename))
         return dumps({'success': True})
 
 
