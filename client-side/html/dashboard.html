@@ -15,8 +15,8 @@
     <body>
 
 
-            <!-- Modal -->
-            <div class="modal fade" id="error_message" role="dialog">
+            <!-- Error modal -->
+            <div class="modal fade" id="error_modal" role="dialog">
                 <div class="modal-dialog">
                 <!-- Modal content-->
                 <div class="modal-content">
@@ -24,7 +24,26 @@
                     <h4 class="modal-title">Error!</h4>
                     </div>
                     <div class="modal-body">
-                    <p id="error_text">Username or password not valid!</p>
+                    <p id="error_message"></p>
+                    </div>
+                    <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+                </div>
+                </div>
+            
+            
+            <!-- Succes modal -->
+            <div class="modal fade" id="success_modal" role="dialog">
+                <div class="modal-dialog">
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header alert alert-success">
+                    <h4 class="modal-title">Success!</h4>
+                    </div>
+                    <div class="modal-body">
+                    <p id="success_message"></p>
                     </div>
                     <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -46,7 +65,7 @@
                     <li class="active">
                         <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false">Landpage Menu</a>
                         <ul class="collapse list-unstyled" id="homeSubmenu">
-                            <li><a href="#">Add Landpage Img</a></li>
+                            <li><a href="#" id="landpage_option">Add Landpage Img</a></li>
                             <li><a href="#">Change Landpage Img</a></li>
                             <li><a href="#">Remove Landpage Img</a></li>
                         </ul>
@@ -54,14 +73,14 @@
                     <li>
                         <a href="#newsSubmenu" data-toggle="collapse" aria-expanded="false">News Menu</a>
                         <ul class="collapse list-unstyled" id="newsSubmenu">
-                            <li><a href="#">Add News Post</a></li>
+                            <li><a href="#" id="news_post_option">Add News Post</a></li>
                             <li><a href="#">Modify/Delete Posts</a></li>
                         </ul>
                     </li>
                     <li>
                         <a href="#workSubmenu" data-toggle="collapse" aria-expanded="false">Work Menu</a>
                         <ul class="collapse list-unstyled" id="workSubmenu">
-                            <li><a href="#">Add News Post</a></li>
+                            <li><a href="#" id="work_post_option">Add Work Post</a></li>
                             <li><a href="#">Modify/Delete Posts</a></li>
                         </ul>
                     </li>
@@ -102,35 +121,40 @@
                     </div>
                 </nav>
                 
+                <!-- Landpage image -->
+                <div class="container dashboard_option" id="landpage_add">
+                    <h2>Landpage images</h2>
+                </div>
                 
-                <!-- Work post form -->
-                <div class="container" id="news_post_form">
+                
+                <!-- News post form -->
+                <div class="container dashboard_option" id="news_post_form">
                     <h2>News post form</h2>
 
                     <form>
                         <div class="form-group">
                             <label for="exampleFormControlTextarea1">Title</label>
-                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="1"></textarea>
+                            <textarea class="form-control" id="news_title" rows="1"></textarea>
                         </div>
                         <div class="form-group">
                             <label for="exampleFormControlTextarea1">Description</label>
-                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                            <textarea class="form-control" id="news_description" rows="3"></textarea>
                         </div>
                         <div class="form-group">
                             <label for="exampleFormControlTextarea1">Full Article</label>
-                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                            <textarea class="form-control" id="news_text" rows="3"></textarea>
                         </div>
                         <div class="form-group">
                             <label for="exampleFormControlFile1">Upload a picture</label>
-                            <input type="file" class="form-control-file" id="exampleFormControlFile1">
+                            <input type="file" class="form-control-file" id="news_image">
                         </div>
                     </form>
-                    <input type="submit" class="btn btn-info" value="Submit Button">
+                    <input type="submit" class="btn btn-info" id="news_submit" value="Submit Button">
                 </div>
 
                 <!-- Work post form -->
 
-                <div class="container" id="news_post_form">
+                <div class="container dashboard_option" id="work_post_form">
                     <h2>Work post form</h2>
 
                     <form>

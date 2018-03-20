@@ -54,3 +54,10 @@ class Admin:
             SELECT id, title, date, description, text, image
             FROM news
         ''')
+    
+    # Post news
+    def post_news(self, title, description, text, image):
+        self.manager.write('''
+            INSERT INTO news (title, description, text, image)
+            VALUES (?, ?, ?, ?)
+        ''', (title, description, text, image))
