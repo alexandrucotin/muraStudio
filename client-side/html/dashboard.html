@@ -1,35 +1,30 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-<head>
-
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
-
-    <title>Mura Studio - Dashboard</title>
-
-    <!-- Bootstrap Core CSS -->
+        <title>Collapsible sidebar using Bootstrap 3</title>
 
     <link href="/bootstrap/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="/css/sidebar.css" rel="stylesheet">
-    
+    </head>
+    <body>
+
+
+
         <div class="wrapper">
             <!-- Sidebar Holder -->
             <nav id="sidebar">
                 <div class="sidebar-header">
                     <h3>Bootstrap Sidebar</h3>
-                    <strong>BS</strong>
                 </div>
 
                 <ul class="list-unstyled components">
+                    <p>Dummy Heading</p>
                     <li class="active">
-                        <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false">
-                            <i class="glyphicon glyphicon-home"></i>
-                            Home
-                        </a>
+                        <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false">Home</a>
                         <ul class="collapse list-unstyled" id="homeSubmenu">
                             <li><a href="#">Home 1</a></li>
                             <li><a href="#">Home 2</a></li>
@@ -37,14 +32,8 @@
                         </ul>
                     </li>
                     <li>
-                        <a href="#">
-                            <i class="glyphicon glyphicon-briefcase"></i>
-                            About
-                        </a>
-                        <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false">
-                            <i class="glyphicon glyphicon-duplicate"></i>
-                            Pages
-                        </a>
+                        <a href="#">About</a>
+                        <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false">Pages</a>
                         <ul class="collapse list-unstyled" id="pageSubmenu">
                             <li><a href="#">Page 1</a></li>
                             <li><a href="#">Page 2</a></li>
@@ -52,22 +41,10 @@
                         </ul>
                     </li>
                     <li>
-                        <a href="#">
-                            <i class="glyphicon glyphicon-link"></i>
-                            Portfolio
-                        </a>
+                        <a href="#">Portfolio</a>
                     </li>
                     <li>
-                        <a href="#">
-                            <i class="glyphicon glyphicon-paperclip"></i>
-                            FAQ
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <i class="glyphicon glyphicon-send"></i>
-                            Contact
-                        </a>
+                        <a href="#">Contact</a>
                     </li>
                 </ul>
 
@@ -84,9 +61,10 @@
                     <div class="container-fluid">
 
                         <div class="navbar-header">
-                            <button type="button" id="sidebarCollapse" class="btn btn-info navbar-btn">
-                                <i class="glyphicon glyphicon-align-left"></i>
-                                <span>Toggle Sidebar</span>
+                            <button type="button" id="sidebarCollapse" class="navbar-btn">
+                                <span></span>
+                                <span></span>
+                                <span></span>
                             </button>
                         </div>
 
@@ -124,13 +102,12 @@
 
 
 
-   
-    <script src="/bootstrap/vendor/jquery/jquery.min.js"></script>
+
+
+          <script src="/bootstrap/vendor/jquery/jquery.min.js"></script>
     <script src="/bootstrap/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
     <script src="/js/dashboard.js"></script>
     <script src="/js/sidebar.js"></script>
-
-</body>
-
+    </body>
 </html>
