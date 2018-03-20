@@ -17,12 +17,12 @@ var news = {
     },
     
     format_news: function(response) {
-        var news = response.news;
-        if(news) {
+        var news_list = response.news;
+        if(news_list) {
             var new_list = [];
             var i, current, post_id, title, date, description, text, image;
-            for (i = 0; i < news.length; i++) {
-                current = news[i];
+            for (i = 0; i < news_list.length; i++) {
+                current = news_list[i];
                 new_list[i] = {
                     post_id: current[0],
                     title: current[1],
