@@ -78,6 +78,13 @@ def user_login():
 def get_news():
     return dumps({'news': admin.get_news()})
 
+# Get news element
+@app.route('/get_news_element', methods = ['POST'])
+def get_news_element():
+    client_request = request.get_json(force = True)
+    element_id = client_request['id']
+    return dumps({'news_post': admin.get_news_element(element_id)})
+
 # Post news
 @app.route('/post_news', methods = ['POST'])
 def post_news():

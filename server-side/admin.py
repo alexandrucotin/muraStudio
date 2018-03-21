@@ -56,6 +56,14 @@ class Admin:
             ORDER BY id DESC
         ''')
     
+    # Get news
+    def get_news_element(self, element_id):
+        return self.manager.read_one('''
+            SELECT title, date, description, text, image
+            FROM news
+            WHERE id = ?
+        ''', (element_id,))
+    
     # Post news
     def post_news(self, title, description, text, image):
         self.manager.write('''
