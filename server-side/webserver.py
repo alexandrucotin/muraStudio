@@ -96,6 +96,11 @@ def post_news():
     admin.post_news(title, description, text, image)
     return dumps({'success': True})
 
+# Get news list
+@app.route('/get_news_list', methods = ['POST'])
+def get_news_list():
+    return dumps({'news': admin.get_news_list()})
+
 
 # STARTING SERVER
 

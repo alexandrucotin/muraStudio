@@ -1,12 +1,18 @@
 var dashboard = {
     
     init: function() {
-        dashboard.valid_user();
-        dashboard.init_news_post();
         dashboard.hide_options();
+        dashboard.valid_user();
+        dashboard.get_news_list();
         dashboard.init_options();
+        dashboard.init_news_post();
         dashboard.init_state();
         dashboard.init_news_image();
+    },
+    
+    hide_options: function() {
+        $('.dashboard_option').css('display', 'none');
+        $('#landpage_add').css('display', 'block');
     },
     
     valid_user: function() {
@@ -31,9 +37,46 @@ var dashboard = {
         } else window.location.href = '/login';
     },
     
-    hide_options: function() {
-        $('.dashboard_option').css('display', 'none');
-        $('#landpage_add').css('display', 'block');
+    get_news_list: function() {
+        $.ajax({
+            url: 'get_news_list',
+            method: 'POST',
+            contentType: 'application/json',
+            dataType: 'json',
+            success: function(response) {
+                response = dashboard.format_news(response);
+                $.get('/html/templates.html', function(content) {
+                    var template = $(content).filter('#get_news_list').html();
+                    $('#news_list').html(Mustache.render(template, response));
+                });
+            }
+        });
+    },
+    
+    format_news: function(response) {
+        var news_list = response.news;
+        if(news_list) {
+            var new_list = [];
+            var i, current, post_id, title, date;
+            for (i = 0; i < news_list.length; i++) {
+                current = news_list[i];
+                new_list[i] = {
+                    post_id: current[0],
+                    title: current[1],
+                    date: dashboard.format_date(current[2])
+                };
+            }
+            response.news = new_list;
+            return response;
+        }
+        return [];
+    },
+    
+    format_date: function(date) {
+        var months = ['jan', 'feb', 'mar', 'apr', 'may', 'jun', 'jul', 'aug', 'sep', 'oct', 'nov', 'dec']
+        date = date.split(' ')[0].split('-');
+        var new_date = date[2] + ' ' + months[date[1] - 1] + ' ' + date[0];
+        return new_date;
     },
     
     init_options: function() {

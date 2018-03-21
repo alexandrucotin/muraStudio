@@ -70,3 +70,11 @@ class Admin:
             INSERT INTO news (title, description, text, image)
             VALUES (?, ?, ?, ?)
         ''', (title, description, text, image))
+    
+    # Get news list
+    def get_news_list(self):
+        return self.manager.read_many('''
+            SELECT id, title, date
+            FROM news
+            ORDER BY id DESC
+        ''')
