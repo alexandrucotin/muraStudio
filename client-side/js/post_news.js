@@ -26,6 +26,7 @@ var post_news = {
             data: JSON.stringify({id: post_news.element_id}),
             success: function(response) {
                 response = post_news.format_element(response);
+                $('title').html(response.news_post.title + ' - Mura Studio');
                 $.get('/html/templates.html', function(content) {
                     var template = $(content).filter('#get_news_element').html();
                     $('#post_news_element').html(Mustache.render(template, response));

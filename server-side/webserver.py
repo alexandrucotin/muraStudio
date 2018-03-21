@@ -89,6 +89,10 @@ def get_news_element():
 @app.route('/post_news', methods = ['POST'])
 def post_news():
     client_request = request.get_json(force = True)
+    username = client_request['username']
+    password = client_request['password']
+    if not admin.valid_user(username, password):
+        return dumps({'user_not_valid': True})
     title = client_request['title']
     description = client_request['description']
     text = client_request['text']
@@ -101,10 +105,29 @@ def post_news():
 def get_news_list():
     return dumps({'news': admin.get_news_list()})
 
+# Modify news element
+@app.route('/modify_news_element', methods = ['POST'])
+def modify_news_element():
+    client_request = request.get_json(force = True)
+    username = client_request['username']
+    password = client_request['password']
+    if not admin.valid_user(username, password):
+        return dumps({'user_not_valid': True})
+    element_id = client_request['id']
+    title = client_request['title']
+    description = client_request['description']
+    text = client_request['text']
+    admin.modify_news_element(element_id, title, description, text)
+    return dumps({'success': True})
+
 # Delete news element
 @app.route('/delete_news_post', methods = ['POST'])
 def delete_news_post():
     client_request = request.get_json(force = True)
+    username = client_request['username']
+    password = client_request['password']
+    if not admin.valid_user(username, password):
+        return dumps({'user_not_valid': True})
     element_id = client_request['id']
     return dumps({'news_post': admin.delete_news_post(element_id)})
 

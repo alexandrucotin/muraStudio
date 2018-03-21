@@ -79,6 +79,14 @@ class Admin:
             ORDER BY id DESC
         ''')
     
+    # Modify news element
+    def modify_news_element(self, element_id, title, description, text):
+        self.manager.write('''
+            UPDATE news
+            SET title = ?, description = ?, text = ?
+            WHERE id = ?
+        ''', (title, description, text, element_id))
+    
     # Delete news element
     def delete_news_post(self, element_id):
         self.manager.write('''

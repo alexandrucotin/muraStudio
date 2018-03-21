@@ -104,21 +104,6 @@ var dashboard = {
         });
     },
     
-    init_state: function() {
-        dashboard.news_image = '';
-        dashboard.work_image = '';
-    },
-    
-    init_news_image: function() {
-        $('#news_image').change(function(event) {
-            var reader = new FileReader();
-            reader.onload = function(e) {
-                dashboard.news_image = e.target.result;
-            };
-            reader.readAsDataURL(event.target.files[0]);
-        });
-    },
-    
     init_news_post: function() {
         $('#news_submit').on('click', function() {
             dashboard.news_post();
@@ -137,26 +122,7 @@ var dashboard = {
         var text = $('#news_text').val();
         var image = dashboard.news_image;
         if (title.length > 0 && description.length > 0 && text.length > 0 && image.length > 0) {
-            $.ajax({
-                url: 'post_news',
-                method: 'POST',
-                contentType: 'application/json',
-                dataType: 'json',
-                data: JSON.stringify({
-                    username: dashboard.username,
-                    password: dashboard.password,
-                    title: title,
-                    description: description,
-                    text: text,
-                    image: image
-                }),
-                success: function(response) {
-                    $('#news_title, #news_description, #news_text, #news_image').val('');
-                    $('#news_title, #news_description, #news_text, #news_image').css('border-color', '#ccc');
-                    $('#success_message').html('News element posted correctly!');
-                    $('#success_modal').modal('show');
-                }
-            });
+            dashboard.news_post_request(title, description, text, image);
         } else {
             $('#news_title, #news_description, #news_text, #news_image').css('border-color', 'red');
             $('#error_message').html('You must fill every input field!');
@@ -164,8 +130,112 @@ var dashboard = {
         }
     },
     
+    news_post_request: function(title, description, text, image) {
+        $.ajax({
+            url: 'post_news',
+            method: 'POST',
+            contentType: 'application/json',
+            dataType: 'json',
+            data: JSON.stringify({
+                username: dashboard.username,
+                password: dashboard.password,
+                title: title,
+                description: description,
+                text: text,
+                image: image
+            }),
+            success: function(response) {
+                if (response.user_not_valid) {
+                    window.location.href = '/login';
+                } else {
+                    $('#news_title, #news_description, #news_text, #news_image').val('');
+                    $('#news_title, #news_description, #news_text, #news_image').css('border-color', '#ccc');
+                    $('#success_message').html('News element posted correctly!');
+                    $('#success_modal').modal('show');
+                }
+            }
+        });
+    },
+    
+    init_state: function() {
+        dashboard.news_image = '';
+        dashboard.work_image = '';
+    },
+    
+    init_news_image: function() {
+        $('#news_image').change(function(event) {
+            var reader = new FileReader();
+            reader.onload = function(e) {
+                dashboard.news_image = e.target.result;
+            };
+            reader.readAsDataURL(event.target.files[0]);
+        });
+    },
+    
+    modify_news_post: function(post_id) {
+        $.ajax({
+            url: 'get_news_element',
+            method: 'POST',
+            contentType: 'application/json',
+            dataType: 'json',
+            data: JSON.stringify({id: post_id}),
+            success: function(response) {
+                if (response.user_not_valid) {
+                    window.location.href = '/login';
+                } else {
+                    var element = response.news_post;
+                    $('#news_modify_title').val(element[0]);
+                    $('#news_modify_description').val(element[2]);
+                    $('#news_modify_text').val(element[3]);
+                    $('.dashboard_option').css('display', 'none');
+                    $('#news_modify_form').css('display', 'block');
+                    $('#news_modify_submit').on('click', function() {
+                        $('#news_modify_title, #news_modify_description, #news_modify_text').css('border-color', '#ccc');
+                        var title = $('#news_modify_title').val();
+                        var description = $('#news_modify_description').val();
+                        var text = $('#news_modify_text').val();
+                        if (title.length > 0 && description.length > 0 && text.length > 0) {
+                            dashboard.news_modify_request(post_id, title, description, text);
+                        } else {
+                            $('#news_modify_title, #news_modify_description, #news_modify_text').css('border-color', 'red');
+                            $('#error_message').html('You must fill every input field!');
+                            $('#error_modal').modal('show');
+                        }
+                    });
+                }
+            }
+        });
+    },
+    
+    news_modify_request: function(id, title, description, text, image) {
+        $.ajax({
+            url: 'modify_news_element',
+            method: 'POST',
+            contentType: 'application/json',
+            dataType: 'json',
+            data: JSON.stringify({
+                username: dashboard.username,
+                password: dashboard.password,
+                id: id,
+                title: title,
+                description: description,
+                text: text,
+                image: image
+            }),
+            success: function(response) {
+                if (response.user_not_valid) {
+                    window.location.href = '/login';
+                } else {
+                    $('#news_modify_title, #news_modify_description, #news_modify_text').val('');
+                    $('#news_modify_title, #news_modify_description, #news_modify_text').css('border-color', '#ccc');
+                    $('#success_message').html('News element modified correctly!');
+                    $('#success_modal').modal('show');
+                }
+            }
+        });
+    },
+    
     delete_news_post: function(post_id, title) {
-        dashboard.news_post_to_delete = post_id;
         $('#post_title').html(title);
         $('#confirm_modal').modal('show');
         $('#confirm_delete').on('click', function() {
@@ -180,9 +250,13 @@ var dashboard = {
                     id: post_id
                 }),
                 success: function(response) {
-                    $('#success_message').html('News element deleted correctly!');
-                    $('#success_modal').modal('show');
-                    dashboard.get_news_list();
+                    if (response.user_not_valid) {
+                        window.location.href = '/login';
+                    } else {
+                        dashboard.get_news_list();
+                        $('#success_message').html('News element deleted correctly!');
+                        $('#success_modal').modal('show');
+                    }
                 }
             });
         });
@@ -206,32 +280,7 @@ var dashboard = {
         var confirm_pwd = $('#confirm_pwd').val();
         if (old_pwd.length > 0 && new_pwd.length > 0 && confirm_pwd.length > 0) {
             if (new_pwd === confirm_pwd) {
-                old_pwd = SHA256(old_pwd);
-                new_pwd = SHA256(new_pwd);
-                $.ajax({
-                    url: 'change_password',
-                    method: 'POST',
-                    contentType: 'application/json',
-                    dataType: 'json',
-                    data: JSON.stringify({
-                        username: dashboard.username,
-                        password: old_pwd,
-                        new_password: new_pwd
-                    }),
-                    success: function(response) {
-                        if (response.user_not_valid) {
-                            $('#old_pwd').css('border-color', 'red');
-                            $('#error_message').html('Old password not correct!');
-                            $('#error_modal').modal('show');
-                        } else {
-                            $('#old_pwd, #new_pwd, #confirm_pwd').val('');
-                            $('#old_pwd, #new_pwd, #confirm_pwd').css('border-color', '#ccc');
-                            $('#success_message').html('News password set correctly!');
-                            $('#success_modal').modal('show');
-                            sessionStorage.setItem('password', new_pwd);
-                        }
-                    }
-                });
+                dashboard.password_change_request(old_pwd, new_pwd);
             } else {
                 $('#new_pwd, #confirm_pwd').css('border-color', 'red');
                 $('#error_message').html('New passwords not matching!');
@@ -242,6 +291,35 @@ var dashboard = {
             $('#error_message').html('You must fill every input field!');
             $('#error_modal').modal('show');
         }
+    },
+    
+    password_change_request: function(old_pwd, new_pwd) {
+        old_pwd = SHA256(old_pwd);
+        new_pwd = SHA256(new_pwd);
+        $.ajax({
+            url: 'change_password',
+            method: 'POST',
+            contentType: 'application/json',
+            dataType: 'json',
+            data: JSON.stringify({
+                username: dashboard.username,
+                password: old_pwd,
+                new_password: new_pwd
+            }),
+            success: function(response) {
+                if (response.user_not_valid) {
+                    $('#old_pwd').css('border-color', 'red');
+                    $('#error_message').html('Old password not correct!');
+                    $('#error_modal').modal('show');
+                } else {
+                    $('#old_pwd, #new_pwd, #confirm_pwd').val('');
+                    $('#old_pwd, #new_pwd, #confirm_pwd').css('border-color', '#ccc');
+                    $('#success_message').html('News password set correctly!');
+                    $('#success_modal').modal('show');
+                    sessionStorage.setItem('password', new_pwd);
+                }
+            }
+        });
     },
     
     init_logout: function() {
