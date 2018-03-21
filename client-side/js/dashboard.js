@@ -45,6 +45,10 @@ var dashboard = {
             $('.dashboard_option').css('display', 'none');
             $('#news_post_form').css('display', 'block');
         });
+        $('#news_post_list').on('click', function() {
+            $('.dashboard_option').css('display', 'none');
+            $('#news_post_form').css('display', 'block');
+        });
         $('#work_post_option').on('click', function() {
             $('.dashboard_option').css('display', 'none');
             $('#work_post_form').css('display', 'block');
