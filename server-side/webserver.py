@@ -108,6 +108,18 @@ def delete_news_post():
     element_id = client_request['id']
     return dumps({'news_post': admin.delete_news_post(element_id)})
 
+# Change password
+@app.route('/change_password', methods = ['POST'])
+def change_password():
+    client_request = request.get_json(force = True)
+    username = client_request['username']
+    password = client_request['password']
+    if not admin.valid_user(username, password):
+        return dumps({'user_not_valid': True})
+    new_password = client_request['new_password']
+    admin.change_password(username, new_password)
+    return dumps({'success': True})
+
 
 # STARTING SERVER
 

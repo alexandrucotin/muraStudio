@@ -83,7 +83,7 @@
 
                 <ul class="list-unstyled components">
                     <li>
-                        <a href="#" aria-expanded="false" id="landpage_option">Landpage Menu</a>
+                        <a href="#" aria-expanded="false" id="landpage_option">Landpage Images</a>
                     </li>
                     <li>
                         <a href="#newsSubmenu" data-toggle="collapse" aria-expanded="false">News Menu</a>
@@ -96,16 +96,15 @@
                         <a href="#workSubmenu" data-toggle="collapse" aria-expanded="false">Work Menu</a>
                         <ul class="collapse list-unstyled" id="workSubmenu">
                             <li><a href="#" id="work_post_option">Add Work Post</a></li>
-                            <li><a href="#">Modify/Delete Posts</a></li>
+                            <li><a href="#" id="work_list_option">Modify/Delete Posts</a></li>
                         </ul>
                     </li>
                     
                     <li>
                         <a href="#userSubmenu" data-toggle="collapse" aria-expanded="false">User</a>
                         <ul class="collapse list-unstyled" id="userSubmenu">
-                            <li><a href="/home">Change Username</a></li>
-                            <li><a href="#" id="change_password_user">Change Password</a></li>
-                            <li><a href="/work">Logout</a></li>
+                            <li><a href="#" id="change_password">Change Password</a></li>
+                            <li><a href="#" id="logout">Logout</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -212,30 +211,30 @@
                     <input type="submit" class="btn btn-info" value="Submit Button">
                 </div>
 
-                <div class="container dashboard_option" id="change_password">
+                <div class="container dashboard_option" id="password_form">
                     <h2>Change Password</h2>
                     <form class="form-horizontal" action="/action_page.php">
                         <div class="form-group">
-                        <label class="control-label col-sm-2" for="pwd">Old password:</label>
+                        <label class="control-label col-sm-2" for="old_pwd">Old password:</label>
                         <div class="col-sm-10">          
                             <input type="password" class="form-control" id="old_pwd" placeholder="Old password" name="old_pwd">
                         </div>
                         </div>
                         <div class="form-group">
-                        <label class="control-label col-sm-2" for="pwd">New password:</label>
+                        <label class="control-label col-sm-2" for="new_pwd">New password:</label>
                         <div class="col-sm-10">          
                             <input type="password" class="form-control" id="new_pwd" placeholder="Enter new password" name="new_pwd">
                         </div>
                         </div>
                         <div class="form-group">
-                        <label class="control-label col-sm-2" for="pwd">Confirm password:</label>
+                        <label class="control-label col-sm-2" for="confirm_pwd">Confirm password:</label>
                         <div class="col-sm-10">          
                             <input type="password" class="form-control" id="confirm_pwd" placeholder="Confirm password" name="confirm_pwd">
                         </div>
                         </div>
                         <div class="form-group">        
                         <div class="col-sm-offset-2 col-sm-10">
-                            <button type="submit" class="btn btn-default">Submit</button>
+                            <button type="submit" class="btn btn-default" id="password_submit">Submit</button>
                         </div>
                         </div>
                     </form>
@@ -249,6 +248,7 @@
          <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
     <script src="/js/mustache.min.js"></script>
+    <script src="/js/cryptico.js"></script>
     <script src="/js/dashboard.js"></script>
     <script src="/js/sidebar.js"></script>
     </body>
