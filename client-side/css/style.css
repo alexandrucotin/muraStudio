@@ -39,3 +39,15 @@
   border-bottom: 1px solid grey;
   margin-top: -2px;
 }
+
+/* social icons style */
+
+.socialIcon {
+  font-size: 2.5rem;
+}
+
+.socialIconMid {
+  font-size: 2.5rem;
+  margin-left: 3.5rem;
+  margin-right: 3.5rem;
+}
