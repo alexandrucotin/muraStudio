@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from flask import Flask, g, send_from_directory, make_response, request
+from flask import Flask, g, send_from_directory, Response, request
 from flask_sslify import SSLify
 from manager import Manager
 from admin import Admin
@@ -39,15 +39,12 @@ def send_page(page_name):
     return send_from_directory('../client-side/html/', page_name + '.html')
 
 # Images
-@app.route('/get_image/<image_id>')
+@app.route('/get_image/<int:image_id>')
 def get_image(image_id):
-    image = admin.get_image(int(image_id.split('.')[0]))
+    image = admin.get_image(image_id)
     image_type = image[0]
     binary = image[1]
-    response = make_response(binary)
-    response.headers.set('Content-Type', 'image/' + image_type)
-    response.headers.set('Content-Disposition', 'attachment', filename = ('%s.' + image_type) % binary)
-    return response
+    return Response(binary, 'image/' + image_type)
 
 # Bootstrap
 @app.route('/bootstrap/<filename>')
