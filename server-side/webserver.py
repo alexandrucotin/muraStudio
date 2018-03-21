@@ -41,7 +41,7 @@ def send_page(page_name):
 # Images
 @app.route('/get_image/<image_id>')
 def get_image(image_id):
-    image = admin.get_image(image_id)
+    image = admin.get_image(image_id.split('.')[0])
     image_type = image[0]
     binary = image[1]
     response = make_response(binary)
