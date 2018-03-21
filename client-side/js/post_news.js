@@ -37,9 +37,8 @@ var post_news = {
     format_element: function(response) {
         var news_post = response.news_post;
         if(news_post) {
-            var new_element = [];
             var i, current, title, date, description, text, image;
-            new_element[i] = {
+            var new_element = {
                 title: news_post[0],
                 date: post_news.format_date(news_post[1]),
                 description: news_post[2],
