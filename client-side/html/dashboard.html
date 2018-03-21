@@ -61,10 +61,10 @@
                     <h4 class="modal-title">Are you sure?</h4>
                     </div>
                     <div class="modal-body">
-                    <p>Want to change/delete this post?</p>
+                    <p>Want to delete this post?</p>
                     </div>
                     <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Confirm</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal" id="confirm_delete">Confirm</button>
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                     </div>
                 </div>
@@ -83,13 +83,13 @@
 
                 <ul class="list-unstyled components">
                     <li>
-                        <a href="#" aria-expanded="false">Landpage Menu</a>
+                        <a href="#" aria-expanded="false" id="landpage_option">Landpage Menu</a>
                     </li>
                     <li>
                         <a href="#newsSubmenu" data-toggle="collapse" aria-expanded="false">News Menu</a>
                         <ul class="collapse list-unstyled" id="newsSubmenu">
                             <li><a href="#" id="news_post_option">Add News Post</a></li>
-                            <li><a href="#">Modify/Delete Posts</a></li>
+                            <li><a href="#" id="news_list_option">Modify/Delete Posts</a></li>
                         </ul>
                     </li>
                     <li>
