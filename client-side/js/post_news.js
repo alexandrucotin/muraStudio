@@ -39,16 +39,13 @@ var post_news = {
         if(news_post) {
             var new_element = [];
             var i, current, title, date, description, text, image;
-            for (i = 0; i < news_post.length; i++) {
-                current = news_post[i];
-                new_element[i] = {
-                    title: current[0],
-                    date: post_news.format_date(current[1]),
-                    description: current[2],
-                    text: current[3],
-                    image: current[4]
-                };
-            }
+            new_element[i] = {
+                title: news_post[0],
+                date: post_news.format_date(news_post[1]),
+                description: news_post[2],
+                text: news_post[3],
+                image: news_post[4]
+            };
             response.news_post = new_element;
             return response;
         }
