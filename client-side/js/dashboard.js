@@ -9,6 +9,7 @@ var dashboard = {
         dashboard.init_state();
         dashboard.init_news_image();
         dashboard.init_password();
+        dashboard.init_logout();
     },
     
     hide_options: function() {
@@ -241,6 +242,13 @@ var dashboard = {
             $('#error_message').html('You must fill every input field!');
             $('#error_modal').modal('show');
         }
+    },
+    
+    init_logout: function() {
+        $('#logout').on('click', function() {
+            sessionStorage.clear();
+            window.location.href = '/home';
+        });
     }
 
 };
