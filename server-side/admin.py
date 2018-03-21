@@ -79,7 +79,6 @@ class Admin:
             INSERT INTO image (value)
             VALUES (?)
         ''', (image,))
-        self.manager.g.db.commit()
         image_id = cursor.lastrowid
         image_url = '/get_image/' + str(image_id)
         cursor.execute('''
@@ -87,6 +86,7 @@ class Admin:
             VALUES (?, ?, ?, ?)
         ''', (title, description, text, image_url))
         cursor.close()
+        self.manager.g.db.commit()
     
     # Get news list
     def get_news_list(self):
