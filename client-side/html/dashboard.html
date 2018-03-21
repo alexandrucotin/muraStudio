@@ -50,7 +50,26 @@
                     </div>
                 </div>
                 </div>
+            </div>
+
+            <!-- Confirm modal -->
+            <div class="modal fade" id="confirm_modal" role="dialog">
+                <div class="modal-dialog">
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header alert alert-success">
+                    <h4 class="modal-title">Are you sure?</h4>
+                    </div>
+                    <div class="modal-body">
+                    <p>Want to change/delete this post?</p>
+                    </div>
+                    <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Confirm</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
                 </div>
+                </div>
+            </div>
 
 
 
@@ -149,40 +168,42 @@
                 </div>
 
                 <!-- News post list -->
-                <div class="table-responsive">
-                <table class="table table-hover">
-                    <thead>
-                        <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Titolo</th>
-                        <th scope="col">Data</th>
-                        <th scope="col">Options</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                        <th scope="row">1</th>
-                        <td>First Try</td>
-                        <td>20 mar 2018</td>
-                        <td> 
-                            <button type="button" class="btn btn-success">Success</button>
-                            <button type="button" class="btn btn-danger">Danger</button>
-                        </td>
-                        </tr>
-                        <tr>
-                        <th scope="row">2</th>
-                        <td>Jacob</td>
-                        <td>Thornton</td>
-                        <td>@fat</td>
-                        </tr>
-                        <tr>
-                        <th scope="row">3</th>
-                        <td>Larry</td>
-                        <td>the Bird</td>
-                        <td>@twitter</td>
-                        </tr>
-                    </tbody>
-                </table>
+                <div class="container dashboard_option" id="news_post_list">
+                    <div class="table-responsive">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Titolo</th>
+                            <th scope="col">Data</th>
+                            <th scope="col">Options</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                            <th scope="row">1</th>
+                            <td>First Try</td>
+                            <td>20 mar 2018</td>
+                            <td> 
+                                <button type="button" class="btn btn-primary">Modify</button>
+                                <button type="button" class="btn btn-danger">Delete</button>
+                            </td>
+                            </tr>
+                            <tr>
+                            <th scope="row">2</th>
+                            <td>Jacob</td>
+                            <td>Thornton</td>
+                            <td>@fat</td>
+                            </tr>
+                            <tr>
+                            <th scope="row">3</th>
+                            <td>Larry</td>
+                            <td>the Bird</td>
+                            <td>@twitter</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    </div>
                 </div>
 
 
