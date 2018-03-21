@@ -38,6 +38,11 @@ def home():
 def send_page(page_name):
     return send_from_directory('../client-side/html/', page_name + '.html')
 
+# Images
+@app.route('/get_image/<image_id>')
+def get_image(image_id):
+    return admin.get_image(image_id)
+
 # Bootstrap
 @app.route('/bootstrap/<filename>')
 def bootstrap(filename):

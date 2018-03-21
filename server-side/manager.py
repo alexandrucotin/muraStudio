@@ -25,7 +25,6 @@ class Manager:
                 salt TEXT NOT NULL
             )
         ''')
-        database.commit()
         cursor.execute('''
             CREATE TABLE IF NOT EXISTS news (
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -34,6 +33,12 @@ class Manager:
                 description TEXT NOT NULL,
                 text TEXT NOT NULL,
                 image TEXT NOT NULL
+            )
+        ''')
+        cursor.execute('''
+            CREATE TABLE IF NOT EXISTS image (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                value TEXT NOT NULL
             )
         ''')
         database.commit()

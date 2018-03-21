@@ -26,6 +26,14 @@ class Admin:
                 ''', ('admin', password, salt))
             self.manager.close_connection()
     
+    # Get image
+    def get_image(self, image_id):
+        return self.manager.read_field('''
+            SELECT value
+            FROM image
+            WHERE id = ?
+        ''', (image_id,))
+    
     # User login
     def valid_user(self, username, password):
         valid = False
@@ -66,10 +74,19 @@ class Admin:
     
     # Post news
     def post_news(self, title, description, text, image):
-        self.manager.write('''
+        cursor = self.manager.g.db.cursor()
+        cursor.execute('''
+            INSERT INTO image (value)
+            VALUES (?)
+        ''', (image,))
+        self.manager.g.db.commit()
+        image_id = cursor.lastrowid
+        image_url = '/get_image/' + image_id
+        cursor.execute('''
             INSERT INTO news (title, description, text, image)
             VALUES (?, ?, ?, ?)
-        ''', (title, description, text, image))
+        ''', (title, description, text, image_url))
+        cursor.close()
     
     # Get news list
     def get_news_list(self):

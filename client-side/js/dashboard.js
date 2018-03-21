@@ -148,6 +148,7 @@ var dashboard = {
                 if (response.user_not_valid) {
                     window.location.href = '/login';
                 } else {
+                    dashboard.get_news_list();
                     $('#news_title, #news_description, #news_text, #news_image').val('');
                     $('#news_title, #news_description, #news_text, #news_image').css('border-color', '#ccc');
                     $('#success_message').html('News element posted correctly!');
@@ -226,6 +227,8 @@ var dashboard = {
                 if (response.user_not_valid) {
                     window.location.href = '/login';
                 } else {
+                    dashboard.get_news_list();
+                    dashboard.hide_options();
                     $('#news_modify_title, #news_modify_description, #news_modify_text').val('');
                     $('#news_modify_title, #news_modify_description, #news_modify_text').css('border-color', '#ccc');
                     $('#success_message').html('News element modified correctly!');
