@@ -55,6 +55,7 @@
 
 
         <div class="wrapper">
+
             <!-- Sidebar Holder -->
             <nav id="sidebar" class="position-fixed">
                 <div class="sidebar-header">
@@ -62,13 +63,8 @@
                 </div>
 
                 <ul class="list-unstyled components">
-                    <li class="active">
-                        <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false">Landpage Menu</a>
-                        <ul class="collapse list-unstyled" id="homeSubmenu">
-                            <li><a href="#" id="landpage_option">Add Landpage Img</a></li>
-                            <li><a href="#">Change Landpage Img</a></li>
-                            <li><a href="#">Remove Landpage Img</a></li>
-                        </ul>
+                    <li>
+                        <a href="#" aria-expanded="false">Landpage Menu</a>
                     </li>
                     <li>
                         <a href="#newsSubmenu" data-toggle="collapse" aria-expanded="false">News Menu</a>
@@ -86,10 +82,10 @@
                     </li>
                     
                     <li>
-                        <a href="#pagesSubmenu" data-toggle="collapse" aria-expanded="false">User</a>
-                        <ul class="collapse list-unstyled" id="pagesSubmenu">
+                        <a href="#userSubmenu" data-toggle="collapse" aria-expanded="false">User</a>
+                        <ul class="collapse list-unstyled" id="userSubmenu">
                             <li><a href="/home">Change Username</a></li>
-                            <li><a href="/news">Change Password</a></li>
+                            <li><a href="#" id="change_password_user">Change Password</a></li>
                             <li><a href="/work">Logout</a></li>
                         </ul>
                     </li>
@@ -177,6 +173,35 @@
                     </form>
                     <input type="submit" class="btn btn-info" value="Submit Button">
                 </div>
+
+                <div class="container dashboard_option" id="change_password">
+                    <h2>Change Password</h2>
+                    <form class="form-horizontal" action="/action_page.php">
+                        <div class="form-group">
+                        <label class="control-label col-sm-2" for="pwd">Old password:</label>
+                        <div class="col-sm-10">          
+                            <input type="password" class="form-control" id="old_pwd" placeholder="Old password" name="old_pwd">
+                        </div>
+                        </div>
+                        <div class="form-group">
+                        <label class="control-label col-sm-2" for="pwd">New password:</label>
+                        <div class="col-sm-10">          
+                            <input type="password" class="form-control" id="new_pwd" placeholder="Enter new password" name="new_pwd">
+                        </div>
+                        </div>
+                        <div class="form-group">
+                        <label class="control-label col-sm-2" for="pwd">Confirm password:</label>
+                        <div class="col-sm-10">          
+                            <input type="password" class="form-control" id="confirm_pwd" placeholder="Confirm password" name="confirm_pwd">
+                        </div>
+                        </div>
+                        <div class="form-group">        
+                        <div class="col-sm-offset-2 col-sm-10">
+                            <button type="submit" class="btn btn-default">Submit</button>
+                        </div>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
 
@@ -185,6 +210,7 @@
          <!-- Bootstrap Js CDN -->
          <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
+    <script src="/js/showdown.min.js"></script>
     <script src="/js/dashboard.js"></script>
     <script src="/js/sidebar.js"></script>
     </body>
