@@ -54,15 +54,12 @@
 
 .facebook:hover{
   color: #3b5998;
-  transition: opacity .25s;
 }
 
 .instagram:hover{
   color: #c32aa3;
-  transition: opacity .25s;
 }
 
 .twitter:hover{
   color: #1da1f2;
-  transition: opacity .25s;
 }
