@@ -120,36 +120,47 @@ var dashboard = {
     
     init_news_post: function() {
         $('#news_submit').on('click', function() {
-            var title = $('#news_title').val();
-            var description = $('#news_description').val();
-            var text = $('#news_text').val();
-            var image = dashboard.news_image;
-            if (title.length > 0 && description.length > 0 && text.length > 0 && image.length > 0) {
-                $.ajax({
-                    url: 'post_news',
-                    method: 'POST',
-                    contentType: 'application/json',
-                    dataType: 'json',
-                    data: JSON.stringify({
-                        username: dashboard.username,
-                        password: dashboard.password,
-                        title: title,
-                        description: description,
-                        text: text,
-                        image: image
-                    }),
-                    success: function(response) {
-                        $('#news_title, #news_description, #news_text, #news_image').val('');
-                        $('#success_message').html('News element posted correctly!');
-                        $('#success_modal').modal('show');
-                    }
-                });
-            } else {
-                $('#news_title, #news_description, #news_text, #news_image').css('border-color', 'red');
-                $('#error_message').html('You must fill every input field!');
-                $('#error_modal').modal('show');
+            dashboard.news_post();
+        });
+        $('#news_title, #news_description').on('keyup', function(e) {
+            if (e.keyCode == 13) {
+                dashboard.news_post();
             }
         });
+    },
+    
+    news_post: function() {
+        $('#news_title, #news_description, #news_text, #news_image').css('border-color', '#ccc');
+        var title = $('#news_title').val();
+        var description = $('#news_description').val();
+        var text = $('#news_text').val();
+        var image = dashboard.news_image;
+        if (title.length > 0 && description.length > 0 && text.length > 0 && image.length > 0) {
+            $.ajax({
+                url: 'post_news',
+                method: 'POST',
+                contentType: 'application/json',
+                dataType: 'json',
+                data: JSON.stringify({
+                    username: dashboard.username,
+                    password: dashboard.password,
+                    title: title,
+                    description: description,
+                    text: text,
+                    image: image
+                }),
+                success: function(response) {
+                    $('#news_title, #news_description, #news_text, #news_image').val('');
+                    $('#news_title, #news_description, #news_text, #news_image').css('border-color', '#ccc');
+                    $('#success_message').html('News element posted correctly!');
+                    $('#success_modal').modal('show');
+                }
+            });
+        } else {
+            $('#news_title, #news_description, #news_text, #news_image').css('border-color', 'red');
+            $('#error_message').html('You must fill every input field!');
+            $('#error_modal').modal('show');
+        }
     },
     
     delete_news_post: function(post_id, title) {
@@ -178,47 +189,58 @@ var dashboard = {
     
     init_password: function() {
         $('#password_submit').on('click', function() {
-            var old_pwd = $('#old_pwd').val();
-            var new_pwd = $('#new_pwd').val();
-            var confirm_pwd = $('#confirm_pwd').val();
-            if (old_pwd.length > 0 && new_pwd.length > 0 && confirm_pwd.length > 0) {
-                if (new_pwd === confirm_pwd) {
-                    old_pwd = SHA256(old_pwd);
-                    new_pwd = SHA256(new_pwd);
-                    $.ajax({
-                        url: 'change_password',
-                        method: 'POST',
-                        contentType: 'application/json',
-                        dataType: 'json',
-                        data: JSON.stringify({
-                            username: dashboard.username,
-                            password: old_pwd,
-                            new_password: new_pwd
-                        }),
-                        success: function(response) {
-                            if (response.user_not_valid) {
-                                $('#old_pwd').css('border-color', 'red');
-                                $('#error_message').html('Old password not correct!');
-                                $('#error_modal').modal('show');
-                            } else {
-                                $('#success_message').html('News password set correctly!');
-                                $('#success_modal').modal('show');
-                                sessionStorage.setItem('password', new_pwd);
-                                dashboard.password = new_pwd;
-                            }
-                        }
-                    });
-                } else {
-                    $('#new_pwd, #confirm_pwd').css('border-color', 'red');
-                    $('#error_message').html('Password not matching!');
-                    $('#error_modal').modal('show');
-                }
-            } else {
-                $('#old_pwd, #new_pwd, #confirm_pwd').css('border-color', 'red');
-                $('#error_message').html('You must fill every input field!');
-                $('#error_modal').modal('show');
+            dashboard.change_password();
+        });
+        $('#old_pwd, #new_pwd, #confirm_pwd').on('keyup', function(e) {
+            if (e.keyCode == 13) {
+                dashboard.change_password();
             }
         });
+    },
+    
+    change_password: function() {
+        $('#old_pwd, #new_pwd, #confirm_pwd').css('border-color', '#ccc');
+        var old_pwd = $('#old_pwd').val();
+        var new_pwd = $('#new_pwd').val();
+        var confirm_pwd = $('#confirm_pwd').val();
+        if (old_pwd.length > 0 && new_pwd.length > 0 && confirm_pwd.length > 0) {
+            if (new_pwd === confirm_pwd) {
+                old_pwd = SHA256(old_pwd);
+                new_pwd = SHA256(new_pwd);
+                $.ajax({
+                    url: 'change_password',
+                    method: 'POST',
+                    contentType: 'application/json',
+                    dataType: 'json',
+                    data: JSON.stringify({
+                        username: dashboard.username,
+                        password: old_pwd,
+                        new_password: new_pwd
+                    }),
+                    success: function(response) {
+                        if (response.user_not_valid) {
+                            $('#old_pwd').css('border-color', 'red');
+                            $('#error_message').html('Old password not correct!');
+                            $('#error_modal').modal('show');
+                        } else {
+                            $('#old_pwd, #new_pwd, #confirm_pwd').val('');
+                            $('#old_pwd, #new_pwd, #confirm_pwd').css('border-color', '#ccc');
+                            $('#success_message').html('News password set correctly!');
+                            $('#success_modal').modal('show');
+                            sessionStorage.setItem('password', new_pwd);
+                        }
+                    }
+                });
+            } else {
+                $('#new_pwd, #confirm_pwd').css('border-color', 'red');
+                $('#error_message').html('New passwords not matching!');
+                $('#error_modal').modal('show');
+            }
+        } else {
+            $('#old_pwd, #new_pwd, #confirm_pwd').css('border-color', 'red');
+            $('#error_message').html('You must fill every input field!');
+            $('#error_modal').modal('show');
+        }
     }
 
 };
