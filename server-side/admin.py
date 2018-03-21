@@ -28,8 +28,8 @@ class Admin:
     
     # Get image
     def get_image(self, image_id):
-        return self.manager.read_field('''
-            SELECT value
+        return self.manager.read_one('''
+            SELECT type, value
             FROM image
             WHERE id = ?
         ''', (image_id,))
@@ -75,10 +75,11 @@ class Admin:
     # Post news
     def post_news(self, title, description, text, image):
         cursor = self.manager.g.db.cursor()
+        image_type = image.split('/')[1].split(';')[0]
         cursor.execute('''
-            INSERT INTO image (value)
-            VALUES (?)
-        ''', (image,))
+            INSERT INTO image (type, value)
+            VALUES (?, ?)
+        ''', (image_type, image,))
         image_id = cursor.lastrowid
         image_url = '/get_image/' + str(image_id)
         cursor.execute('''
