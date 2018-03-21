@@ -19,7 +19,7 @@ var dashboard = {
     valid_user: function() {
         dashboard.username = sessionStorage.getItem('username');
         dashboard.password = sessionStorage.getItem('password');
-        if (username && password) {
+        if (dashboard.username && dashboard.password) {
             $.ajax({
                 url: 'valid_user',
                 method: 'POST',
