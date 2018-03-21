@@ -143,6 +143,26 @@ var dashboard = {
                 $('#error_modal').modal('show');
             }
         });
+    },
+    
+    delete_news_post: function(post_id, title) {
+        dashboard.news_post_to_delete = post_id;
+        $('#post_title').html(title);
+        $('#confirm_modal').modal('show');
+        $('#confirm_delete').on('click', function() {
+            $.ajax({
+                url: 'delete_news_post',
+                method: 'POST',
+                contentType: 'application/json',
+                dataType: 'json',
+                data: JSON.stringify({id: post_id}),
+                success: function(response) {
+                    $('#success_message').html('News element deleted correctly!');
+                    $('#success_modal').modal('show');
+                    dashboard.get_news_list();
+                }
+            });
+        });
     }
 
 };

@@ -57,8 +57,8 @@
             <td>{{title}}</td>
             <td>{{date}}</td>
             <td> 
-                <button type="button" class="btn btn-primary" onclick="modify_news_post('{{post_id}}')">Modify</button>
-                <button type="button" class="btn btn-danger" onclick="delete_news_post('{{post_id}}')">Delete</button>
+                <button type="button" class="btn btn-primary" onclick="dashboard.modify_news_post('{{post_id}}')">Modify</button>
+                <button type="button" class="btn btn-danger" onclick="dashboard.delete_news_post('{{post_id}}', '{{title}}'')">Delete</button>
             </td>
         </tr>
     {{/news}}
