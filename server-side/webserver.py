@@ -39,12 +39,12 @@ def send_page(page_name):
     return send_from_directory('../client-side/html/', page_name + '.html')
 
 # Images
-@app.route('/get_image/<int:image_id>')
+@app.route('/get_image/<int:image_id>.png')
 def get_image(image_id):
     image = admin.get_image(image_id)
     image_type = image[0]
     binary = image[1]
-    return Response(binary, 'image/' + image_type)
+    return Response(binary, 'image/png')
 
 # Bootstrap
 @app.route('/bootstrap/<filename>')
