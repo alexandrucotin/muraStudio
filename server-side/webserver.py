@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from flask import Flask, g, send_from_directory, request
+from flask import Flask, g, send_from_directory, request, send_file
 from flask_sslify import SSLify
 from manager import Manager
 from admin import Admin
@@ -71,7 +71,7 @@ def jquery(filename):
 
 # Other files
 @app.route('/<directory>/<filename>')
-def send_file(directory, filename):
+def send_files(directory, filename):
     return send_from_directory('../client-side/' + directory + '/', filename)
 
 
