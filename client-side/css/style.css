@@ -51,3 +51,15 @@
   margin-left: 3.5rem;
   margin-right: 3.5rem;
 }
+
+.facebook:hover{
+  color: #3b5998;
+}
+
+.instagram:hover{
+  color: #c32aa3;
+}
+
+.twitter:hover{
+  color: #1da1f2;
+}
