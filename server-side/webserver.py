@@ -44,7 +44,7 @@ def get_image(image_id):
     image = admin.get_image(image_id)
     image_type = image[0]
     binary = image[1]
-    return Response(binary, 'image/png')
+    return Response(binary, mimetype = 'image/png')
 
 # Bootstrap
 @app.route('/bootstrap/<filename>')
