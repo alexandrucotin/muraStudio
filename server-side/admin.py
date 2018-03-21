@@ -87,7 +87,7 @@ class Admin:
         ''', (element_id,))
     
     # Change password
-    def add_admin(self, username, passowrd):
+    def change_password(self, username, passowrd):
         salt = self.generate_salt()
         password = sha256(password + salt + self.pepper).hexdigest()
         self.manager.write('''
