@@ -42,7 +42,7 @@ var post_news = {
                 title: news_post[0],
                 date: post_news.format_date(news_post[1]),
                 description: news_post[2],
-                text: news_post[3],
+                text: post_news.format_text(news_post[3]),
                 image: news_post[4]
             };
             response.news_post = new_element;
@@ -56,6 +56,12 @@ var post_news = {
         date = date.split(' ')[0].split('-');
         var new_date = date[2] + ' ' + months[date[1] - 1] + ' ' + date[0];
         return new_date;
+    },
+    
+    format_text: function(text) {
+        var converter = new showdown.Converter();
+        var html_text = converter.makeHtml(text);
+        return html_text;
     }
 
 };
