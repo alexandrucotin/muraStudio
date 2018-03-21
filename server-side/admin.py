@@ -81,7 +81,7 @@ class Admin:
             VALUES (?, ?)
         ''', (image_type, image,))
         image_id = cursor.lastrowid
-        image_url = '/get_image/' + str(image_id)
+        image_url = '/get_image/' + str(image_id) + '.' + image_type
         cursor.execute('''
             INSERT INTO news (title, description, text, image)
             VALUES (?, ?, ?, ?)
