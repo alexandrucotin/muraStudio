@@ -101,6 +101,13 @@ def post_news():
 def get_news_list():
     return dumps({'news': admin.get_news_list()})
 
+# Delete news element
+@app.route('/delete_news_post', methods = ['POST'])
+def delete_news_post():
+    client_request = request.get_json(force = True)
+    element_id = client_request['id']
+    return dumps({'news_post': admin.delete_news_post(element_id)})
+
 
 # STARTING SERVER
 

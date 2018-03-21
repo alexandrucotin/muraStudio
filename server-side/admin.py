@@ -78,3 +78,10 @@ class Admin:
             FROM news
             ORDER BY id DESC
         ''')
+    
+    # Delete news element
+    def delete_news_post(self, element_id):
+        self.manager.write('''
+            DELETE FROM news
+            WHERE id = ?
+        ''', (element_id,))
