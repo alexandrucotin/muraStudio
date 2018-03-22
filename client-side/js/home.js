@@ -13,7 +13,7 @@ var home = {
                     $('#images').html(Mustache.render(template, response));
                     $('.carousel-item:first').addClass('active');
                     $('#carousel').carousel({
-                        interval: 2000
+                        interval: 1000
                     });
                 });
             }
