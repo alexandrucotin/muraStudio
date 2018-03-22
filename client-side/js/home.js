@@ -12,9 +12,9 @@ var home = {
                     var template = $(content).filter('#landpage_images').html();
                     $('#images').html(Mustache.render(template, response));
                     $('.carousel-item:first').addClass('active');
-                    $('#carousel').carousel({
-                        interval: 1000
-                    });
+                    setInterval(function() {
+                        $('#carousel').carousel('next');
+                    }, 4000);
                 });
             }
         });
