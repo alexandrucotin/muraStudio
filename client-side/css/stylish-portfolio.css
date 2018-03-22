@@ -35,8 +35,9 @@
 
 @media (min-width: 992px) {
   .portfolio-item {
-    max-width: none;
+    max-width: 100%;
     margin: 0;
+    height: 15rem;
   }
   .portfolio-item .caption {
     -webkit-transition: -webkit-clip-path 0.25s ease-out, background-color 0.7s;
@@ -63,4 +64,8 @@
     -webkit-clip-path: inset(2rem);
     clip-path: inset(2rem);
   }
+}
+.img-fluid {
+    width: 100%!important;
+    height: 100%!important;
 }
