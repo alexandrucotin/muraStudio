@@ -7,20 +7,16 @@
         <meta name="description" content="">
         <meta name="author" content="">
 
-        <title>Work - Mura Studio</title>
+        <title></title>
 
         <!-- Bootstrap core CSS -->
         <link href="/bootstrap/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
-        <!-- custom css -->
-        <link href="/css/4-col-portfolio.css" rel="stylesheet">
+        <!-- Custom styles for this template -->
+        <link href="/css/blog-post.css" rel="stylesheet">
         <link href="/css/scrollSpy.css" rel="stylesheet">
         <link href="/css/style.css" rel="stylesheet">
-        <link href="/css/overlay.css" rel="stylesheet">
 
-        <!-- Custom header font -->
-        <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
-     
     </head>
     <body>
 
@@ -52,15 +48,27 @@
         <!-- Page Content -->
         <div class="container">
             <hr id="startchange">
-            
-            <!-- Page Heading -->
-            <h1 class="my-4">Our work
-                <small>Secondary Text</small>
-            </h1>
-            
-            <div class="row" id="work">
+            <div class="row">
+
+                <!-- Post Content Column -->
+                <div class="col-lg-8" id="work_element">
+                </div>
+                <hr>
+
+                <!-- SOCIAL LINKS -->
+                <div class="col-md-4">
+                    <!-- Side Widget -->
+                    <div class="card my-4">
+                        <h5 class="card-header">Social Links</h5>
+                        <div class="card-body text-center">
+                            <i class="fab fa-facebook-square socialIcon facebook"></i>
+                            <i class="fab fa-instagram socialIconMid instagram"></i>
+                            <i class="fab fa-twitter socialIcon twitter"></i>
+                        </div>
+                    </div>
+                </div>
+
             </div>
-            
         </div>
 
         <!-- Footer -->
@@ -71,13 +79,15 @@
         </footer>
 
         <!-- Bootstrap core JavaScript -->
+        <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
         <script src="/bootstrap/vendor/jquery/jquery.min.js"></script>
         <script src="/bootstrap/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
         <script src="/js/scrollSpy.js"></script>
 
-        <!-- Work scripts -->
+        <!-- Post scripts -->
+        <script src="/js/showdown.min.js"></script>
         <script src="/js/mustache.min.js"></script>
-        <script src="/js/work.js"></script>
+        <script src="/js/post.js"></script>
 
     </body>
 </html>

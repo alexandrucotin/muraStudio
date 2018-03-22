@@ -1,13 +1,13 @@
 var dashboard = {
     
     init: function() {
+        dashboard.work_image = '';
         dashboard.hide_options();
         dashboard.valid_user();
-        dashboard.get_news_list();
+        dashboard.get_work_list();
         dashboard.init_options();
-        dashboard.init_news_post();
-        dashboard.init_state();
-        dashboard.init_news_image();
+        dashboard.init_work_post();
+        dashboard.init_work_image();
         dashboard.init_password();
         dashboard.init_logout();
     },
@@ -39,36 +39,36 @@ var dashboard = {
         } else window.location.href = '/login';
     },
     
-    get_news_list: function() {
+    get_work_list: function() {
         $.ajax({
-            url: 'get_news_list',
+            url: 'get_work_list',
             method: 'POST',
             contentType: 'application/json',
             dataType: 'json',
             success: function(response) {
-                response = dashboard.format_news(response);
+                response = dashboard.format_work(response);
                 $.get('/html/templates.html', function(content) {
-                    var template = $(content).filter('#get_news_list').html();
-                    $('#news_list').html(Mustache.render(template, response));
+                    var template = $(content).filter('#get_work_list').html();
+                    $('#work_list').html(Mustache.render(template, response));
                 });
             }
         });
     },
     
-    format_news: function(response) {
-        var news_list = response.news;
-        if(news_list) {
+    format_work: function(response) {
+        var work_list = response.work;
+        if(work_list) {
             var new_list = [];
             var i, current, post_id, title, date;
-            for (i = 0; i < news_list.length; i++) {
-                current = news_list[i];
+            for (i = 0; i < work_list.length; i++) {
+                current = work_list[i];
                 new_list[i] = {
                     post_id: current[0],
                     title: current[1],
                     date: dashboard.format_date(current[2])
                 };
             }
-            response.news = new_list;
+            response.work = new_list;
             return response;
         }
         return [];
@@ -86,17 +86,13 @@ var dashboard = {
             $('.dashboard_option').css('display', 'none');
             $('#landpage_add').css('display', 'block');
         });
-        $('#news_post_option').on('click', function() {
-            $('.dashboard_option').css('display', 'none');
-            $('#news_post_form').css('display', 'block');
-        });
-        $('#news_list_option').on('click', function() {
-            $('.dashboard_option').css('display', 'none');
-            $('#news_post_list').css('display', 'block');
-        });
         $('#work_post_option').on('click', function() {
             $('.dashboard_option').css('display', 'none');
             $('#work_post_form').css('display', 'block');
+        });
+        $('#work_list_option').on('click', function() {
+            $('.dashboard_option').css('display', 'none');
+            $('#work_post_list').css('display', 'block');
         });
         $('#change_password').on('click', function() {
             $('.dashboard_option').css('display', 'none');
@@ -104,35 +100,35 @@ var dashboard = {
         });
     },
     
-    init_news_post: function() {
-        $('#news_submit').on('click', function() {
-            dashboard.news_post();
+    init_work_post: function() {
+        $('#work_submit').on('click', function() {
+            dashboard.work_post();
         });
-        $('#news_title, #news_description').on('keyup', function(e) {
+        $('#work_title, #work_description').on('keyup', function(e) {
             if (e.keyCode == 13) {
-                dashboard.news_post();
+                dashboard.work_post();
             }
         });
     },
     
-    news_post: function() {
-        $('#news_title, #news_description, #news_text, #news_image').css('border-color', '#ccc');
-        var title = $('#news_title').val();
-        var description = $('#news_description').val();
-        var text = $('#news_text').val();
-        var image = dashboard.news_image;
+    work_post: function() {
+        $('#work_title, #work_description, #work_text, #work_image').css('border-color', '#ccc');
+        var title = $('#work_title').val();
+        var description = $('#work_description').val();
+        var text = $('#work_text').val();
+        var image = dashboard.work_image;
         if (title.length > 0 && description.length > 0 && text.length > 0 && image.length > 0) {
-            dashboard.news_post_request(title, description, text, image);
+            dashboard.work_post_request(title, description, text, image);
         } else {
-            $('#news_title, #news_description, #news_text, #news_image').css('border-color', 'red');
+            $('#work_title, #work_description, #work_text, #work_image').css('border-color', 'red');
             $('#error_message').html('You must fill every input field!');
             $('#error_modal').modal('show');
         }
     },
     
-    news_post_request: function(title, description, text, image) {
+    work_post_request: function(title, description, text, image) {
         $.ajax({
-            url: 'post_news',
+            url: 'post_work',
             method: 'POST',
             contentType: 'application/json',
             dataType: 'json',
@@ -148,34 +144,30 @@ var dashboard = {
                 if (response.user_not_valid) {
                     window.location.href = '/login';
                 } else {
-                    dashboard.get_news_list();
-                    $('#news_title, #news_description, #news_text, #news_image').val('');
-                    $('#news_title, #news_description, #news_text, #news_image').css('border-color', '#ccc');
-                    $('#success_message').html('News element posted correctly!');
+                    dashboard.get_work_list();
+                    dashboard.work_image = '';
+                    $('#work_title, #work_description, #work_text, #work_image').val('');
+                    $('#work_title, #work_description, #work_text, #work_image').css('border-color', '#ccc');
+                    $('#success_message').html('Work element posted correctly!');
                     $('#success_modal').modal('show');
                 }
             }
         });
     },
     
-    init_state: function() {
-        dashboard.news_image = '';
-        dashboard.work_image = '';
-    },
-    
-    init_news_image: function() {
-        $('#news_image').change(function(event) {
+    init_work_image: function() {
+        $('#work_image').change(function(event) {
             var reader = new FileReader();
             reader.onload = function(e) {
-                dashboard.news_image = e.target.result;
+                dashboard.work_image = e.target.result;
             };
             reader.readAsDataURL(event.target.files[0]);
         });
     },
     
-    modify_news_post: function(post_id) {
+    modify_work_element: function(post_id) {
         $.ajax({
-            url: 'get_news_element',
+            url: 'get_work_element',
             method: 'POST',
             contentType: 'application/json',
             dataType: 'json',
@@ -184,21 +176,21 @@ var dashboard = {
                 if (response.user_not_valid) {
                     window.location.href = '/login';
                 } else {
-                    var element = response.news_post;
-                    $('#news_modify_title').val(element[0]);
-                    $('#news_modify_description').val(element[2]);
-                    $('#news_modify_text').val(element[3]);
+                    var element = response.work_element;
+                    $('#work_modify_title').val(element[0]);
+                    $('#work_modify_description').val(element[2]);
+                    $('#work_modify_text').val(element[3]);
                     $('.dashboard_option').css('display', 'none');
-                    $('#news_modify_form').css('display', 'block');
-                    $('#news_modify_submit').on('click', function() {
-                        $('#news_modify_title, #news_modify_description, #news_modify_text').css('border-color', '#ccc');
-                        var title = $('#news_modify_title').val();
-                        var description = $('#news_modify_description').val();
-                        var text = $('#news_modify_text').val();
+                    $('#work_modify_form').css('display', 'block');
+                    $('#work_modify_submit').on('click', function() {
+                        $('#work_modify_title, #work_modify_description, #work_modify_text').css('border-color', '#ccc');
+                        var title = $('#work_modify_title').val();
+                        var description = $('#work_modify_description').val();
+                        var text = $('#work_modify_text').val();
                         if (title.length > 0 && description.length > 0 && text.length > 0) {
-                            dashboard.news_modify_request(post_id, title, description, text);
+                            dashboard.work_modify_request(post_id, title, description, text);
                         } else {
-                            $('#news_modify_title, #news_modify_description, #news_modify_text').css('border-color', 'red');
+                            $('#work_modify_title, #work_modify_description, #work_modify_text').css('border-color', 'red');
                             $('#error_message').html('You must fill every input field!');
                             $('#error_modal').modal('show');
                         }
@@ -208,9 +200,9 @@ var dashboard = {
         });
     },
     
-    news_modify_request: function(id, title, description, text, image) {
+    work_modify_request: function(id, title, description, text, image) {
         $.ajax({
-            url: 'modify_news_element',
+            url: 'modify_work_element',
             method: 'POST',
             contentType: 'application/json',
             dataType: 'json',
@@ -227,23 +219,23 @@ var dashboard = {
                 if (response.user_not_valid) {
                     window.location.href = '/login';
                 } else {
-                    dashboard.get_news_list();
+                    dashboard.get_work_list();
                     dashboard.hide_options();
-                    $('#news_modify_title, #news_modify_description, #news_modify_text').val('');
-                    $('#news_modify_title, #news_modify_description, #news_modify_text').css('border-color', '#ccc');
-                    $('#success_message').html('News element modified correctly!');
+                    $('#work_modify_title, #work_modify_description, #work_modify_text').val('');
+                    $('#work_modify_title, #work_modify_description, #work_modify_text').css('border-color', '#ccc');
+                    $('#success_message').html('Work element modified correctly!');
                     $('#success_modal').modal('show');
                 }
             }
         });
     },
     
-    delete_news_post: function(post_id, title) {
+    delete_work_element: function(post_id, title) {
         $('#post_title').html(title);
         $('#confirm_modal').modal('show');
         $('#confirm_delete').on('click', function() {
             $.ajax({
-                url: 'delete_news_post',
+                url: 'delete_work_post',
                 method: 'POST',
                 contentType: 'application/json',
                 dataType: 'json',
@@ -256,8 +248,8 @@ var dashboard = {
                     if (response.user_not_valid) {
                         window.location.href = '/login';
                     } else {
-                        dashboard.get_news_list();
-                        $('#success_message').html('News element deleted correctly!');
+                        dashboard.get_work_list();
+                        $('#success_message').html('Work element deleted correctly!');
                         $('#success_modal').modal('show');
                     }
                 }
@@ -317,7 +309,7 @@ var dashboard = {
                 } else {
                     $('#old_pwd, #new_pwd, #confirm_pwd').val('');
                     $('#old_pwd, #new_pwd, #confirm_pwd').css('border-color', '#ccc');
-                    $('#success_message').html('News password set correctly!');
+                    $('#success_message').html('New password set correctly!');
                     $('#success_modal').modal('show');
                     sessionStorage.setItem('password', new_pwd);
                 }

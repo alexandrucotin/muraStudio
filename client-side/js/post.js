@@ -1,8 +1,8 @@
-var post_news = {
+var post = {
     
     init: function() {
-        post_news.get_element_id();
-        post_news.get_element();
+        post.get_element_id();
+        post.get_element();
     },
     
     get_element_id: function() {
@@ -12,41 +12,41 @@ var post_news = {
         for (i = 0; i < variables.length; i++) {
             current = variables[i].split('=');
             if (current[0] === 'id') {
-                post_news.element_id = current[1] === undefined ? true : current[1];
+                post.element_id = current[1] === undefined ? true : current[1];
             }
         }
     },
     
     get_element: function() {
         $.ajax({
-            url: 'get_news_element',
+            url: 'get_work_element',
             method: 'POST',
             contentType: 'application/json',
             dataType: 'json',
-            data: JSON.stringify({id: post_news.element_id}),
+            data: JSON.stringify({id: post.element_id}),
             success: function(response) {
-                response = post_news.format_element(response);
-                $('title').html(response.news_post.title + ' - Mura Studio');
+                response = post.format_element(response);
+                $('title').html(response.work_element.title + ' - Mura Studio');
                 $.get('/html/templates.html', function(content) {
-                    var template = $(content).filter('#get_news_element').html();
-                    $('#post_news_element').html(Mustache.render(template, response));
+                    var template = $(content).filter('#get_work_element').html();
+                    $('#work_element').html(Mustache.render(template, response));
                 });
             }
         });
     },
     
     format_element: function(response) {
-        var news_post = response.news_post;
-        if(news_post) {
+        var work_element = response.work_element;
+        if(work_element) {
             var i, current, title, date, description, text, image;
             var new_element = {
-                title: news_post[0],
-                date: post_news.format_date(news_post[1]),
-                description: news_post[2],
-                text: post_news.format_text(news_post[3]),
-                image: news_post[4]
+                title: work_element[0],
+                date: post.format_date(work_element[1]),
+                description: work_element[2],
+                text: post.format_text(work_element[3]),
+                image: work_element[4]
             };
-            response.news_post = new_element;
+            response.work_element = new_element;
             return response;
         }
         return [];
@@ -68,4 +68,4 @@ var post_news = {
 };
 
 
-$(document).ready(post_news.init());
+$(document).ready(post.init());

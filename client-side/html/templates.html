@@ -1,26 +1,26 @@
 <!DOCTYPE html>
 
-<!-- NEWS -->
-<script type="text/html" id="get_news">
-    {{#news}}
+<!-- WORK -->
+<script type="text/html" id="get_work">
+    {{#work}}
         <div class="col-lg-3 col-md-4 col-sm-6 portfolio-item">
             <div class="card h-100">
-                <a href="/post_news?id={{post_id}}" class="card-img-wrap"><img class="card-img-top" src="{{image}}" alt=""></a>
+                <a href="/post?id={{post_id}}" class="card-img-wrap"><img class="card-img-top" src="{{image}}" alt=""></a>
                 <div class="card-body">
                     <p class="data">{{date}}</p>
                     <h4 class="card-title">
-                        <a href="/post_news?id={{post_id}}">{{title}}</a>
+                        <a href="/post?id={{post_id}}">{{title}}</a>
                     </h4>
                     <p class="card-text">{{description}}</p>
                 </div>
             </div>
         </div>
-    {{/news}}
+    {{/work}}
 </script>
 
-<!-- NEWS POST -->
-<script type="text/html" id="get_news_element">
-    {{#news_post}}
+<!-- WORK ELEMENT -->
+<script type="text/html" id="get_work_element">
+    {{#work_element}}
         <h1 class="mt-4">{{title}}</h1>
         <p class="lead">by <a href="#">Mura Studio</a></p>
         <hr>
@@ -29,20 +29,20 @@
         <img class="img-fluid rounded" src="{{image}}" alt="">
         <hr>
         <div>{{{text}}}<br><br></div>
-    {{/news_post}}
+    {{/work_element}}
 </script>
 
-<!-- NEWS LIST -->
-<script type="text/html" id="get_news_list">
-    {{#news}}
+<!-- WORK LIST -->
+<script type="text/html" id="get_work_list">
+    {{#work}}
         <tr>
             <th scope="row">{{post_id}}</th>
             <td>{{title}}</td>
             <td>{{date}}</td>
             <td> 
-                <button type="button" class="btn btn-primary" onclick="dashboard.modify_news_post('{{post_id}}')">Modify</button>
-                <button type="button" class="btn btn-danger" onclick="dashboard.delete_news_post('{{post_id}}', '{{title}}')">Delete</button>
+                <button type="button" class="btn btn-primary" onclick="dashboard.modify_work_element('{{post_id}}')">Modify</button>
+                <button type="button" class="btn btn-danger" onclick="dashboard.delete_work_element('{{post_id}}', '{{title}}')">Delete</button>
             </td>
         </tr>
-    {{/news}}
+    {{/work}}
 </script>

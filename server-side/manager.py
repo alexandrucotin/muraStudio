@@ -26,7 +26,7 @@ class Manager:
             )
         ''')
         cursor.execute('''
-            CREATE TABLE IF NOT EXISTS news (
+            CREATE TABLE IF NOT EXISTS work (
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
                 title TEXT NOT NULL,
                 date DATETIME DEFAULT CURRENT_TIMESTAMP,

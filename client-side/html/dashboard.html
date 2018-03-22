@@ -85,16 +85,7 @@
                 </div>
 
                 <ul class="list-unstyled components">
-                    <li>
-                        <a href="#" aria-expanded="false" id="landpage_option">Landpage Images</a>
-                    </li>
-                    <li>
-                        <a href="#newsSubmenu" data-toggle="collapse" aria-expanded="false">News Menu</a>
-                        <ul class="collapse list-unstyled" id="newsSubmenu">
-                            <li><a href="#" id="news_post_option">Add News Post</a></li>
-                            <li><a href="#" id="news_list_option">Modify/Delete Posts</a></li>
-                        </ul>
-                    </li>
+                    <li><a href="#" aria-expanded="false" id="landpage_option">Landpage Images</a></li>
                     <li>
                         <a href="#workSubmenu" data-toggle="collapse" aria-expanded="false">Work Menu</a>
                         <ul class="collapse list-unstyled" id="workSubmenu">
@@ -102,7 +93,6 @@
                             <li><a href="#" id="work_list_option">Modify/Delete Posts</a></li>
                         </ul>
                     </li>
-                    
                     <li>
                         <a href="#userSubmenu" data-toggle="collapse" aria-expanded="false">User</a>
                         <ul class="collapse list-unstyled" id="userSubmenu">
@@ -145,75 +135,6 @@
                     <h2>Landpage images</h2>
                 </div>
                 
-                <!-- News post form -->
-                <div class="container dashboard_option" id="news_post_form">
-                    <h2>News post form</h2>
-
-                    <form>
-                        <div class="form-group">
-                            <label for="news_title">Title</label>
-                            <textarea class="form-control" id="news_title" name="news_title" rows="1"></textarea>
-                        </div>
-                        <div class="form-group">
-                            <label for="news_description">Description</label>
-                            <textarea class="form-control" id="news_description" name="news_description" rows="3"></textarea>
-                        </div>
-                        <div class="form-group">
-                            <label for="news_text">Full Article</label>
-                            <textarea class="form-control" id="news_text" name="news_text" rows="5"></textarea>
-                        </div>
-                        <div class="form-group">
-                            <label for="news_image">Upload a picture</label>
-                            <input type="file" class="form-control-file" id="news_image" name="news_image">
-                        </div>
-                    </form>
-                    
-                    <input type="submit" class="btn btn-info" id="news_submit" value="Post News Element">
-                    
-                </div>
-                
-                <!-- News modify form -->
-                <div class="container dashboard_option" id="news_modify_form">
-                    <h2>News modify form</h2>
-
-                    <form>
-                        <div class="form-group">
-                            <label for="news_modify_title">Title</label>
-                            <textarea class="form-control" id="news_modify_title" name="news_modify_title" rows="1"></textarea>
-                        </div>
-                        <div class="form-group">
-                            <label for="news_modify_description">Description</label>
-                            <textarea class="form-control" id="news_modify_description" name="news_modify_description" rows="3"></textarea>
-                        </div>
-                        <div class="form-group">
-                            <label for="news_modify_text">Full Article</label>
-                            <textarea class="form-control" id="news_modify_text" name="news_modify_text" rows="5"></textarea>
-                        </div>
-                    </form>
-                    
-                    <input type="submit" class="btn btn-info" id="news_modify_submit" value="Modify News Element">
-                    
-                </div>
-
-                <!-- News post list -->
-                <div class="container dashboard_option" id="news_post_list">
-                    <div class="table-responsive">
-                        <table class="table table-hover">
-                            <thead>
-                                <tr>
-                                <th scope="col">#</th>
-                                <th scope="col">Title</th>
-                                <th scope="col">Date</th>
-                                <th scope="col">Options</th>
-                                </tr>
-                            </thead>
-                            <tbody id="news_list">
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-
-
                 <!-- Work post form -->
                 <div class="container dashboard_option" id="work_post_form">
                     <h2>Work post form</h2>
@@ -229,16 +150,57 @@
                         </div>
                         <div class="form-group">
                             <label for="work_text">Full Article</label>
-                            <textarea class="form-control" id="work_text" name="work_text" rows="5"></textarea>
+                            <textarea class="form-control" id="work_text" name="work_text" rows="8"></textarea>
                         </div>
                         <div class="form-group">
                             <label for="work_image">Upload a picture</label>
                             <input type="file" class="form-control-file" id="work_image" name="work_image">
-                        </div>     
+                        </div>
                     </form>
                     
                     <input type="submit" class="btn btn-info" id="work_submit" value="Post Work Element">
                     
+                </div>
+                
+                <!-- Work modify form -->
+                <div class="container dashboard_option" id="work_modify_form">
+                    <h2>Work modify form</h2>
+
+                    <form>
+                        <div class="form-group">
+                            <label for="work_modify_title">Title</label>
+                            <textarea class="form-control" id="work_modify_title" name="work_modify_title" rows="1"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="work_modify_description">Description</label>
+                            <textarea class="form-control" id="work_modify_description" name="work_modify_description" rows="3"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="work_modify_text">Full Article</label>
+                            <textarea class="form-control" id="work_modify_text" name="work_modify_text" rows="8"></textarea>
+                        </div>
+                    </form>
+                    
+                    <input type="submit" class="btn btn-info" id="work_modify_submit" value="Modify Work Element">
+                    
+                </div>
+
+                <!-- Work post list -->
+                <div class="container dashboard_option" id="work_post_list">
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Title</th>
+                                <th scope="col">Date</th>
+                                <th scope="col">Options</th>
+                                </tr>
+                            </thead>
+                            <tbody id="work_list">
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
                 
                 <!-- Change Password -->

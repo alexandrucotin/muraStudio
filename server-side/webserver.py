@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from flask import Flask, g, send_from_directory, request
-#from flask_sslify import SSLify
+from flask_sslify import SSLify
 from manager import Manager
 from admin import Admin
 from json import dumps
@@ -10,7 +10,7 @@ from json import dumps
 # GLOBAL VARIABLES
 
 app = Flask(__name__)
-#ssLify = SSLify(app)
+ssLify = SSLify(app)
 manager = Manager(g, 'database.db')
 admin = Admin(manager, 'piper_nigrum', app)
 
@@ -78,21 +78,21 @@ def user_login():
     password = client_request['password']
     return dumps({'valid_user': admin.valid_user(username, password)})
 
-# Get news
-@app.route('/get_news', methods = ['POST'])
-def get_news():
-    return dumps({'news': admin.get_news()})
+# Get work
+@app.route('/get_work', methods = ['POST'])
+def get_work():
+    return dumps({'work': admin.get_work()})
 
-# Get news element
-@app.route('/get_news_element', methods = ['POST'])
-def get_news_element():
+# Get work element
+@app.route('/get_work_element', methods = ['POST'])
+def get_work_element():
     client_request = request.get_json(force = True)
     element_id = client_request['id']
-    return dumps({'news_post': admin.get_news_element(element_id)})
+    return dumps({'work_element': admin.get_work_element(element_id)})
 
-# Post news
-@app.route('/post_news', methods = ['POST'])
-def post_news():
+# Post work
+@app.route('/post_work', methods = ['POST'])
+def post_work():
     client_request = request.get_json(force = True)
     username = client_request['username']
     password = client_request['password']
@@ -102,17 +102,17 @@ def post_news():
     description = client_request['description']
     text = client_request['text']
     image = client_request['image']
-    admin.post_news(title, description, text, image)
+    admin.post_work(title, description, text, image)
     return dumps({'success': True})
 
-# Get news list
-@app.route('/get_news_list', methods = ['POST'])
-def get_news_list():
-    return dumps({'news': admin.get_news_list()})
+# Get work list
+@app.route('/get_work_list', methods = ['POST'])
+def get_work_list():
+    return dumps({'work': admin.get_work_list()})
 
-# Modify news element
-@app.route('/modify_news_element', methods = ['POST'])
-def modify_news_element():
+# Modify work element
+@app.route('/modify_work_element', methods = ['POST'])
+def modify_work_element():
     client_request = request.get_json(force = True)
     username = client_request['username']
     password = client_request['password']
@@ -122,19 +122,20 @@ def modify_news_element():
     title = client_request['title']
     description = client_request['description']
     text = client_request['text']
-    admin.modify_news_element(element_id, title, description, text)
+    admin.modify_work_element(element_id, title, description, text)
     return dumps({'success': True})
 
-# Delete news element
-@app.route('/delete_news_post', methods = ['POST'])
-def delete_news_post():
+# Delete work element
+@app.route('/delete_work_post', methods = ['POST'])
+def delete_work_post():
     client_request = request.get_json(force = True)
     username = client_request['username']
     password = client_request['password']
     if not admin.valid_user(username, password):
         return dumps({'user_not_valid': True})
     element_id = client_request['id']
-    return dumps({'news_post': admin.delete_news_post(element_id)})
+    admin.delete_work_post(element_id)
+    return dumps({'success': True})
 
 # Change password
 @app.route('/change_password', methods = ['POST'])

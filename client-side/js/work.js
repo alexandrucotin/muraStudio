@@ -1,38 +1,38 @@
-var news = {
+var work = {
     
-    get_news: function() {
+    get_work: function() {
         $.ajax({
-            url: 'get_news',
+            url: 'get_work',
             method: 'POST',
             contentType: 'application/json',
             dataType: 'json',
             success: function(response) {
-                response = news.format_news(response);
+                response = work.format_work(response);
                 $.get('/html/templates.html', function(content) {
-                    var template = $(content).filter('#get_news').html();
-                    $('#news').html(Mustache.render(template, response));
+                    var template = $(content).filter('#get_work').html();
+                    $('#work').html(Mustache.render(template, response));
                 });
             }
         });
     },
     
-    format_news: function(response) {
-        var news_list = response.news;
-        if(news_list) {
+    format_work: function(response) {
+        var work_list = response.work;
+        if(work_list) {
             var new_list = [];
             var i, current, post_id, title, date, description, text, image;
-            for (i = 0; i < news_list.length; i++) {
-                current = news_list[i];
+            for (i = 0; i < work_list.length; i++) {
+                current = work_list[i];
                 new_list[i] = {
                     post_id: current[0],
                     title: current[1],
-                    date: news.format_date(current[2]),
+                    date: work.format_date(current[2]),
                     description: current[3],
                     text: current[4],
                     image: current[5]
                 };
             }
-            response.news = new_list;
+            response.work = new_list;
             return response;
         }
         return [];
@@ -48,4 +48,4 @@ var news = {
 };
 
 
-$(document).ready(news.get_news());
+$(document).ready(work.get_work());

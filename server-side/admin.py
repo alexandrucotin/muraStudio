@@ -51,27 +51,27 @@ class Admin:
             salt += choice(alphabet)
         return salt
     
-    # Get news
-    def get_news(self):
+    # Get work
+    def get_work(self):
         return self.manager.read_many('''
             SELECT id, title, date, description, text, image
-            FROM news
+            FROM work
             ORDER BY id DESC
         ''')
     
-    # Get news
-    def get_news_element(self, element_id):
+    # Get work element
+    def get_work_element(self, element_id):
         return self.manager.read_one('''
             SELECT title, date, description, text, image
-            FROM news
+            FROM work
             WHERE id = ?
         ''', (element_id,))
     
-    # Post news
-    def post_news(self, title, description, text, image):
+    # Post work
+    def post_work(self, title, description, text, image):
         image_location = self.upload_image(image)
         self.manager.write('''
-            INSERT INTO news (title, description, text, image)
+            INSERT INTO work (title, description, text, image)
             VALUES (?, ?, ?, ?)
         ''', (title, description, text, image_location))
     
@@ -101,26 +101,26 @@ class Admin:
         cursor.close()
         return image_location
     
-    # Get news list
-    def get_news_list(self):
+    # Get work list
+    def get_work_list(self):
         return self.manager.read_many('''
             SELECT id, title, date
-            FROM news
+            FROM work
             ORDER BY id DESC
         ''')
     
-    # Modify news element
-    def modify_news_element(self, element_id, title, description, text):
+    # Modify work element
+    def modify_work_element(self, element_id, title, description, text):
         self.manager.write('''
-            UPDATE news
+            UPDATE work
             SET title = ?, description = ?, text = ?
             WHERE id = ?
         ''', (title, description, text, element_id))
     
-    # Delete news element
-    def delete_news_post(self, element_id):
+    # Delete work element
+    def delete_work_post(self, element_id):
         self.manager.write('''
-            DELETE FROM news
+            DELETE FROM work
             WHERE id = ?
         ''', (element_id,))
     
