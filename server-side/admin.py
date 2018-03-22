@@ -4,6 +4,7 @@ from hashlib import sha256
 from random import choice
 from base64 import b64decode
 from os import rename
+from os.path import realpath, dirname, join
 
 
 class Admin:
@@ -83,13 +84,14 @@ class Admin:
         ''', ('',))
         image_id = cursor.lastrowid
         image_type = image.split('/')[1].split(';')[0]
-        image_name = str(image_id) + '.' + image_type
+        image_name = 'image_' + str(image_id) + '.' + image_type
         image_location = '/img/uploads/' + image_name
         image_data = b64decode(image.split(',')[1])
-        f = open(image_name, 'wb')
+        path = dirname(realpath(__file__))
+        f = open(join(path, image_name), 'wb')
         f.write(image_data)
         f.close()
-        rename(image_name, '../client-side' + image_location)
+        rename(join(path, image_name), join(path, '../client-side' + image_location))
         cursor.execute('''
             UPDATE image
             SET location = ?

@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from flask import Flask, g, send_from_directory, request
-from flask_sslify import SSLify
+#from flask_sslify import SSLify
 from manager import Manager
 from admin import Admin
 from json import dumps
@@ -10,7 +10,7 @@ from json import dumps
 # GLOBAL VARIABLES
 
 app = Flask(__name__)
-ssLify = SSLify(app)
+#ssLify = SSLify(app)
 manager = Manager(g, 'database.db')
 admin = Admin(manager, 'piper_nigrum', app)
 
