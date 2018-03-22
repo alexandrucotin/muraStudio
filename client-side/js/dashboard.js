@@ -8,8 +8,10 @@ var dashboard = {
         dashboard.get_landpage_images();
         dashboard.get_work_list();
         dashboard.init_options();
-        dashboard.init_work_post();
+        dashboard.init_landpage_image();
+        dashboard.init_landpage_add();
         dashboard.init_work_image();
+        dashboard.init_work_post();
         dashboard.init_password();
         dashboard.init_logout();
     },
@@ -51,7 +53,7 @@ var dashboard = {
                 response = dashboard.format_images(response);
                 $.get('/html/templates.html', function(content) {
                     var template = $(content).filter('#get_landpage_images').html();
-                    $('#landpade_images').html(Mustache.render(template, response));
+                    $('#landpage_images').html(Mustache.render(template, response));
                 });
             }
         });
@@ -61,7 +63,7 @@ var dashboard = {
         var images_list = response.images;
         if(images_list) {
             var new_list = [];
-            var i, current, post_id, title, date;
+            var i, current;
             for (i = 0; i < images_list.length; i++) {
                 current = images_list[i];
                 new_list[i] = {
@@ -86,15 +88,17 @@ var dashboard = {
     },
     
     init_landpage_add: function() {
-        $('#landpage_image').css('border-color', '#ccc');
-        var image = dashboard.work_image;
-        if (image.length > 0) {
-            dashboard.landpage_add_request(image);
-        } else {
-            $('#landpage_image').css('border-color', 'red');
-            $('#error_message').html('You must fill every input field!');
-            $('#error_modal').modal('show');
-        }
+        $('#landpage_submit').on('click', function() {
+            $('#landpage_image').css('border-color', '#ccc');
+            var image = dashboard.landpage_image;
+            if (image.length > 0) {
+                dashboard.landpage_add_request(image);
+            } else {
+                $('#landpage_image').css('border-color', 'red');
+                $('#error_message').html('You must fill every input field!');
+                $('#error_modal').modal('show');
+            }
+        });
     },
     
     landpage_add_request: function(image) {
