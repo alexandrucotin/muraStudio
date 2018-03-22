@@ -1,11 +1,10 @@
 # -*- coding: utf-8 -*-
 
-from flask import Flask, g, send_from_directory, request, send_file
+from flask import Flask, g, send_from_directory, request
 from flask_sslify import SSLify
 from manager import Manager
 from admin import Admin
 from json import dumps
-import io
 
 
 # GLOBAL VARIABLES
@@ -38,18 +37,6 @@ def home():
 @app.route('/<page_name>')
 def send_page(page_name):
     return send_from_directory('../client-side/html/', page_name + '.html')
-
-# Images
-@app.route('/get_image/<int:image_id>.png')
-def get_image(image_id):
-    image = admin.get_image(image_id)
-    image_type = image[0]
-    binary = image[1]
-    return send_file(
-        io.BytesIO(binary),
-        attachment_filename = str(image_id) + '.png',
-        mimetype = 'image/png'
-    )
 
 # Bootstrap
 @app.route('/bootstrap/<filename>')
