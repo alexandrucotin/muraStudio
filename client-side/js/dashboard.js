@@ -1,9 +1,11 @@
 var dashboard = {
     
     init: function() {
+        dashboard.landpage_image = '';
         dashboard.work_image = '';
         dashboard.hide_options();
         dashboard.valid_user();
+        dashboard.get_landpage_images();
         dashboard.get_work_list();
         dashboard.init_options();
         dashboard.init_work_post();
@@ -37,6 +39,114 @@ var dashboard = {
                 }
             });
         } else window.location.href = '/login';
+    },
+    
+    get_landpage_images: function() {
+        $.ajax({
+            url: 'get_landpage_images',
+            method: 'POST',
+            contentType: 'application/json',
+            dataType: 'json',
+            success: function(response) {
+                response = dashboard.format_images(response);
+                $.get('/html/templates.html', function(content) {
+                    var template = $(content).filter('#get_landpage_images').html();
+                    $('#landpade_images').html(Mustache.render(template, response));
+                });
+            }
+        });
+    },
+    
+    format_images: function(response) {
+        var images_list = response.images;
+        if(images_list) {
+            var new_list = [];
+            var i, current, post_id, title, date;
+            for (i = 0; i < images_list.length; i++) {
+                current = images_list[i];
+                new_list[i] = {
+                    id: current[0],
+                    location: current[1]
+                };
+            }
+            response.images = new_list;
+            return response;
+        }
+        return [];
+    },
+    
+    init_landpage_image: function() {
+        $('#landpage_image').change(function(event) {
+            var reader = new FileReader();
+            reader.onload = function(e) {
+                dashboard.landpage_image = e.target.result;
+            };
+            reader.readAsDataURL(event.target.files[0]);
+        });
+    },
+    
+    init_landpage_add: function() {
+        $('#landpage_image').css('border-color', '#ccc');
+        var image = dashboard.work_image;
+        if (image.length > 0) {
+            dashboard.landpage_add_request(image);
+        } else {
+            $('#landpage_image').css('border-color', 'red');
+            $('#error_message').html('You must fill every input field!');
+            $('#error_modal').modal('show');
+        }
+    },
+    
+    landpage_add_request: function(image) {
+        $.ajax({
+            url: 'add_landpage_image',
+            method: 'POST',
+            contentType: 'application/json',
+            dataType: 'json',
+            data: JSON.stringify({
+                username: dashboard.username,
+                password: dashboard.password,
+                image: image
+            }),
+            success: function(response) {
+                if (response.user_not_valid) {
+                    window.location.href = '/login';
+                } else {
+                    dashboard.get_landpage_images();
+                    dashboard.landpage_image = '';
+                    $('#landpage_image').val('');
+                    $('#landpage_image').css('border-color', '#ccc');
+                    $('#success_message').html('New landpage image uploaded correctly!');
+                    $('#success_modal').modal('show');
+                }
+            }
+        });
+    },
+    
+    delete_landpage_image: function(image_id) {
+        $('#confirm_modal').modal('show');
+        $('#confirm_delete').on('click', function() {
+            $.ajax({
+                url: 'delete_landpage_image',
+                method: 'POST',
+                contentType: 'application/json',
+                dataType: 'json',
+                data: JSON.stringify({
+                    username: dashboard.username,
+                    password: dashboard.password,
+                    image_id: image_id
+                }),
+                success: function(response) {
+                    if (response.user_not_valid) {
+                        window.location.href = '/login';
+                    } else {
+                        dashboard.get_landpage_images();
+                        $('#success_message').html('Landpage image deleted correctly!');
+                        $('#success_modal').modal('show');
+                    }
+                }
+            });
+        });
     },
     
     get_work_list: function() {
@@ -100,6 +210,16 @@ var dashboard = {
         });
     },
     
+    init_work_image: function() {
+        $('#work_image').change(function(event) {
+            var reader = new FileReader();
+            reader.onload = function(e) {
+                dashboard.work_image = e.target.result;
+            };
+            reader.readAsDataURL(event.target.files[0]);
+        });
+    },
+    
     init_work_post: function() {
         $('#work_submit').on('click', function() {
             dashboard.work_post();
@@ -152,16 +272,6 @@ var dashboard = {
                     $('#success_modal').modal('show');
                 }
             }
-        });
-    },
-    
-    init_work_image: function() {
-        $('#work_image').change(function(event) {
-            var reader = new FileReader();
-            reader.onload = function(e) {
-                dashboard.work_image = e.target.result;
-            };
-            reader.readAsDataURL(event.target.files[0]);
         });
     },
     

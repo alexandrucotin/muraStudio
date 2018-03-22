@@ -90,6 +90,11 @@ def get_work_element():
     element_id = client_request['id']
     return dumps({'work_element': admin.get_work_element(element_id)})
 
+# Get landpage images
+@app.route('/get_landpage_images', methods = ['POST'])
+def get_landpage_images():
+    return dumps({'images': admin.get_landpage_images()})
+
 # Add landpage image
 @app.route('/add_landpage_image', methods = ['POST'])
 def add_landpage_image():

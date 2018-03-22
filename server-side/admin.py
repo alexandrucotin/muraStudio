@@ -72,6 +72,16 @@ class Admin:
             WHERE w.id = ?
         ''', (element_id,))
     
+    # Get landpage images
+    def get_landpage_images(self):
+        return self.manager.read_many('''
+            SELECT i.id, i.location
+            FROM landpage l
+            INNER JOIN image i
+            ON (l.image_id = i.id)
+            ORDER BY i.id DESC
+        ''')
+    
     # Add landpage image
     def add_landpage_image(self, image):
         image_id = self.upload_image(image)
