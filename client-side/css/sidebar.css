@@ -231,3 +231,7 @@ a.article, a.article:hover {
     width: 25.5rem;
     margin-bottom: 1rem;
 }
+
+.card {
+    margin-top: 1rem;
+}
