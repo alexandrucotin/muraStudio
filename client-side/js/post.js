@@ -60,8 +60,10 @@ var post = {
     },
     
     format_text: function(text) {
-        var converter = new showdown.Converter();
-        var html_text = converter.makeHtml(text);
+        // var converter = new showdown.Converter();
+        // var html_text = converter.makeHtml(text);
+        var md = window.markdownit();
+        var html_text = md.render(text);
         return html_text;
     }
 
