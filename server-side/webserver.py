@@ -90,6 +90,30 @@ def get_work_element():
     element_id = client_request['id']
     return dumps({'work_element': admin.get_work_element(element_id)})
 
+# Add landpage image
+@app.route('/add_landpage_image', methods = ['POST'])
+def add_landpage_image():
+    client_request = request.get_json(force = True)
+    username = client_request['username']
+    password = client_request['password']
+    if not admin.valid_user(username, password):
+        return dumps({'user_not_valid': True})
+    image = client_request['image']
+    admin.add_landpage_image(image)
+    return dumps({'success': True})
+
+# Delete landpage image
+@app.route('/delete_landpage_image', methods = ['POST'])
+def delete_landpage_image():
+    client_request = request.get_json(force = True)
+    username = client_request['username']
+    password = client_request['password']
+    if not admin.valid_user(username, password):
+        return dumps({'user_not_valid': True})
+    image_id = client_request['image_id']
+    admin.delete_landpage_image(image_id)
+    return dumps({'success': True})
+
 # Post work
 @app.route('/post_work', methods = ['POST'])
 def post_work():

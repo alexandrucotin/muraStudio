@@ -3,7 +3,7 @@
 from hashlib import sha256
 from random import choice
 from base64 import b64decode
-from os import rename
+from os import rename, remove
 from os.path import realpath, dirname, join
 
 
@@ -13,6 +13,7 @@ class Admin:
     def __init__(self, manager, pepper, app):
         self.manager = manager
         self.pepper = pepper
+        self.path = dirname(realpath(__file__))
         self.add_admin(app)
     
     # Adding admin user
@@ -54,26 +55,46 @@ class Admin:
     # Get work
     def get_work(self):
         return self.manager.read_many('''
-            SELECT id, title, date, description, text, image
-            FROM work
-            ORDER BY id DESC
+            SELECT w.id, w.title, w.date, w.description, w.text, i.location
+            FROM work w
+            INNER JOIN image i
+            ON (w.image_id = i.id)
+            ORDER BY w.id DESC
         ''')
     
     # Get work element
     def get_work_element(self, element_id):
         return self.manager.read_one('''
-            SELECT title, date, description, text, image
-            FROM work
-            WHERE id = ?
+            SELECT w.title, w.date, w.description, w.text, i.location
+            FROM work w
+            INNER JOIN image i
+            ON (w.image_id = i.id)
+            WHERE w.id = ?
         ''', (element_id,))
+    
+    # Add landpage image
+    def add_landpage_image(self, image):
+        image_id = self.upload_image(image)
+        self.manager.write('''
+            INSERT INTO landpage (image_id)
+            VALUES (?)
+        ''', (image_id,))
+    
+    # Delete landpage image
+    def delete_landpage_image(self, image_id):
+        self.delete_image(image_id)
+        self.manager.write('''
+            DELETE FROM landpage
+            WHERE image_id = ?
+        ''', (image_id,))
     
     # Post work
     def post_work(self, title, description, text, image):
-        image_location = self.upload_image(image)
+        image_id = self.upload_image(image)
         self.manager.write('''
-            INSERT INTO work (title, description, text, image)
+            INSERT INTO work (title, description, text, image_id)
             VALUES (?, ?, ?, ?)
-        ''', (title, description, text, image_location))
+        ''', (title, description, text, image_id))
     
     # Image uploading
     def upload_image(self, image):
@@ -86,12 +107,7 @@ class Admin:
         image_type = image.split('/')[1].split(';')[0]
         image_name = 'image_' + str(image_id) + '.' + image_type
         image_location = '/img/uploads/' + image_name
-        image_data = b64decode(image.split(',')[1])
-        path = dirname(realpath(__file__))
-        f = open(join(path, image_name), 'wb')
-        f.write(image_data)
-        f.close()
-        rename(join(path, image_name), join(path, '../client-side' + image_location))
+        self.write_and_move(image, image_name, image_location)
         cursor.execute('''
             UPDATE image
             SET location = ?
@@ -99,7 +115,30 @@ class Admin:
         ''', (image_location, image_id))
         self.manager.g.db.commit()
         cursor.close()
-        return image_location
+        return image_id
+    
+    # Writes and moves image
+    def write_and_move(self, image, image_name, image_location):
+        image_data = b64decode(image.split(',')[1])
+        image_path = join(self.path, image_name)
+        f = open(image_path, 'wb')
+        f.write(image_data)
+        f.close()
+        upload_path = join(self.path, '../client-side' + image_location)
+        rename(image_path, upload_path)
+    
+    # Image deleting
+    def delete_image(self, image_id):
+        location = self.manager.read_field('''
+            SELECT location
+            FROM image
+            WHERE id = ?
+        ''', (image_id,))
+        self.manager.write('''
+            DELETE FROM image
+            WHERE id = ?
+        ''', (image_id,))
+        remove(join(self.path, '../client-side' + location))
     
     # Get work list
     def get_work_list(self):
@@ -119,6 +158,12 @@ class Admin:
     
     # Delete work element
     def delete_work_post(self, element_id):
+        image_id = self.manager.read_field('''
+            SELECT image_id
+            FROM work
+            WHERE id = ?
+        ''', (element_id,))
+        self.delete_image(image_id)
         self.manager.write('''
             DELETE FROM work
             WHERE id = ?

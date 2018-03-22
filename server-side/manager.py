@@ -32,13 +32,18 @@ class Manager:
                 date DATETIME DEFAULT CURRENT_TIMESTAMP,
                 description TEXT NOT NULL,
                 text TEXT NOT NULL,
-                image TEXT NOT NULL
+                image_id TEXT NOT NULL UNIQUE
             )
         ''')
         cursor.execute('''
             CREATE TABLE IF NOT EXISTS image (
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
                 location TEXT
+            )
+        ''')
+        cursor.execute('''
+            CREATE TABLE IF NOT EXISTS landpage (
+                image_id INTEGER PRIMARY KEY
             )
         ''')
         database.commit()
