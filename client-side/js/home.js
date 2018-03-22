@@ -14,7 +14,7 @@ var home = {
                     $('.carousel-item:first').addClass('active');
                     setInterval(function() {
                         $('#carousel').carousel('next');
-                    }, 4000);
+                    }, 6000);
                 });
             }
         });
