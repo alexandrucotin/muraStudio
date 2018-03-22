@@ -2,6 +2,8 @@
 
 from hashlib import sha256
 from random import choice
+from base64 import b64decode
+from os import rename
 
 
 class Admin:
@@ -66,10 +68,36 @@ class Admin:
     
     # Post news
     def post_news(self, title, description, text, image):
+        image_location = self.upload_image(image)
         self.manager.write('''
             INSERT INTO news (title, description, text, image)
             VALUES (?, ?, ?, ?)
-        ''', (title, description, text, image))
+        ''', (title, description, text, image_location))
+    
+    # Image uploading
+    def upload_image(self, image):
+        cursor = self.manager.g.db.cursor()
+        cursor.execute('''
+            INSERT INTO image (location)
+            VALUES (?)
+        ''', ('',))
+        image_id = cursor.lastrowid
+        image_type = image.split('/')[1].split(';')[0]
+        image_name = str(image_id) + '.' + image_type
+        image_location = '/img/uploads/' + image_name
+        image_data = b64decode(image.split(',')[1])
+        f = open(image_name, 'wb')
+        f.write(image_data)
+        f.close()
+        rename(image_name, '../client-side' + image_location)
+        cursor.execute('''
+            UPDATE image
+            SET location = ?
+            WHERE id = ?
+        ''', (image_location, image_id))
+        self.manager.g.db.commit()
+        cursor.close()
+        return image_location
     
     # Get news list
     def get_news_list(self):

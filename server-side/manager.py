@@ -35,6 +35,12 @@ class Manager:
                 image TEXT NOT NULL
             )
         ''')
+        cursor.execute('''
+            CREATE TABLE IF NOT EXISTS image (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                location TEXT
+            )
+        ''')
         database.commit()
         cursor.close()
         database.close()
