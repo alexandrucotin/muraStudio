@@ -58,7 +58,7 @@ class Admin:
             SELECT w.id, w.title, w.date, w.description, w.text, i.location
             FROM work w
             INNER JOIN image i
-            ON (w.image_id = i.id)
+            ON (w.preview_id = i.id)
             ORDER BY w.id DESC
         ''')
     
@@ -68,7 +68,7 @@ class Admin:
             SELECT w.title, w.date, w.description, w.text, i.location
             FROM work w
             INNER JOIN image i
-            ON (w.image_id = i.id)
+            ON (w.preview_id = i.id)
             WHERE w.id = ?
         ''', (element_id,))
     
@@ -100,11 +100,43 @@ class Admin:
     
     # Post work
     def post_work(self, title, description, text, image):
+        preview_id = self.upload_image(image)
+        cursor = self.manager.g.db.cursor()
+        cursor.execute('''
+            INSERT INTO work (title, description, text, preview_id)
+            VALUES (?, ?, ?, ?)
+        ''', (title, description, text, preview_id))
+        work_id = cursor.lastrowid
+        self.manager.g.db.commit()
+        cursor.close()
+        return work_id
+    
+    # Get work images
+    def get_work_images(self, work_id):
+        return self.manager.read_many('''
+            SELECT i.id, i.location
+            FROM work_image wi
+            INNER JOIN image i
+            ON (wi.image_id = i.id)
+            WHERE wi.work_id = ?
+            ORDER BY i.id DESC
+        ''', (work_id,))
+    
+    # Add work image
+    def add_work_image(self, image, work_id):
         image_id = self.upload_image(image)
         self.manager.write('''
-            INSERT INTO work (title, description, text, image_id)
-            VALUES (?, ?, ?, ?)
-        ''', (title, description, text, image_id))
+            INSERT INTO work_image (image_id, work_id)
+            VALUES (?, ?)
+        ''', (image_id, work_id))
+    
+    # Delete work image
+    def delete_work_image(self, image_id):
+        self.delete_image(image_id)
+        self.manager.write('''
+            DELETE FROM work_image
+            WHERE image_id = ?
+        ''', (image_id,))
     
     # Image uploading
     def upload_image(self, image):
@@ -168,12 +200,12 @@ class Admin:
     
     # Delete work element
     def delete_work_post(self, element_id):
-        image_id = self.manager.read_field('''
-            SELECT image_id
+        preview_id = self.manager.read_field('''
+            SELECT preview_id
             FROM work
             WHERE id = ?
         ''', (element_id,))
-        self.delete_image(image_id)
+        self.delete_image(preview_id)
         self.manager.write('''
             DELETE FROM work
             WHERE id = ?
