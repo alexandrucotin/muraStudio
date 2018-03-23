@@ -63,3 +63,74 @@
 .twitter:hover{
   color: #1da1f2;
 }
+
+
+/* navbar work page */
+
+
+
+.modal-nav-content {
+  width: 100%;
+  height: auto;
+  .modal-nav-body {
+    margin-top: 100px;
+    ul {
+      list-style-type: none;
+      color: white;
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      li {
+        text-align: center;
+        font-size: 130%;
+        padding: 8px;
+        text-transform: uppercase;
+      }
+    }
+  }
+}
+
+.navbar-collapse.in {
+  max-height: 100%;
+}
+
+body {
+  margin-top: 70px;
+}
+
+.navbar-inverse {
+  .navbar-nav {
+    &.menu-two {
+      background: white;
+      >li {
+        >a {
+          color: blue;
+          &:hover {
+            color: green;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (min-width: 768px) {
+  body {
+    margin-top: 130px;
+  }
+  .navbar-collapse {
+    float: left;
+    width: 100%;
+    clear: both;
+  }
+  .navbar-inverse {
+    border-top: 50px solid pink;
+  }
+  .navbar-nav:nth-child(2) {
+    margin-top: -100px;
+    clear: both;
+  }
+  .navbar-nav:nth-child(1) {
+    margin-top: -50px;
+  }
+}
