@@ -13,6 +13,7 @@ var dashboard = {
         dashboard.init_work_image();
         dashboard.init_work_add();
         dashboard.init_work_post();
+        dashboard.init_work_modify();
         dashboard.init_password();
         dashboard.init_logout();
     },
