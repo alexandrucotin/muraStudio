@@ -65,3 +65,15 @@
         </tr>
     {{/work}}
 </script>
+
+<!-- GET WORK IMAGES -->
+<script type="text/html" id="get_work_images">
+    {{#images}}
+        <div class="card col-lg-2 col-md-2 col-sm-6">
+            <img class="card-img-top img-custom" src="{{location}}" style="max-width: 100%; height: 180px; padding: 10px;">
+            <div class="card-body text-center">
+                <a href="#" class="btn btn-danger" onclick="dashboard.delete_work_image('{{id}}')"><span class="glyphicon glyphicon-trash"></span> Trash </a>
+            </div>
+        </div>
+    {{/images}}
+</script>

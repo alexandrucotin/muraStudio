@@ -131,7 +131,39 @@ def post_work():
     description = client_request['description']
     text = client_request['text']
     image = client_request['image']
-    admin.post_work(title, description, text, image)
+    work_id = admin.post_work(title, description, text, image)
+    return dumps({'work_id': work_id})
+
+# Get work images
+@app.route('/get_work_images', methods = ['POST'])
+def get_work_images():
+    client_request = request.get_json(force = True)
+    work_id = client_request['work_id']
+    return dumps({'images': admin.get_work_images(work_id)})
+
+# Add work image
+@app.route('/add_work_image', methods = ['POST'])
+def add_work_image():
+    client_request = request.get_json(force = True)
+    username = client_request['username']
+    password = client_request['password']
+    if not admin.valid_user(username, password):
+        return dumps({'user_not_valid': True})
+    image = client_request['image']
+    work_id = client_request['work_id']
+    admin.add_work_image(image, work_id)
+    return dumps({'success': True})
+
+# Delete work image
+@app.route('/delete_work_image', methods = ['POST'])
+def delete_work_image():
+    client_request = request.get_json(force = True)
+    username = client_request['username']
+    password = client_request['password']
+    if not admin.valid_user(username, password):
+        return dumps({'user_not_valid': True})
+    image_id = client_request['image_id']
+    admin.delete_work_image(image_id)
     return dumps({'success': True})
 
 # Get work list

@@ -1,8 +1,7 @@
 var dashboard = {
     
     init: function() {
-        dashboard.landpage_image = '';
-        dashboard.work_image = '';
+        dashboard.init_state();
         dashboard.hide_options();
         dashboard.valid_user();
         dashboard.get_landpage_images();
@@ -10,10 +9,19 @@ var dashboard = {
         dashboard.init_options();
         dashboard.init_landpage_image();
         dashboard.init_landpage_add();
+        dashboard.init_preview_image();
         dashboard.init_work_image();
+        dashboard.init_work_add();
         dashboard.init_work_post();
         dashboard.init_password();
         dashboard.init_logout();
+    },
+    
+    init_state: function() {
+        dashboard.landpage_image = '';
+        dashboard.preview_image = '';
+        dashboard.work_image = '';
+        dashboard.current_work = '';
     },
     
     hide_options: function() {
@@ -95,7 +103,7 @@ var dashboard = {
                 dashboard.landpage_add_request(image);
             } else {
                 $('#landpage_image').css('border-color', 'red');
-                $('#error_message').html('You must fill every input field!');
+                $('#error_message').html('You must select an image!');
                 $('#error_modal').modal('show');
             }
         });
@@ -214,11 +222,11 @@ var dashboard = {
         });
     },
     
-    init_work_image: function() {
-        $('#work_image').change(function(event) {
+    init_preview_image: function() {
+        $('#preview_image').change(function(event) {
             var reader = new FileReader();
             reader.onload = function(e) {
-                dashboard.work_image = e.target.result;
+                dashboard.preview_image = e.target.result;
             };
             reader.readAsDataURL(event.target.files[0]);
         });
@@ -236,15 +244,15 @@ var dashboard = {
     },
     
     work_post: function() {
-        $('#work_title, #work_description, #work_text, #work_image').css('border-color', '#ccc');
+        $('#work_title, #work_description, #work_text, #preview_image').css('border-color', '#ccc');
         var title = $('#work_title').val();
         var description = $('#work_description').val();
         var text = $('#work_text').val();
-        var image = dashboard.work_image;
+        var image = dashboard.preview_image;
         if (title.length > 0 && description.length > 0 && text.length > 0 && image.length > 0) {
             dashboard.work_post_request(title, description, text, image);
         } else {
-            $('#work_title, #work_description, #work_text, #work_image').css('border-color', 'red');
+            $('#work_title, #work_description, #work_text, #preview_image').css('border-color', 'red');
             $('#error_message').html('You must fill every input field!');
             $('#error_modal').modal('show');
         }
@@ -269,13 +277,114 @@ var dashboard = {
                     window.location.href = '/login';
                 } else {
                     dashboard.get_work_list();
-                    dashboard.work_image = '';
-                    $('#work_title, #work_description, #work_text, #work_image').val('');
-                    $('#work_title, #work_description, #work_text, #work_image').css('border-color', '#ccc');
+                    dashboard.get_work_images();
+                    dashboard.current_work = response.work_id;
+                    dashboard.preview_image = '';
+                    $('#work_title, #work_description, #work_text, #preview_image').val('');
+                    $('#work_title, #work_description, #work_text, #preview_image').css('border-color', '#ccc');
                     $('#success_message').html('Work element posted correctly!');
+                    $('#success_modal').modal('show');
+                    $('#work_title_value').html(title);
+                    $('.dashboard_option').css('display', 'none');
+                    $('#work_images_form').css('display', 'block');
+                }
+            }
+        });
+    },
+    
+    get_work_images: function() {
+        $.ajax({
+            url: 'get_work_images',
+            method: 'POST',
+            contentType: 'application/json',
+            dataType: 'json',
+            data: JSON.stringify({
+                work_id: dashboard.current_work
+            }),
+            success: function(response) {
+                response = dashboard.format_images(response);
+                $.get('/html/templates.html', function(content) {
+                    var template = $(content).filter('#get_work_images').html();
+                    $('#work_images').html(Mustache.render(template, response));
+                });
+            }
+        });
+    },
+    
+    init_work_image: function() {
+        $('#work_image').change(function(event) {
+            var reader = new FileReader();
+            reader.onload = function(e) {
+                dashboard.work_image = e.target.result;
+            };
+            reader.readAsDataURL(event.target.files[0]);
+        });
+    },
+    
+    init_work_add: function() {
+        $('#work_image_submit').on('click', function() {
+            $('#work_image').css('border-color', '#ccc');
+            var image = dashboard.work_image;
+            if (image.length > 0) {
+                dashboard.work_add_request(image);
+            } else {
+                $('#work_image').css('border-color', 'red');
+                $('#error_message').html('You must select an image!');
+                $('#error_modal').modal('show');
+            }
+        });
+    },
+    
+    work_add_request: function(image) {
+        $.ajax({
+            url: 'add_work_image',
+            method: 'POST',
+            contentType: 'application/json',
+            dataType: 'json',
+            data: JSON.stringify({
+                username: dashboard.username,
+                password: dashboard.password,
+                image: image,
+                work_id: dashboard.current_work
+            }),
+            success: function(response) {
+                if (response.user_not_valid) {
+                    window.location.href = '/login';
+                } else {
+                    dashboard.get_work_images();
+                    dashboard.work_image = '';
+                    $('#work_image').val('');
+                    $('#work_image').css('border-color', '#ccc');
+                    $('#success_message').html('New image uploaded correctly!');
                     $('#success_modal').modal('show');
                 }
             }
+        });
+    },
+    
+    delete_work_image: function(image_id) {
+        $('#confirm_modal').modal('show');
+        $('#confirm_delete').on('click', function() {
+            $.ajax({
+                url: 'delete_work_image',
+                method: 'POST',
+                contentType: 'application/json',
+                dataType: 'json',
+                data: JSON.stringify({
+                    username: dashboard.username,
+                    password: dashboard.password,
+                    image_id: image_id
+                }),
+                success: function(response) {
+                    if (response.user_not_valid) {
+                        window.location.href = '/login';
+                    } else {
+                        dashboard.get_landpage_images();
+                        $('#success_message').html('Image deleted correctly!');
+                        $('#success_modal').modal('show');
+                    }
+                }
+            });
         });
     },
     
@@ -334,11 +443,15 @@ var dashboard = {
                     window.location.href = '/login';
                 } else {
                     dashboard.get_work_list();
-                    dashboard.hide_options();
+                    dashboard.get_work_images();
+                    dashboard.current_work = id;
                     $('#work_modify_title, #work_modify_description, #work_modify_text').val('');
                     $('#work_modify_title, #work_modify_description, #work_modify_text').css('border-color', '#ccc');
                     $('#success_message').html('Work element modified correctly!');
                     $('#success_modal').modal('show');
+                    $('#work_title_value').html(title);
+                    $('.dashboard_option').css('display', 'none');
+                    $('#work_images_form').css('display', 'block');
                 }
             }
         });
