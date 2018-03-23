@@ -442,9 +442,9 @@ var dashboard = {
                 if (response.user_not_valid) {
                     window.location.href = '/login';
                 } else {
-                    dashboard.get_work_list();
-                    dashboard.get_work_images();
                     dashboard.current_work = id;
+                    dashboard.get_work_images();
+                    dashboard.get_work_list();
                     $('#work_modify_title, #work_modify_description, #work_modify_text').val('');
                     $('#work_modify_title, #work_modify_description, #work_modify_text').css('border-color', '#ccc');
                     $('#success_message').html('Work element modified correctly!');
