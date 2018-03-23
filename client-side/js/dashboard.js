@@ -10,6 +10,8 @@ var dashboard = {
         dashboard.init_landpage_image();
         dashboard.init_landpage_add();
         dashboard.init_preview_image();
+        dashboard.init_work_image();
+        dashboard.init_work_add();
         dashboard.init_work_post();
         dashboard.init_password();
         dashboard.init_logout();
@@ -282,6 +284,9 @@ var dashboard = {
                     $('#work_title, #work_description, #work_text, #preview_image').css('border-color', '#ccc');
                     $('#success_message').html('Work element posted correctly!');
                     $('#success_modal').modal('show');
+                    $('#work_title_value').html(title);
+                    $('.dashboard_option').css('display', 'none');
+                    $('#work_images_form').css('display', 'block');
                 }
             }
         });
@@ -297,7 +302,7 @@ var dashboard = {
                 work_id: dashboard.current_work
             }),
             success: function(response) {
-                response = dashboard.format_work(response);
+                response = dashboard.format_images(response);
                 $.get('/html/templates.html', function(content) {
                     var template = $(content).filter('#get_work_images').html();
                     $('#work_images').html(Mustache.render(template, response));
@@ -438,11 +443,15 @@ var dashboard = {
                     window.location.href = '/login';
                 } else {
                     dashboard.get_work_list();
-                    dashboard.hide_options();
+                    dashboard.get_work_images();
+                    dashboard.current_work = id;
                     $('#work_modify_title, #work_modify_description, #work_modify_text').val('');
                     $('#work_modify_title, #work_modify_description, #work_modify_text').css('border-color', '#ccc');
                     $('#success_message').html('Work element modified correctly!');
                     $('#success_modal').modal('show');
+                    $('#work_title_value').html(title);
+                    $('.dashboard_option').css('display', 'none');
+                    $('#work_images_form').css('display', 'block');
                 }
             }
         });

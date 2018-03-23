@@ -169,33 +169,30 @@
                             <textarea class="form-control" id="work_text" name="work_text" rows="8"></textarea>
                         </div>
                         <div class="form-group">
-                            <label for="work_image">Upload a picture</label>
-                            <input type="file" class="form-control-file" id="work_image" name="work_image">
+                            <label for="preview_image">Upload a picture</label>
+                            <input type="file" class="form-control-file" id="preview_image" name="preview_image">
                         </div>
                     </form>
                     
-                    <br><input type="submit" class="btn btn-info" id="work_submit" value="Post Work Element">
+                    <br><input type="submit" class="btn btn-info" id="work_submit" value="Post Work Element">        
+                </div>
+                
+                <!-- Work images -->
+                <div class="container dashboard_option" style="width: 100%" id="work_images_form">
+                    <h2>Work Page Setup</h2>
                     <hr>
-                    <h3>Gallery Images</h3>
-                    <!-- Img card -->
+                    <h3>Gallery Images for <i><span id="work_title_value"></span></i></h3>
                     <div class="row">
-                        <div class="card-group" id="work_gallery_images">
-                            <div class="card col-lg-2 col-md-2 col-sm-6">
-                                <img class="card-img-top img-custom" src="{{location}}" style="max-width: 100%; height: 180px; padding: 10px;">
-                                <div class="card-body text-center">
-                                    <a href="#" class="btn btn-danger" onclick="dashboard.delete_work_gallery_image('{{id}}')"><span class="glyphicon glyphicon-trash"></span> Trash </a>
-                                </div>
-                            </div>
+                        <div class="card-group" id="work_images">
                         </div>
                     </div>
                     <h3>Upload Image</h3>
                     <form>
                         <div class="form-group">
-                            <input type="file" class="form-control-file" id="work_gallery_image">
+                            <input type="file" class="form-control-file" id="work_image">
                         </div>
                     </form>
-                    <br><input type="submit" class="btn btn-info" id="work_gallery_submit" value="Upload Gallery Picture">
-                
+                    <br><input type="submit" class="btn btn-info" id="work_image_submit" value="Upload Picture">
                 </div>
                 
                 <!-- Work modify form -->
