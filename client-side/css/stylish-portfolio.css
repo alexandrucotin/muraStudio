@@ -68,3 +68,7 @@
     width: 100%!important;
     height: 100%!important;
 }
+
+.navbar-collapse {
+  flex-grow: 0!important;
+}
