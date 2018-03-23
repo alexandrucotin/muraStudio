@@ -13,6 +13,7 @@ var dashboard = {
         dashboard.init_work_image();
         dashboard.init_work_add();
         dashboard.init_work_post();
+        dashboard.init_work_modify();
         dashboard.init_password();
         dashboard.init_logout();
     },
@@ -405,25 +406,29 @@ var dashboard = {
                     $('#work_modify_text').val(element[3]);
                     $('.dashboard_option').css('display', 'none');
                     $('#work_modify_form').css('display', 'block');
-                    $('#work_modify_submit').on('click', function() {
-                        $('#work_modify_title, #work_modify_description, #work_modify_text').css('border-color', '#ccc');
-                        var title = $('#work_modify_title').val();
-                        var description = $('#work_modify_description').val();
-                        var text = $('#work_modify_text').val();
-                        if (title.length > 0 && description.length > 0 && text.length > 0) {
-                            dashboard.work_modify_request(post_id, title, description, text);
-                        } else {
-                            $('#work_modify_title, #work_modify_description, #work_modify_text').css('border-color', 'red');
-                            $('#error_message').html('You must fill every input field!');
-                            $('#error_modal').modal('show');
-                        }
-                    });
+                    dashboard.current_work = post_id;
                 }
             }
         });
     },
     
-    work_modify_request: function(id, title, description, text, image) {
+    init_work_modify: function() {
+        $('#work_modify_submit').on('click', function() {
+            $('#work_modify_title, #work_modify_description, #work_modify_text').css('border-color', '#ccc');
+            var title = $('#work_modify_title').val();
+            var description = $('#work_modify_description').val();
+            var text = $('#work_modify_text').val();
+            if (title.length > 0 && description.length > 0 && text.length > 0) {
+                dashboard.work_modify_request(title, description, text);
+            } else {
+                $('#work_modify_title, #work_modify_description, #work_modify_text').css('border-color', 'red');
+                $('#error_message').html('You must fill every input field!');
+                $('#error_modal').modal('show');
+            }
+        });
+    },
+    
+    work_modify_request: function(title, description, text, image) {
         $.ajax({
             url: 'modify_work_element',
             method: 'POST',
@@ -432,7 +437,7 @@ var dashboard = {
             data: JSON.stringify({
                 username: dashboard.username,
                 password: dashboard.password,
-                id: id,
+                id: dashboard.current_work,
                 title: title,
                 description: description,
                 text: text,
@@ -442,7 +447,6 @@ var dashboard = {
                 if (response.user_not_valid) {
                     window.location.href = '/login';
                 } else {
-                    dashboard.current_work = id;
                     dashboard.get_work_images();
                     dashboard.get_work_list();
                     $('#work_modify_title, #work_modify_description, #work_modify_text').val('');
