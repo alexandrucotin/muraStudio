@@ -2,6 +2,7 @@ var post = {
     
     init: function() {
         post.get_element_id();
+        post.get_images();
         post.get_element();
     },
     
@@ -17,6 +18,43 @@ var post = {
         }
     },
     
+    get_images: function() {
+        $.ajax({
+            url: 'get_work_images',
+            method: 'POST',
+            contentType: 'application/json',
+            dataType: 'json',
+            data: JSON.stringify({id: post.element_id}),
+            success: function(response) {
+                response = post.format_images(response);
+                $.get('/html/templates.html', function(content) {
+                    var template = $(content).filter('#work_images').html();
+                    $('#carousel').html(Mustache.render(template, response));
+                    $('#carousel li:first').addClass('active');
+                    $('.carousel-item:first').addClass('active');
+                });
+            }
+        });
+    },
+    
+    format_images: function(response) {
+        var images_list = response.images;
+        if(images_list) {
+            var new_list = [];
+            var i, current;
+            for (i = 0; i < images_list.length; i++) {
+                current = images_list[i];
+                new_list[i] = {
+                    n: i,
+                    location: current[1]
+                };
+            }
+            response.images = new_list;
+            return response;
+        }
+        return [];
+    },
+    
     get_element: function() {
         $.ajax({
             url: 'get_work_element',
@@ -25,6 +63,7 @@ var post = {
             dataType: 'json',
             data: JSON.stringify({id: post.element_id}),
             success: function(response) {
+                $('.full-width-image-2').css('backdround-image', 'url(' + response.work_element[4] + ')');
                 response = post.format_element(response);
                 $('title').html(response.work_element.title + ' - Mura Studio');
                 $.get('/html/templates.html', function(content) {
@@ -43,8 +82,7 @@ var post = {
                 title: work_element[0],
                 date: post.format_date(work_element[1]),
                 description: work_element[2],
-                text: post.format_text(work_element[3]),
-                image: work_element[4]
+                text: post.format_text(work_element[3])
             };
             response.work_element = new_element;
             return response;
@@ -63,41 +101,6 @@ var post = {
         var md = window.markdownit();
         var html_text = md.render(text);
         return html_text;
-    },
-    
-    get_images: function() {
-        $.ajax({
-            url: 'get_work_images',
-            method: 'POST',
-            contentType: 'application/json',
-            dataType: 'json',
-            data: JSON.stringify({id: post.element_id}),
-            success: function(response) {
-                response = post.format_images(response);
-                $.get('/html/templates.html', function(content) {
-                    var template = $(content).filter('#work_images').html();
-                    $('#images').html(Mustache.render(template, response));
-                });
-            }
-        });
-    },
-    
-    format_images: function(response) {
-        var images_list = response.images;
-        if(images_list) {
-            var new_list = [];
-            var i, current;
-            for (i = 0; i < images_list.length; i++) {
-                current = images_list[i];
-                new_list[i] = {
-                    id: current[0],
-                    location: current[1]
-                };
-            }
-            response.images = new_list;
-            return response;
-        }
-        return [];
     }
 
 };
