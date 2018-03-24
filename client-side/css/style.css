@@ -79,4 +79,11 @@
   background-size: cover;
 }
 
+/* css for bottom img*/
+.full-width-image-2 {
+	background: url(http://lorempixel.com/g/1920/500/abstract/) no-repeat center center;
+	background-size: cover;
+	text-align: center;
+	height: 450px;
+}
 
