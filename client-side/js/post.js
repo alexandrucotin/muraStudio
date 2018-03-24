@@ -60,11 +60,44 @@ var post = {
     },
     
     format_text: function(text) {
-        // var converter = new showdown.Converter();
-        // var html_text = converter.makeHtml(text);
         var md = window.markdownit();
         var html_text = md.render(text);
         return html_text;
+    },
+    
+    get_images: function() {
+        $.ajax({
+            url: 'get_work_images',
+            method: 'POST',
+            contentType: 'application/json',
+            dataType: 'json',
+            data: JSON.stringify({id: post.element_id}),
+            success: function(response) {
+                response = post.format_images(response);
+                $.get('/html/templates.html', function(content) {
+                    var template = $(content).filter('#work_images').html();
+                    $('#images').html(Mustache.render(template, response));
+                });
+            }
+        });
+    },
+    
+    format_images: function(response) {
+        var images_list = response.images;
+        if(images_list) {
+            var new_list = [];
+            var i, current;
+            for (i = 0; i < images_list.length; i++) {
+                current = images_list[i];
+                new_list[i] = {
+                    id: current[0],
+                    location: current[1]
+                };
+            }
+            response.images = new_list;
+            return response;
+        }
+        return [];
     }
 
 };
