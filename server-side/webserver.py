@@ -28,6 +28,16 @@ def close_connection(exception):
 
 # SENDING FILES
 
+# Not found
+@app.errorhandler(404)
+def not_found(e):
+    return send_from_directory('../client-side/html/', '404.html')
+
+# Server error
+@app.errorhandler(500)
+def server_error(e):
+    return send_from_directory('../client-side/html/', '500.html')
+
 # Landing page
 @app.route('/')
 def home():
