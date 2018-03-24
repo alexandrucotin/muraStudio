@@ -63,7 +63,7 @@ var post = {
             dataType: 'json',
             data: JSON.stringify({id: post.element_id}),
             success: function(response) {
-                $('.full-width-image-2').css('backdround-image', 'url(' + response.work_element[4] + ')');
+                $('.full-width-image-2').css('backdround', 'url(' + response.work_element[4] + ') no-repeat center center;');
                 response = post.format_element(response);
                 $('title').html(response.work_element.title + ' - Mura Studio');
                 $.get('/html/templates.html', function(content) {
