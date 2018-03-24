@@ -24,7 +24,7 @@ var post = {
             method: 'POST',
             contentType: 'application/json',
             dataType: 'json',
-            data: JSON.stringify({id: post.element_id}),
+            data: JSON.stringify({work_id: post.element_id}),
             success: function(response) {
                 response = post.format_images(response);
                 $.get('/html/templates.html', function(content) {
