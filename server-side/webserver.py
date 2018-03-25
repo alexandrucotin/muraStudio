@@ -93,6 +93,13 @@ def user_login():
 def get_work():
     return dumps({'work': admin.get_work()})
 
+# Get work by category
+@app.route('/get_category', methods = ['POST'])
+def get_category():
+    client_request = request.get_json(force = True)
+    category = client_request['category']
+    return dumps({'work': admin.get_category(category)})
+
 # Get work element
 @app.route('/get_work_element', methods = ['POST'])
 def get_work_element():
@@ -141,7 +148,11 @@ def post_work():
     description = client_request['description']
     text = client_request['text']
     image = client_request['image']
-    work_id = admin.post_work(title, description, text, image)
+    interiors = client_request['interiors']
+    architecture = client_request['architecture']
+    retail = client_request['retail']
+    commercial = client_request['commercial']
+    work_id = admin.post_work(title, description, text, image, interiors, architecture, retail, commercial)
     return dumps({'work_id': work_id})
 
 # Get work images

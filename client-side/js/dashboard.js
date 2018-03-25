@@ -250,8 +250,17 @@ var dashboard = {
         var description = $('#work_description').val();
         var text = $('#work_text').val();
         var image = dashboard.preview_image;
+        var interiors = $('#interiors_checkbox').prop('checked') ? 1 : 0;
+        var architecture = $('#architecture_checkbox').prop('checked') ? 1 : 0;
+        var retail = $('#retail_checkbox').prop('checked') ? 1 : 0;
+        var commercial = $('#commercial_checkbox').prop('checked') ? 1 : 0;
         if (title.length > 0 && description.length > 0 && text.length > 0 && image.length > 0) {
-            dashboard.work_post_request(title, description, text, image);
+            if (interiors == 1 || architecture == 1 || retail == 1 || commercial == 1)
+                dashboard.work_post_request(title, description, text, image, interiors, architecture, retail, commercial);
+            else {
+                $('#error_message').html('You must choose at least a category!');
+                $('#error_modal').modal('show');
+            }
         } else {
             $('#work_title, #work_description, #work_text, #preview_image').css('border-color', 'red');
             $('#error_message').html('You must fill every input field!');
@@ -259,7 +268,7 @@ var dashboard = {
         }
     },
     
-    work_post_request: function(title, description, text, image) {
+    work_post_request: function(title, description, text, image, interiors, architecture, retail, commercial) {
         $.ajax({
             url: 'post_work',
             method: 'POST',
@@ -271,7 +280,11 @@ var dashboard = {
                 title: title,
                 description: description,
                 text: text,
-                image: image
+                image: image,
+                interiors: interiors,
+                architecture: architecture,
+                retail: retail,
+                commercial: commercial
             }),
             success: function(response) {
                 if (response.user_not_valid) {
@@ -283,6 +296,7 @@ var dashboard = {
                     dashboard.preview_image = '';
                     $('#work_title, #work_description, #work_text, #preview_image').val('');
                     $('#work_title, #work_description, #work_text, #preview_image').css('border-color', '#ccc');
+                    $('#interiors_checkbox, #architecture_checkbox, #retail_checkbox, #commercial_checkbox').prop('checked', false);
                     $('#success_message').html('Work element posted correctly!');
                     $('#success_modal').modal('show');
                     $('#work_title_value').html(title);

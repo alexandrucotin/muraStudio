@@ -26,6 +26,17 @@ class Manager:
             )
         ''')
         cursor.execute('''
+            CREATE TABLE IF NOT EXISTS image (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                location TEXT
+            )
+        ''')
+        cursor.execute('''
+            CREATE TABLE IF NOT EXISTS landpage (
+                image_id INTEGER PRIMARY KEY
+            )
+        ''')
+        cursor.execute('''
             CREATE TABLE IF NOT EXISTS work (
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
                 title TEXT NOT NULL,
@@ -36,14 +47,12 @@ class Manager:
             )
         ''')
         cursor.execute('''
-            CREATE TABLE IF NOT EXISTS image (
-                id INTEGER PRIMARY KEY AUTOINCREMENT,
-                location TEXT
-            )
-        ''')
-        cursor.execute('''
-            CREATE TABLE IF NOT EXISTS landpage (
-                image_id INTEGER PRIMARY KEY
+            CREATE TABLE IF NOT EXISTS category (
+                work_id INTEGER PRIMARY KEY,
+                interiors INTEGER NOT NULL,
+                architecture INTEGER NOT NULL,
+                retail INTEGER NOT NULL,
+                commercial INTEGER NOT NULL
             )
         ''')
         cursor.execute('''

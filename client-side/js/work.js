@@ -1,5 +1,57 @@
 var work = {
     
+    init: function() {
+        work.init_category();
+        work.get_work();
+        $('.category_option').css('font-weigth', 'normal');
+        $('#category_all').css('font-weigth', 'bold');
+    },
+    
+    init_category: function() {
+        $('#category_all').on('click', function() {
+            $('.category_option').css('font-weigth', 'normal');
+            $('#category_all').css('font-weigth', 'bold');
+            work.get_work();
+        });
+        $('#category_interiors').on('click', function() {
+            $('.category_option').css('font-weigth', 'normal');
+            $('#category_interiors').css('font-weigth', 'bold');
+            work.get_category('interiors');
+        });
+        $('#category_architecture').on('click', function() {
+            $('.category_option').css('font-weigth', 'normal');
+            $('#category_architecture').css('font-weigth', 'bold');
+            work.get_category('architecture');
+        });
+        $('#category_retail').on('click', function() {
+            $('.category_option').css('font-weigth', 'normal');
+            $('#category_retail').css('font-weigth', 'bold');
+            work.get_category('retail');
+        });
+        $('#category_commercial').on('click', function() {
+            $('.category_option').css('font-weigth', 'normal');
+            $('#category_commercial').css('font-weigth', 'bold');
+            work.get_category('commercial');
+        });
+    },
+    
+    get_category: function(category) {
+        $.ajax({
+            url: 'get_category',
+            method: 'POST',
+            contentType: 'application/json',
+            dataType: 'json',
+            data: JSON.stringify({category: category}),
+            success: function(response) {
+                response = work.format_work(response);
+                $.get('/html/templates.html', function(content) {
+                    var template = $(content).filter('#get_work').html();
+                    $('#work').html(Mustache.render(template, response));
+                });
+            }
+        });
+    },
+    
     get_work: function() {
         $.ajax({
             url: 'get_work',
@@ -39,7 +91,7 @@ var work = {
     },
     
     format_date: function(date) {
-        var months = ['jan', 'feb', 'mar', 'apr', 'may', 'jun', 'jul', 'aug', 'sep', 'oct', 'nov', 'dec']
+        var months = ['jan', 'feb', 'mar', 'apr', 'may', 'jun', 'jul', 'aug', 'sep', 'oct', 'nov', 'dec'];
         date = date.split(' ')[0].split('-');
         var new_date = date[2] + ' ' + months[date[1] - 1] + ' ' + date[0];
         return new_date;
@@ -48,4 +100,4 @@ var work = {
 };
 
 
-$(document).ready(work.get_work());
+$(document).ready(work.init());

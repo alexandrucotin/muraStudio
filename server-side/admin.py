@@ -62,6 +62,19 @@ class Admin:
             ORDER BY w.id DESC
         ''')
     
+    # Get work by category
+    def get_category(self, category):
+        return self.manager.read_many('''
+            SELECT w.id, w.title, w.date, w.description, w.text, i.location
+            FROM work w
+            INNER JOIN image i
+            ON (w.preview_id = i.id)
+            INNER JOIN category c
+            ON (w.id = c.work_id)
+            WHERE c.''' + category + ''' = 1
+            ORDER BY w.id DESC
+        ''')
+    
     # Get work element
     def get_work_element(self, element_id):
         return self.manager.read_one('''
@@ -99,7 +112,7 @@ class Admin:
         ''', (image_id,))
     
     # Post work
-    def post_work(self, title, description, text, image):
+    def post_work(self, title, description, text, image, interiors, architecture, retail, commercial):
         preview_id = self.upload_image(image)
         cursor = self.manager.g.db.cursor()
         cursor.execute('''
@@ -107,6 +120,10 @@ class Admin:
             VALUES (?, ?, ?, ?)
         ''', (title, description, text, preview_id))
         work_id = cursor.lastrowid
+        cursor.execute('''
+            INSERT INTO category (work_id, interiors, architecture, retail, commercial)
+            VALUES (?, ?, ?, ?, ?)
+        ''', (work_id, interiors, architecture, retail, commercial))
         self.manager.g.db.commit()
         cursor.close()
         return work_id
@@ -209,6 +226,20 @@ class Admin:
         self.manager.write('''
             DELETE FROM work
             WHERE id = ?
+        ''', (element_id,))
+        self.manager.write('''
+            DELETE FROM category
+            WHERE work_id = ?
+        ''', (element_id,))
+        for image_id in self.manager.read_many('''
+            SELECT image_id
+            FROM work_image
+            WHERE work_id = ?
+        ''', (element_id,)):
+            self.delete_image(image_id)
+        self.manager.write('''
+            DELETE FROM work_image
+            WHERE work_id = ?
         ''', (element_id,))
     
     # Change password
