@@ -3,34 +3,34 @@ var work = {
     init: function() {
         work.init_category();
         work.get_work();
-        $('.category_option').css('font-weigth', 'normal');
-        $('#category_all').css('font-weigth', 'bold');
+        $('.category_option').css('font-weight', 'normal');
+        $('#category_all').css('font-weight', 'bold');
     },
     
     init_category: function() {
         $('#category_all').on('click', function() {
-            $('.category_option').css('font-weigth', 'normal');
-            $('#category_all').css('font-weigth', 'bold');
+            $('.category_option').css('font-weight', 'normal');
+            $('#category_all').css('font-weight', 'bold');
             work.get_work();
         });
         $('#category_interiors').on('click', function() {
-            $('.category_option').css('font-weigth', 'normal');
-            $('#category_interiors').css('font-weigth', 'bold');
+            $('.category_option').css('font-weight', 'normal');
+            $('#category_interiors').css('font-weight', 'bold');
             work.get_category('interiors');
         });
         $('#category_architecture').on('click', function() {
-            $('.category_option').css('font-weigth', 'normal');
-            $('#category_architecture').css('font-weigth', 'bold');
+            $('.category_option').css('font-weight', 'normal');
+            $('#category_architecture').css('font-weight', 'bold');
             work.get_category('architecture');
         });
         $('#category_retail').on('click', function() {
-            $('.category_option').css('font-weigth', 'normal');
-            $('#category_retail').css('font-weigth', 'bold');
+            $('.category_option').css('font-weight', 'normal');
+            $('#category_retail').css('font-weight', 'bold');
             work.get_category('retail');
         });
         $('#category_commercial').on('click', function() {
-            $('.category_option').css('font-weigth', 'normal');
-            $('#category_commercial').css('font-weigth', 'bold');
+            $('.category_option').css('font-weight', 'normal');
+            $('#category_commercial').css('font-weight', 'bold');
             work.get_category('commercial');
         });
     },
