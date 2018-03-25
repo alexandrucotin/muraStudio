@@ -394,7 +394,7 @@ var dashboard = {
                     if (response.user_not_valid) {
                         window.location.href = '/login';
                     } else {
-                        dashboard.get_landpage_images();
+                        dashboard.get_work_images();
                         $('#success_message').html('Image deleted correctly!');
                         $('#success_modal').modal('show');
                     }
