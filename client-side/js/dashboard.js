@@ -290,10 +290,10 @@ var dashboard = {
                 if (response.user_not_valid) {
                     window.location.href = '/login';
                 } else {
-                    dashboard.get_work_list();
-                    dashboard.get_work_images();
-                    dashboard.current_work = response.work_id;
                     dashboard.preview_image = '';
+                    dashboard.current_work = response.work_id;
+                    dashboard.get_work_images();
+                    dashboard.get_work_list();
                     $('#work_title, #work_description, #work_text, #preview_image').val('');
                     $('#work_title, #work_description, #work_text, #preview_image').css('border-color', '#ccc');
                     $('#interiors_checkbox, #architecture_checkbox, #retail_checkbox, #commercial_checkbox').prop('checked', false);
