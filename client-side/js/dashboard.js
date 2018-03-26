@@ -2,8 +2,6 @@ var dashboard = {
     
     init: function() {
         dashboard.init_state();
-        dashboard.hide_options();
-        dashboard.valid_user();
         dashboard.get_landpage_images();
         dashboard.get_work_list();
         dashboard.init_options();
@@ -19,38 +17,15 @@ var dashboard = {
     },
     
     init_state: function() {
+        dashboard.username = sessionStorage.getItem('username');
+        dashboard.password = sessionStorage.getItem('password');
+        $('.dashboard_option').css('display', 'none');
+        $('#landpage_add').css('display', 'block');
         dashboard.landpage_image = '';
         dashboard.preview_image = '';
         dashboard.work_image = '';
         dashboard.current_work = '';
-    },
-    
-    hide_options: function() {
-        $('.dashboard_option').css('display', 'none');
-        $('#landpage_add').css('display', 'block');
-    },
-    
-    valid_user: function() {
-        dashboard.username = sessionStorage.getItem('username');
-        dashboard.password = sessionStorage.getItem('password');
-        if (dashboard.username && dashboard.password) {
-            $.ajax({
-                url: 'valid_user',
-                method: 'POST',
-                contentType: 'application/json',
-                dataType: 'json',
-                data: JSON.stringify({
-                    username: dashboard.username,
-                    password: dashboard.password
-                }),
-                success: function(response) {
-                    if (!response.valid_user) {
-                        window.location.href = '/login';
-                    }
-                }
-            });
-        } else window.location.href = '/login';
-    },
+    },    
     
     get_landpage_images: function() {
         $.ajax({
@@ -111,6 +86,7 @@ var dashboard = {
     },
     
     landpage_add_request: function(image) {
+        $('#waiting_modal').modal('show');
         $.ajax({
             url: 'add_landpage_image',
             method: 'POST',
@@ -127,6 +103,7 @@ var dashboard = {
                 } else {
                     dashboard.get_landpage_images();
                     dashboard.landpage_image = '';
+                    $('#waiting_modal').modal('hide');
                     $('#landpage_image').val('');
                     $('#landpage_image').css('border-color', '#ccc');
                     $('#success_message').html('New landpage image uploaded correctly!');
@@ -269,6 +246,7 @@ var dashboard = {
     },
     
     work_post_request: function(title, description, text, image, interiors, architecture, retail, commercial) {
+        $('#waiting_modal').modal('show');
         $.ajax({
             url: 'post_work',
             method: 'POST',
@@ -294,6 +272,7 @@ var dashboard = {
                     dashboard.current_work = response.work_id;
                     dashboard.get_work_images();
                     dashboard.get_work_list();
+                    $('#waiting_modal').modal('hide');
                     $('#work_title, #work_description, #work_text, #preview_image').val('');
                     $('#work_title, #work_description, #work_text, #preview_image').css('border-color', '#ccc');
                     $('#interiors_checkbox, #architecture_checkbox, #retail_checkbox, #commercial_checkbox').prop('checked', false);
@@ -351,6 +330,7 @@ var dashboard = {
     },
     
     work_add_request: function(image) {
+        $('#waiting_modal').modal('show');
         $.ajax({
             url: 'add_work_image',
             method: 'POST',
@@ -368,6 +348,7 @@ var dashboard = {
                 } else {
                     dashboard.get_work_images();
                     dashboard.work_image = '';
+                    $('#waiting_modal').modal('hide');
                     $('#work_image').val('');
                     $('#work_image').css('border-color', '#ccc');
                     $('#success_message').html('New image uploaded correctly!');

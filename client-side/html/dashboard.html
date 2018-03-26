@@ -7,6 +7,30 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
         <title>Dashboard - Mura Studio</title>
+        
+        <!-- jQuery -->
+        <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+        <script>
+            var username = sessionStorage.getItem('username');
+            var password = sessionStorage.getItem('password');
+            if (username && password) {
+                $.ajax({
+                    url: 'valid_user',
+                    method: 'POST',
+                    contentType: 'application/json',
+                    dataType: 'json',
+                    data: JSON.stringify({
+                        username: username,
+                        password: password
+                    }),
+                    success: function(response) {
+                        if (!response.valid_user) {
+                            window.location.href = '/login';
+                        }
+                    }
+                });
+            } else window.location.href = '/login';
+        </script>
 
         <!-- Bootstrap CSS CDN -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -297,8 +321,7 @@
             </div>
         </div>
 
-        <!-- jQuery & Bootstrap -->
-        <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+        <!-- Bootstrap -->
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     
         <!-- Dashboard scripts -->
