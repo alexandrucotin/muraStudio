@@ -18,7 +18,8 @@
     height:100px;
 }
 
-@media (min-width: 1200px)
+@media (min-width: 1200px) {
     .container {
         min-width: 1345px!important;
     }
+}
