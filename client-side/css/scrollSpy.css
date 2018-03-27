@@ -23,11 +23,7 @@
         min-width: 1345px!important;
     }
 }
-
-.container-navbar {
-    width: 100%;
+.nav > .container {
     padding-left: 0px;
     padding-right: 0px;
-    margin-left: auto;
-    margin-right: auto;
 }
