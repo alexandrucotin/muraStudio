@@ -23,7 +23,8 @@
         min-width: 1345px!important;
     }
 }
-nav > .container {
-    padding-left: 0px;
-    padding-right: 0px;
+
+#classe1 {
+    padding-left: 0px!important;
+    padding-right: 0px!important;
 }
