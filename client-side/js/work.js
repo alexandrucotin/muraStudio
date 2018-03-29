@@ -8,34 +8,41 @@ var work = {
     },
     
     init_category: function() {
+        var grid = document.querySelector('#work');
+        var shuffle = new Shuffle(grid, {itemSelector: '.all'});
         $('#category_all').on('click', function() {
             $('.category_option').css('font-weight', 'normal');
             $('#category_all').css('font-weight', 'bold');
-            $('.all').css('display', 'block');
+            //$('.all').css('display', 'block');
+            shuffle.filter();
         });
         $('#category_interiors').on('click', function() {
             $('.category_option').css('font-weight', 'normal');
             $('#category_interiors').css('font-weight', 'bold');
-            $('.all').css('display', 'none');
-            $('.interiors').css('display', 'block');
+            //$('.all').css('display', 'none');
+            //$('.interiors').css('display', 'block');
+            shuffle.filter('interiors');
         });
         $('#category_architecture').on('click', function() {
             $('.category_option').css('font-weight', 'normal');
             $('#category_architecture').css('font-weight', 'bold');
-            $('.all').css('display', 'none');
-            $('.architecture').css('display', 'block');
+            //$('.all').css('display', 'none');
+            //$('.architecture').css('display', 'block');
+            shuffle.filter('architecture');
         });
         $('#category_retail').on('click', function() {
             $('.category_option').css('font-weight', 'normal');
             $('#category_retail').css('font-weight', 'bold');
-            $('.all').css('display', 'none');
-            $('.retail').css('display', 'block');
+            //$('.all').css('display', 'none');
+            //$('.retail').css('display', 'block');
+            shuffle.filter('retail');
         });
         $('#category_commercial').on('click', function() {
             $('.category_option').css('font-weight', 'normal');
             $('#category_commercial').css('font-weight', 'bold');
-            $('.all').css('display', 'none');
-            $('.commercial').css('display', 'block');
+            //$('.all').css('display', 'none');
+            //$('.commercial').css('display', 'block');
+            shuffle.filter('commercial');
         });
     },
     
@@ -66,7 +73,7 @@ var work = {
                     post_id: current[0],
                     title: current[1],
                     year: work.get_year(current[2]),
-                    classes: work.get_classes(
+                    groups: work.get_groups(
                         current[3],
                         current[4],
                         current[5],
@@ -92,26 +99,27 @@ var work = {
         return date[0];
     },
     
-    get_classes: function(interiors, architecture, retail, commercial) {
-        var classes = '';
+    get_groups: function(interiors, architecture, retail, commercial) {
+        var groups = '[';
         if (interiors == 1)
-            classes += 'interiors';
+            groups += '"interiors"';
         if (architecture == 1) {
-            if (classes.length > 0)
-                classes += ' ';
-            classes += 'architecture';
+            if (groups.length > 1)
+                groups += ', ';
+            groups += '"architecture"';
         }
         if (retail == 1) {
-            if (classes.length > 0)
-                classes += ' ';
-            classes += 'retail';
+            if (groups.length > 1)
+                groups += ', ';
+            groups += '"retail"';
         }
         if (commercial == 1) {
-            if (classes.length > 0)
-                classes += ' ';
-            classes += 'commercial';
+            if (groups.length > 1)
+                groups += ', ';
+            groups += '"commercial"';
         }
-        return classes;
+        groups += ']';
+        return groups;
     },
     
     get_categories: function(interiors, architecture, retail, commercial) {
