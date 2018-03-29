@@ -10,34 +10,34 @@ var work = {
     init_category: function() {
         var grid = document.querySelector('#work');
         var shuffle = new Shuffle(grid, {itemSelector: '.all'});
-        $('#category_all').on('click', function() {
+        $('#category_all').on('click', function(shuffle) {
             $('.category_option').css('font-weight', 'normal');
             $('#category_all').css('font-weight', 'bold');
             //$('.all').css('display', 'block');
             shuffle.filter();
         });
-        $('#category_interiors').on('click', function() {
+        $('#category_interiors').on('click', function(shuffle) {
             $('.category_option').css('font-weight', 'normal');
             $('#category_interiors').css('font-weight', 'bold');
             //$('.all').css('display', 'none');
             //$('.interiors').css('display', 'block');
             shuffle.filter('interiors');
         });
-        $('#category_architecture').on('click', function() {
+        $('#category_architecture').on('click', function(shuffle) {
             $('.category_option').css('font-weight', 'normal');
             $('#category_architecture').css('font-weight', 'bold');
             //$('.all').css('display', 'none');
             //$('.architecture').css('display', 'block');
             shuffle.filter('architecture');
         });
-        $('#category_retail').on('click', function() {
+        $('#category_retail').on('click', function(shuffle) {
             $('.category_option').css('font-weight', 'normal');
             $('#category_retail').css('font-weight', 'bold');
             //$('.all').css('display', 'none');
             //$('.retail').css('display', 'block');
             shuffle.filter('retail');
         });
-        $('#category_commercial').on('click', function() {
+        $('#category_commercial').on('click', function(shuffle) {
             $('.category_option').css('font-weight', 'normal');
             $('#category_commercial').css('font-weight', 'bold');
             //$('.all').css('display', 'none');
