@@ -9,7 +9,7 @@ var work = {
     
     init_category: function() {
         var Shuffle = window.Shuffle;
-        var grid = $('#work');
+        var grid = document.querySelector('.no-gutters');
         var shuffle = new Shuffle(grid, {itemSelector: '.all'});
         $('#category_all').on('click', function(shuffle) {
             $('.category_option').css('font-weight', 'normal');
