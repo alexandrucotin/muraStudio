@@ -30,7 +30,8 @@
         }
 
         .navbar-dark .navbar-brand-custom {
-          color: #fff;
+          color: white;
+          font-weight: bold;
         }
 
         .navbar-dark-custom .navbar-brand:hover, .navbar-dark .navbar-brand-custom:focus {
@@ -52,6 +53,12 @@
         .item {
            font-size: 2.5rem;
             font-family: 'Montserrat', sans-serif;
+            font-weight: bold;
+            color:white!important;
+        }
+    
+        .item:hover{
+            color:lightgray
         }
 
 
