@@ -11,35 +11,26 @@ var work = {
         $('#category_all').on('click', function() {
             $('.category_option').css('font-weight', 'normal');
             $('#category_all').css('font-weight', 'bold');
-            //$('.all').css('display', 'block');
             work.shuffle.filter();
         });
         $('#category_interiors').on('click', function() {
             $('.category_option').css('font-weight', 'normal');
             $('#category_interiors').css('font-weight', 'bold');
-            //$('.all').css('display', 'none');
-            //$('.interiors').css('display', 'block');
             work.shuffle.filter('interiors');
         });
         $('#category_architecture').on('click', function() {
             $('.category_option').css('font-weight', 'normal');
             $('#category_architecture').css('font-weight', 'bold');
-            //$('.all').css('display', 'none');
-            //$('.architecture').css('display', 'block');
             work.shuffle.filter('architecture');
         });
         $('#category_retail').on('click', function() {
             $('.category_option').css('font-weight', 'normal');
             $('#category_retail').css('font-weight', 'bold');
-            //$('.all').css('display', 'none');
-            //$('.retail').css('display', 'block');
             work.shuffle.filter('retail');
         });
         $('#category_commercial').on('click', function() {
             $('.category_option').css('font-weight', 'normal');
             $('#category_commercial').css('font-weight', 'bold');
-            //$('.all').css('display', 'none');
-            //$('.commercial').css('display', 'block');
             work.shuffle.filter('commercial');
         });
     },
