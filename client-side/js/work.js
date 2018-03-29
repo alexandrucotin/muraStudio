@@ -1,11 +1,10 @@
 var work = {
     
     init: function() {
-        work.shuffle = new Shuffle($('#work'), {itemSelector: '.all'});
-        $('.category_option').css('font-weight', 'normal');
-        $('#category_all').css('font-weight', 'bold');
         work.init_category();
         work.get_work();
+        $('.category_option').css('font-weight', 'normal');
+        $('#category_all').css('font-weight', 'bold');
     },
     
     init_category: function() {
@@ -56,6 +55,7 @@ var work = {
                 $.get('/html/templates.html', function(content) {
                     var template = $(content).filter('#get_work').html();
                     $('#work').html(Mustache.render(template, response));
+                    work.shuffle = new Shuffle($('#work'), {itemSelector: '.all'});
                 });
             }
         });
