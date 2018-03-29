@@ -55,7 +55,7 @@ var work = {
                 $.get('/html/templates.html', function(content) {
                     var template = $(content).filter('#get_work').html();
                     $('#work').html(Mustache.render(template, response));
-                    work.shuffle = new Shuffle($('#work'), {itemSelector: '.all'});
+                    work.shuffle = new Shuffle($('#work'), {itemSelector: '.all', columnWidth: '500'});
                 });
             }
         });
