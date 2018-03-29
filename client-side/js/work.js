@@ -102,21 +102,21 @@ var work = {
     get_groups: function(interiors, architecture, retail, commercial) {
         var groups = '[';
         if (interiors == 1)
-            groups += '\"interiors\"';
+            groups += '"interiors"';
         if (architecture == 1) {
             if (groups.length > 1)
                 groups += ', ';
-            groups += '\"architecture\"';
+            groups += '"architecture"';
         }
         if (retail == 1) {
             if (groups.length > 1)
                 groups += ', ';
-            groups += '\"retail\"';
+            groups += '"retail"';
         }
         if (commercial == 1) {
             if (groups.length > 1)
                 groups += ', ';
-            groups += '\"commercial\"';
+            groups += '"commercial"';
         }
         groups += ']';
         return groups;
