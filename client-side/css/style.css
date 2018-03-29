@@ -19,7 +19,7 @@
         /* navbar style for landingpage */
 
         .navbar-brand-custom {
-            font-size: 2.5rem;
+            font-size: 2rem;
             display: inline-block;
             padding-top: 0.3125rem;
             padding-bottom: 0.3125rem;
@@ -51,14 +51,13 @@
         /* elemento navbar landingpage */
 
         .item {
-           font-size: 2.5rem;
+           font-size: 2rem;
             font-family: 'Montserrat', sans-serif;
-            font-weight: bold;
             color:white!important;
         }
     
         .item:hover{
-            color:lightgray
+            color:lightgray;
         }
 
 
