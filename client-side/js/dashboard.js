@@ -214,7 +214,7 @@ var dashboard = {
         $('#work_submit').on('click', function() {
             dashboard.work_post();
         });
-        $('#work_title, #work_description').on('keyup', function(e) {
+        $('#work_title').on('keyup', function(e) {
             if (e.keyCode == 13) {
                 dashboard.work_post();
             }
@@ -222,30 +222,29 @@ var dashboard = {
     },
     
     work_post: function() {
-        $('#work_title, #work_description, #work_text, #preview_image').css('border-color', '#ccc');
+        $('#work_title, #work_text, #preview_image').css('border-color', '#ccc');
         var title = $('#work_title').val();
-        var description = $('#work_description').val();
         var text = $('#work_text').val();
         var image = dashboard.preview_image;
         var interiors = $('#interiors_checkbox').prop('checked') ? 1 : 0;
         var architecture = $('#architecture_checkbox').prop('checked') ? 1 : 0;
         var retail = $('#retail_checkbox').prop('checked') ? 1 : 0;
         var commercial = $('#commercial_checkbox').prop('checked') ? 1 : 0;
-        if (title.length > 0 && description.length > 0 && text.length > 0 && image.length > 0) {
+        if (title.length > 0 && text.length > 0 && image.length > 0) {
             if (interiors == 1 || architecture == 1 || retail == 1 || commercial == 1)
-                dashboard.work_post_request(title, description, text, image, interiors, architecture, retail, commercial);
+                dashboard.work_post_request(title, text, image, interiors, architecture, retail, commercial);
             else {
                 $('#error_message').html('You must choose at least a category!');
                 $('#error_modal').modal('show');
             }
         } else {
-            $('#work_title, #work_description, #work_text, #preview_image').css('border-color', 'red');
+            $('#work_title, #work_text, #preview_image').css('border-color', 'red');
             $('#error_message').html('You must fill every input field!');
             $('#error_modal').modal('show');
         }
     },
     
-    work_post_request: function(title, description, text, image, interiors, architecture, retail, commercial) {
+    work_post_request: function(title, text, image, interiors, architecture, retail, commercial) {
         $('#waiting_modal').modal('show');
         $.ajax({
             url: 'post_work',
@@ -256,7 +255,6 @@ var dashboard = {
                 username: dashboard.username,
                 password: dashboard.password,
                 title: title,
-                description: description,
                 text: text,
                 image: image,
                 interiors: interiors,
@@ -273,8 +271,8 @@ var dashboard = {
                     dashboard.get_work_images();
                     dashboard.get_work_list();
                     $('#waiting_modal').modal('hide');
-                    $('#work_title, #work_description, #work_text, #preview_image').val('');
-                    $('#work_title, #work_description, #work_text, #preview_image').css('border-color', '#ccc');
+                    $('#work_title, #work_text, #preview_image').val('');
+                    $('#work_title, #work_text, #preview_image').css('border-color', '#ccc');
                     $('#interiors_checkbox, #architecture_checkbox, #retail_checkbox, #commercial_checkbox').prop('checked', false);
                     $('#success_message').html('Work element posted correctly!');
                     $('#success_modal').modal('show');
@@ -397,8 +395,7 @@ var dashboard = {
                 } else {
                     var element = response.work_element;
                     $('#work_modify_title').val(element[0]);
-                    $('#work_modify_description').val(element[2]);
-                    $('#work_modify_text').val(element[3]);
+                    $('#work_modify_text').val(element[2]);
                     $('.dashboard_option').css('display', 'none');
                     $('#work_modify_form').css('display', 'block');
                     dashboard.current_work = post_id;
@@ -409,21 +406,20 @@ var dashboard = {
     
     init_work_modify: function() {
         $('#work_modify_submit').on('click', function() {
-            $('#work_modify_title, #work_modify_description, #work_modify_text').css('border-color', '#ccc');
+            $('#work_modify_title, #work_modify_text').css('border-color', '#ccc');
             var title = $('#work_modify_title').val();
-            var description = $('#work_modify_description').val();
             var text = $('#work_modify_text').val();
-            if (title.length > 0 && description.length > 0 && text.length > 0) {
-                dashboard.work_modify_request(title, description, text);
+            if (title.length > 0 && text.length > 0) {
+                dashboard.work_modify_request(title, text);
             } else {
-                $('#work_modify_title, #work_modify_description, #work_modify_text').css('border-color', 'red');
+                $('#work_modify_title, #work_modify_text').css('border-color', 'red');
                 $('#error_message').html('You must fill every input field!');
                 $('#error_modal').modal('show');
             }
         });
     },
     
-    work_modify_request: function(title, description, text, image) {
+    work_modify_request: function(title, text, image) {
         $.ajax({
             url: 'modify_work_element',
             method: 'POST',
@@ -434,7 +430,6 @@ var dashboard = {
                 password: dashboard.password,
                 id: dashboard.current_work,
                 title: title,
-                description: description,
                 text: text,
                 image: image
             }),
@@ -444,8 +439,8 @@ var dashboard = {
                 } else {
                     dashboard.get_work_images();
                     dashboard.get_work_list();
-                    $('#work_modify_title, #work_modify_description, #work_modify_text').val('');
-                    $('#work_modify_title, #work_modify_description, #work_modify_text').css('border-color', '#ccc');
+                    $('#work_modify_title, #work_modify_text').val('');
+                    $('#work_modify_title, #work_modify_text').css('border-color', '#ccc');
                     $('#success_message').html('Work element modified correctly!');
                     $('#success_modal').modal('show');
                     $('#work_title_value').html(title);

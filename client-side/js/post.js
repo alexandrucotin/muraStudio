@@ -76,12 +76,11 @@ var post = {
     format_element: function(response) {
         var work_element = response.work_element;
         if(work_element) {
-            var i, current, title, date, description, text, image;
+            var i, current, title, date, text, image;
             var new_element = {
                 title: work_element[0],
                 date: post.format_date(work_element[1]),
-                description: work_element[2],
-                text: post.format_text(work_element[3])
+                text: post.format_text(work_element[2])
             };
             response.work_element = new_element;
             return response;

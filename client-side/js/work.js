@@ -72,16 +72,15 @@ var work = {
         var work_list = response.work;
         if(work_list) {
             var new_list = [];
-            var i, current, post_id, title, date, description, text, image;
+            var i, current, post_id, title, date, text, image;
             for (i = 0; i < work_list.length; i++) {
                 current = work_list[i];
                 new_list[i] = {
                     post_id: current[0],
                     title: current[1],
                     date: work.format_date(current[2]),
-                    description: current[3],
-                    text: current[4],
-                    image: current[5]
+                    text: current[3],
+                    image: current[4]
                 };
             }
             response.work = new_list;
