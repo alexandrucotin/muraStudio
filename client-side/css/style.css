@@ -1,105 +1,115 @@
-/* navbar style for landingpage */
+/* GENERAL STYLE */
 
-.navbar-brand-custom {
-    font-size: 2.5rem;
-    display: inline-block;
-    padding-top: 0.3125rem;
-    padding-bottom: 0.3125rem;
-    margin-right: 1rem;
-    line-height: inherit;
-    white-space: nowrap;
-    font-family: 'Montserrat', sans-serif;
-}
+        /* ridimensionamento navbar */
+        .bigger-nav {
+            max-width: 1840px!important;
+            padding-right: 0px!important;
+            padding-left:0px!important;
+        }
+        
+        /* no padding ultimo elemento navbar */
 
-.item {
-   font-size: 2.5rem;
-    font-family: 'Montserrat', sans-serif;
-}
-
-.navbar-light .navbar-brand-custom {
-  color: rgba(0, 0, 0, 0.9);
-}
-
-.navbar-light .navbar-brand-custom:hover, .navbar-light .navbar-brand-custom:focus {
-  color: rgba(0, 0, 0, 0.9);
-}
-
-.navbar-dark .navbar-brand-custom {
-  color: #fff;
-}
-
-.navbar-dark-custom .navbar-brand:hover, .navbar-dark .navbar-brand-custom:focus {
-  color: #fff;
-}
+        .no-padding-right {
+            padding-right: 0px!important;
+        }
 
 
-.navbar-brand-custom:hover, .navbar-brand-custom:focus {
-  text-decoration: none;
-}
+/* LANDINGPAGE STYLE */
 
-.data {
-  border-bottom: 1px solid grey;
-  margin-top: -2px;
-}
+        /* navbar style for landingpage */
 
-/* social icons style */
+        .navbar-brand-custom {
+            font-size: 2.5rem;
+            display: inline-block;
+            padding-top: 0.3125rem;
+            padding-bottom: 0.3125rem;
+            margin-right: 1rem;
+            line-height: inherit;
+            white-space: nowrap;
+            font-family: 'Montserrat', sans-serif;
+        }
 
-.socialIcon {
-  font-size: 2.5rem;
-}
+        .navbar-dark .navbar-brand-custom {
+          color: #fff;
+        }
 
-.socialIconMid {
-  font-size: 2.5rem;
-  margin-left: 3.5rem;
-  margin-right: 3.5rem;
-}
-
-.facebook:hover{
-  color: #3b5998;
-}
-
-.instagram:hover{
-  color: #c32aa3;
-}
-
-.twitter:hover{
-  color: #1da1f2;
-}
+        .navbar-dark-custom .navbar-brand:hover, .navbar-dark .navbar-brand-custom:focus {
+          color: #fff;
+        }
 
 
-/* css for slideshow */
+        .navbar-brand-custom:hover, .navbar-brand-custom:focus {
+          text-decoration: none;
+        }
 
-.carousel-item {
-  height: 100vh;
-  min-height: 300px;
-  background: no-repeat center center scroll;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
-}
+        .data {
+          border-bottom: 1px solid grey;
+          margin-top: -2px;
+        }
+        
+        /* elemento navbar landingpage */
 
-/* css for bottom img*/
-.full-width-image-2 {
-    background: no-repeat center center;
-    background-size: cover;
-    text-align: center;
-    height: 450px;
-}
-
-/* css for second navbar */
-
-.fixed-top-2 {
-    margin-top: 56px;
-}
+        .item {
+           font-size: 2.5rem;
+            font-family: 'Montserrat', sans-serif;
+        }
 
 
-.bigger-nav {
-    max-width: 1840px!important;
-    padding-right: 0px!important;
-    padding-left:0px!important;
-}
+        /* css for slideshow */
 
-.no-padding-right {
-    padding-right: 0px!important;
-}
+        .carousel-item {
+          height: 100vh;
+          min-height: 300px;
+          background: no-repeat center center scroll;
+          -webkit-background-size: cover;
+          -moz-background-size: cover;
+          -o-background-size: cover;
+          background-size: cover;
+        }
+
+
+
+/* WORKPAGE CSS*/
+
+
+        /* SECOND NAVBAR IN WORKPAGE */
+
+        .fixed-top-2 {
+            margin-top: 56px;
+        }
+
+        /* BOTTOM IMAGE IN WORK POST */
+
+        .full-width-image-2 {
+            background: no-repeat center center;
+            background-size: cover;
+            text-align: center;
+            height: 450px;
+        }
+
+        /* SOCIAL ICON STYLE */
+
+        .socialIcon {
+          font-size: 2.5rem;
+        }
+
+        .socialIconMid {
+          font-size: 2.5rem;
+          margin-left: 3.5rem;
+          margin-right: 3.5rem;
+        }
+
+        .facebook:hover{
+          color: #3b5998;
+        }
+
+        .instagram:hover{
+          color: #c32aa3;
+        }
+
+        .twitter:hover{
+          color: #1da1f2;
+        }
+
+
+
