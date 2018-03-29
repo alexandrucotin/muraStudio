@@ -18,13 +18,12 @@
     height:100px;
 }
 
-@media (min-width: 1200px) {
-    .container {
-        min-width: 1345px!important;
-    }
+.bigger-container {
+    min-width: 1845px!important;
 }
 
-#classe1 {
-    padding-left: 0px!important;
-    padding-right: 0px!important;
+.bigger-col {
+    padding-right: 0.2rem!important;
+    padding-left: 0.2rem!important;
+    padding-top: 0.4rem!important;
 }
