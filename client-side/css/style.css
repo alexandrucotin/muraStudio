@@ -31,7 +31,7 @@
 
         .navbar-dark .navbar-brand-custom {
           color: white;
-          font-weight: bold;
+          font-weight: 700;
         }
 
         .navbar-dark-custom .navbar-brand:hover, .navbar-dark .navbar-brand-custom:focus {
@@ -58,6 +58,10 @@
     
         .item:hover{
             color:lightgray;
+        }
+
+        .btn-nav-color {
+            border-color:white!important;
         }
 
 
