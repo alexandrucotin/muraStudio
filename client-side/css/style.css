@@ -92,3 +92,14 @@
 .fixed-top-2 {
     margin-top: 56px;
 }
+
+
+.bigger-nav {
+    max-width: 1840px!important;
+    padding-right: 0px!important;
+    padding-left:0px!important;
+}
+
+.no-padding-right {
+    padding-right: 0px!important;
+}
