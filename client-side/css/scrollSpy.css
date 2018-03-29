@@ -29,6 +29,7 @@
 }
 
 .bigger-nav {
+    max-width: 1840px!important;
     padding-right: 0px!important;
     padding-left:0px!important;
 }
