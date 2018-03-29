@@ -19,7 +19,7 @@
 }
 
 .bigger-container {
-    min-width: 1845px!important;
+    max-width: 1845px!important;
 }
 
 .bigger-col {
