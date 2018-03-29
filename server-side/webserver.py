@@ -88,13 +88,6 @@ def user_login():
 def get_work():
     return dumps({'work': admin.get_work()})
 
-# Get work by category
-@app.route('/get_category', methods = ['POST'])
-def get_category():
-    client_request = request.get_json(force = True)
-    category = client_request['category']
-    return dumps({'work': admin.get_category(category)})
-
 # Get work element
 @app.route('/get_work_element', methods = ['POST'])
 def get_work_element():

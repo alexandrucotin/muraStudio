@@ -65,19 +65,6 @@ class Admin:
             ORDER BY w.id DESC
         ''')
     
-    # Get work by category
-    def get_category(self, category):
-        return self.manager.read_many('''
-            SELECT w.id, w.title, w.date, w.text, i.location
-            FROM work w
-            INNER JOIN image i
-            ON (w.preview_id = i.id)
-            INNER JOIN category c
-            ON (w.id = c.work_id)
-            WHERE c.''' + category + ''' = 1
-            ORDER BY w.id DESC
-        ''')
-    
     # Get work element
     def get_work_element(self, element_id):
         return self.manager.read_one('''
