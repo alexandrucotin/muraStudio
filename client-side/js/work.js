@@ -8,6 +8,7 @@ var work = {
     },
     
     init_category: function() {
+        var Shuffle = window.Shuffle;
         var grid = document.querySelector('#work');
         var shuffle = new Shuffle(grid, {itemSelector: '.all'});
         $('#category_all').on('click', function(shuffle) {
