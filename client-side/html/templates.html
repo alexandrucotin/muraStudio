@@ -11,11 +11,13 @@
 <!-- WORK -->
 <script type="text/html" id="get_work">
     {{#work}}
-        <div class="col-lg-3 bigger-col">
+        <div class="col-lg-3 bigger-col all {{classes}}">
             <a class="portfolio-item" href="/post?id={{post_id}}">
                 <span class="caption">
                     <span class="caption-content">
                         <h2>{{title}}</h2>
+                        <h3>{{year}}</h3>
+                        <h3>{{categories}}</h3>
                     </span>
                 </span>
                 <img class="img-fluid" src="{{image}}">

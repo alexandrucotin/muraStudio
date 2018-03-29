@@ -11,44 +11,31 @@ var work = {
         $('#category_all').on('click', function() {
             $('.category_option').css('font-weight', 'normal');
             $('#category_all').css('font-weight', 'bold');
-            work.get_work();
+            $('.all').css('display', 'block');
         });
         $('#category_interiors').on('click', function() {
             $('.category_option').css('font-weight', 'normal');
             $('#category_interiors').css('font-weight', 'bold');
-            work.get_category('interiors');
+            $('.all').css('display', 'none');
+            $('.interiors').css('display', 'block');
         });
         $('#category_architecture').on('click', function() {
             $('.category_option').css('font-weight', 'normal');
             $('#category_architecture').css('font-weight', 'bold');
-            work.get_category('architecture');
+            $('.all').css('display', 'none');
+            $('.architecture').css('display', 'block');
         });
         $('#category_retail').on('click', function() {
             $('.category_option').css('font-weight', 'normal');
             $('#category_retail').css('font-weight', 'bold');
-            work.get_category('retail');
+            $('.all').css('display', 'none');
+            $('.retail').css('display', 'block');
         });
         $('#category_commercial').on('click', function() {
             $('.category_option').css('font-weight', 'normal');
             $('#category_commercial').css('font-weight', 'bold');
-            work.get_category('commercial');
-        });
-    },
-    
-    get_category: function(category) {
-        $.ajax({
-            url: 'get_category',
-            method: 'POST',
-            contentType: 'application/json',
-            dataType: 'json',
-            data: JSON.stringify({category: category}),
-            success: function(response) {
-                response = work.format_work(response);
-                $.get('/html/templates.html', function(content) {
-                    var template = $(content).filter('#get_work').html();
-                    $('#work').html(Mustache.render(template, response));
-                });
-            }
+            $('.all').css('display', 'none');
+            $('.commercial').css('display', 'block');
         });
     },
     
@@ -78,9 +65,20 @@ var work = {
                 new_list[i] = {
                     post_id: current[0],
                     title: current[1],
-                    date: work.format_date(current[2]),
-                    text: current[3],
-                    image: current[4]
+                    year: work.get_year(current[2]),
+                    classes: work.get_classes(
+                        current[3],
+                        current[4],
+                        current[5],
+                        current[6]
+                    ),
+                    categories: work.get_categories(
+                        current[3],
+                        current[4],
+                        current[5],
+                        current[6]
+                    ),
+                    image: current[7]
                 };
             }
             response.work = new_list;
@@ -89,11 +87,53 @@ var work = {
         return [];
     },
     
-    format_date: function(date) {
-        var months = ['jan', 'feb', 'mar', 'apr', 'may', 'jun', 'jul', 'aug', 'sep', 'oct', 'nov', 'dec'];
+    get_year: function(date) {
         date = date.split(' ')[0].split('-');
-        var new_date = date[2] + ' ' + months[date[1] - 1] + ' ' + date[0];
-        return new_date;
+        return date[0];
+    },
+    
+    get_classes: function(interiors, architecture, retail, commercial) {
+        var classes = '';
+        if (interiors == 1)
+            classes += 'interiors';
+        if (architecture == 1) {
+            if (classes.length > 0)
+                classes += ' ';
+            classes += 'architecture';
+        }
+        if (retail == 1) {
+            if (classes.length > 0)
+                classes += ' ';
+            classes += 'retail';
+        }
+        if (commercial == 1) {
+            if (classes.length > 0)
+                classes += ' ';
+            classes += 'commercial';
+        }
+        return classes;
+    },
+    
+    get_categories: function(interiors, architecture, retail, commercial) {
+        var categories = '';
+        if (interiors == 1)
+            categories += 'interiors';
+        if (architecture == 1) {
+            if (categories.length > 0)
+                categories += ', ';
+            categories += 'architecture';
+        }
+        if (retail == 1) {
+            if (categories.length > 0)
+                categories += ', ';
+            categories += 'retail';
+        }
+        if (commercial == 1) {
+            if (categories.length > 0)
+                categories += ', ';
+            categories += 'commercial';
+        }
+        return categories;
     }
 
 };

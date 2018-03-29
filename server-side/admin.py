@@ -55,8 +55,11 @@ class Admin:
     # Get work
     def get_work(self):
         return self.manager.read_many('''
-            SELECT w.id, w.title, w.date, w.text, i.location
+            SELECT w.id, w.title, w.date, c.interiors, c.architecture,
+                   c.retail, c.commercial, i.location
             FROM work w
+            INNER JOIN category c
+            ON (w.id = c.work_id)
             INNER JOIN image i
             ON (w.preview_id = i.id)
             ORDER BY w.id DESC
