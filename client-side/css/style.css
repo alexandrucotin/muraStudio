@@ -13,6 +13,15 @@
             padding-right: 0px!important;
         }
 
+        .navbar-brand-site-dark {
+                color: black!important;
+                font-weight: 700!important;
+        }
+        .item-dark {
+                   font-size: 2rem;
+                    font-family: 'Montserrat', sans-serif;
+                    color:black!important;
+                }
 
 /* LANDINGPAGE STYLE */
 
@@ -82,15 +91,6 @@
 
         /* navbar news page */
         
-        .navbar-news-dark {
-                color: black!important;
-                font-weight: 700!important;
-        }
-        .item-news-dark {
-                   font-size: 2rem;
-                    font-family: 'Montserrat', sans-serif;
-                    color:black!important;
-                }
 
 
 /* WORKPAGE CSS*/
@@ -134,6 +134,12 @@
         .twitter:hover{
           color: #1da1f2;
         }
+        
+        .filter-item-dark {
+                   font-size: .5rem;
+                    font-family: 'Montserrat', sans-serif;
+                    color:black!important;
+                }
 
 
 
