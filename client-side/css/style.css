@@ -14,7 +14,6 @@
         }
 
 
-
 /* LANDINGPAGE STYLE */
 
         /* navbar style for landingpage */
@@ -78,6 +77,18 @@
           background-size: cover;
         }
 
+
+/* NEWS PAGE CSS*/
+        
+        .navbar-news-dark {
+                color: black!important;
+                font-weight: 700!important;
+        }
+        .item-news-dark {
+                   font-size: 2rem;
+                    font-family: 'Montserrat', sans-serif;
+                    color:black!important;
+                }
 
 
 /* WORKPAGE CSS*/
