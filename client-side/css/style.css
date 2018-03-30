@@ -34,8 +34,8 @@
           font-weight: 700;
         }
 
-        .navbar-dark-custom .navbar-brand:hover, .navbar-dark .navbar-brand-custom:focus {
-          color: #fff;
+        .navbar-dark-custom .navbar-brand-custom:hover, .navbar-dark .navbar-brand-custom:focus {
+          color: lightgrey;
         }
 
 
@@ -56,7 +56,7 @@
             color:white!important;
         }
     
-        .item:hover{
+        .navbar-dark-custom .item:hover, .navbar-dark .item:focus {
             color:lightgray;
         }
 
@@ -79,6 +79,8 @@
 
 
 /* NEWS PAGE CSS*/
+
+        /* navbar news page */
         
         .navbar-news-dark {
                 color: black!important;
