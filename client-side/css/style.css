@@ -14,14 +14,24 @@
         }
 
         .navbar-brand-site-dark {
-                color: black!important;
-                font-weight: 700!important;
+            color: black!important;
+            font-weight: 700!important;
         }
         .item-dark {
-                   font-size: 2rem;
-                    font-family: 'Montserrat', sans-serif;
-                    color:black!important;
-                }
+            font-size: 2rem;
+            font-family: 'Montserrat', sans-serif;
+            color:black!important;
+        }
+
+        
+        body {
+            opacity: 1;
+            transition: 1s opacity;
+        }
+        body.fade-out {
+            opacity: 0;
+            transition: none;
+        }
 
 /* LANDINGPAGE STYLE */
 

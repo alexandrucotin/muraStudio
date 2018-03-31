@@ -36,5 +36,8 @@ var home = {
 
 };
 
+$(function() {
+    $('body').removeClass('fade-out');
+});
 
 $(document).ready(home.get_images());
