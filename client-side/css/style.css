@@ -23,10 +23,10 @@
             color:black!important;
         }
 
-        
+        /* fade in */
         body {
             opacity: 1;
-            transition: 1s opacity;
+            transition: 2s opacity;
         }
         body.fade-out {
             opacity: 0;
