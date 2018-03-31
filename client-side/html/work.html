@@ -24,6 +24,7 @@
     </head>
     <body>
         
+        <script>document.body.className += ' fade-out';</script>
         <!-- filter navbar  -->
        <nav class="navbar navbar-expand-lg navbar-default  navbar-dark fixed-top fixed-top-2">
            <div class="container bigger-nav">
@@ -62,7 +63,7 @@
                   <a class="nav-link item-dark" href="/news">news</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link item-dark" href="#">work</a>
+                  <a class="nav-link item-dark bold" href="#" style="cursor:default">work</a>
                 </li>
                 <li class="nav-item">
                   <a class="nav-link item-dark no-padding-right" href="/office">contact us</a>
@@ -90,14 +91,17 @@
                 <p class="m-0 text-center text-white">Copyright &copy; Your Website 2018</p>
             </div>
         </footer>
-
+        
+        
+        <!-- FadeIn JS  -->
+        <script src="/js/fadein.js"></script>
+        
         <!-- Bootstrap core JavaScript -->
-        <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
         <script src="/bootstrap/vendor/jquery/jquery.min.js"></script>
         <script src="/bootstrap/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-        <script src="/js/scrollSpy.js"></script>
 
         <!-- Post scripts -->
+        <script src="/js/scrollSpy.js"></script>
         <script src="/js/markdown-it.min.js"></script>
         <script src="/js/mustache.min.js"></script>
         <script src="/js/shuffle.min.js"></script>
