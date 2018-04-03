@@ -8,14 +8,14 @@ $(document).ready(function(){
       if($(window).width() < 960) {
           $(".navbar-default").css('background-color', 'rgba(255, 255, 255, 0.93)');
           $(".navbar-brand-custom").css('color', 'black');
-          $(".item").css('color', 'black!important');
+          $(".item").css('color', 'black');
        } else if ((scroll_start > offset.top ) && ($(window).width() > 960) ) {
-           $(".navbar-default").css('background-color', 'rgba(255, 255, 255, 0.93)');
+          $(".navbar-default").css('background-color', 'rgba(255, 255, 255, 0.93)');
           $(".navbar-brand-custom").css('color', 'black');
-           $(".item").css('color', 'black!important');
+          $(".item").css('color', 'black');
          
        } else {
-            $('.navbar-default').css('background-color', 'transparent');
+          $('.navbar-default').css('background-color', 'transparent');
        }
    });
     }
