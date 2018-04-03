@@ -17,6 +17,7 @@
             color: black!important;
             font-weight: 700!important;
         }
+
         .item-dark {
             font-size: 2rem;
             font-family: 'Montserrat', sans-serif;
@@ -57,10 +58,6 @@
           font-weight: 700;
         }
 
-        .navbar-dark-custom .navbar-brand-custom:hover, .navbar-dark .navbar-brand-custom:focus {
-          color: lightgrey;
-        }
-
 
         .navbar-brand-custom:hover, .navbar-brand-custom:focus {
           text-decoration: none;
@@ -77,10 +74,6 @@
            font-size: 2rem;
             font-family: 'Montserrat', sans-serif;
             color:white!important;
-        }
-    
-        .navbar-dark-custom .item:hover, .navbar-dark .item:focus {
-            color:lightgray;
         }
 
         .btn-nav-color {
