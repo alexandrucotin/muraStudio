@@ -150,4 +150,11 @@
                 }
 
 
+/* WORKPAGE POST CSS*/
+        
 
+        /* modify height slideshow */
+        
+        .new-height{
+                  height: 100vh;
+        }
