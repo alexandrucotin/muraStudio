@@ -19,36 +19,37 @@
     </head>
     <body>
 
-        <!-- Navigation -->
-        <nav class="navbar navbar-default navbar-light navbar-inverse navbar-expand-lg fixed-top">
-            <div class="container">
-                <a class="navbar-brand" href="/home">MURA STUDIO</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarResponsive">
-                    <ul class="navbar-nav ml-auto">
-                        <li class="nav-item">
-                            <a class="nav-link" href="/news">News</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/work">Work</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/office">Contact us</a>
-                        </li>
-                    </ul>
-                </div>
+        <script>document.body.className += ' fade-out';</script>
+        
+        <nav class="navbar navbar-expand-lg navbar-default  navbar-dark fixed-top">
+          <div class="container bigger-nav ">
+            <a class="navbar-brand-site-dark navbar-brand-custom " href="/home">mura studio</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+              <ul class="navbar-nav ml-auto ">
+                <li class="nav-item">
+                  <a class="nav-link item-dark bold" href="#"  style="cursor:default">news</a>
+                </li> 
+                <li class="nav-item">
+                  <a class="nav-link item-dark" href="/work">work</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link item-dark no-padding-right" href="/office">contact us</a>
+                </li>
+              </ul>
             </div>
+          </div>
         </nav>
+        
         <header>
           <div id="carousel" class="carousel slide" data-ride="carousel">
           </div>
-    </header>
+        </header>
 
         <!-- Page Content -->
-        <div class="container">
-            <hr id="startchange">
+        <div class="container" id="startchange">
             <div class="row">
 
                 <!-- Post Content Column -->
@@ -84,9 +85,13 @@
         <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
         <script src="/bootstrap/vendor/jquery/jquery.min.js"></script>
         <script src="/bootstrap/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-        <script src="/js/scrollSpy.js"></script>
+        
+        
+        <!-- FadeIn JS  -->
+        <script src="/js/fadein.js"></script>
 
         <!-- Post scripts -->
+        <script src="/js/scrollSpy.js"></script>
         <script src="/js/markdown-it.min.js"></script>
         <script src="/js/mustache.min.js"></script>
         <script src="/js/post.js"></script>
