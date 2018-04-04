@@ -11,12 +11,13 @@
 <!-- WORK -->
 <script type="text/html" id="get_work">
     {{#work}}
-        <div class="col-lg-3">
+        <div class="col-lg-3 bigger-col all" data-groups='{{groups}}'>
             <a class="portfolio-item" href="/post?id={{post_id}}">
                 <span class="caption">
                     <span class="caption-content">
-                        <h2>{{title}}</h2>
-                        <p>{{description}}</p>
+                        <h3>{{title}}</h3>
+                        <h5>{{year}}</h5>
+                        <p>{{categories}}</p>
                     </span>
                 </span>
                 <img class="img-fluid" src="{{image}}">
@@ -32,9 +33,9 @@
             <li data-target="#carousel" data-slide-to="{{n}}"></li>
         {{/images}}
     </ol>
-    <div class="carousel-inner" role="listbox">
+    <div class="carousel-inner new-height" role="listbox">
         {{#images}}
-            <div class="carousel-item" style="background-image: url('{{location}}')">
+            <div class="carousel-item new-height" style="background-image: url('{{location}}')">
             </div>
         {{/images}}
     </div>

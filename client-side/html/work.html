@@ -13,7 +13,7 @@
         <link href="/bootstrap/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
         <!-- custom css -->
-        <link href="/css/4-col-portfolio.css" rel="stylesheet">
+        <link href="/css/impaginazione.css" rel="stylesheet">
         <link href="/css/scrollSpy.css" rel="stylesheet">
         <link href="/css/style.css" rel="stylesheet">
         <link href="/css/stylish-portfolio.css" rel="stylesheet">
@@ -23,61 +23,63 @@
      
     </head>
     <body>
-
-       <nav class="navbar navbar-default navbar-light navbar-inverse navbar-expand-lg fixed-top fixed-top-2">
-           <div class="container" id="classe1">
+        
+        <script>document.body.className += ' fade-out';</script>
+        <!-- filter navbar  -->
+       <nav class="navbar navbar-expand-lg navbar-default  navbar-dark fixed-top fixed-top-2">
+           <div class="container bigger-nav">
             <div class="navbar-collapse collapse">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
-                        <a class="nav-link category_option" href="#" id="category_all">all</a>
+                        <a class="nav-link category_option filter-item-dark" href="#" id="category_all">all</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link category_option" href="#" id="category_interiors">interiors</a>
+                        <a class="nav-link category_option filter-item-dark" href="#" id="category_interiors">interiors</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link category_option" href="#" id="category_architecture">architecture</a>
+                        <a class="nav-link category_option filter-item-dark" href="#" id="category_architecture">architecture</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link category_option" href="#" id="category_retail">retail</a>
+                        <a class="nav-link category_option filter-item-dark" href="#" id="category_retail">retail</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link category_option" href="#" id="category_commercial">commercial</a>
+                        <a class="nav-link category_option no-padding-right filter-item-dark" href="#" id="category_commercial">commercial</a>
                     </li>
                 </ul>
             </div>
             </div>
         </nav>
-        <!-- filter navbar --> 
-        <nav class="navbar navbar-default navbar-light navbar-inverse navbar-expand-lg fixed-top">
-           
-           <div class="container">
-            <a href="/" class="navbar-brand">MURA STUDIO</a>
-            <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"  data-target="#navbar2" aria-controls="navbar2" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
+        
+        <!-- principal navbar  -->
+        <nav class="navbar navbar-expand-lg navbar-default  navbar-dark fixed-top">
+          <div class="container bigger-nav ">
+            <a class="navbar-brand-site-dark navbar-brand-custom " href="/home">mura studio</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
             </button>
-            <div class="navbar-collapse collapse" id="navbar2">
-                <ul class="navbar-nav ml-auto">
-                           <li class="nav-item">
-                            <a class="nav-link" href="/news">News</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/work">Work</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/office">Contact us</a>
-                        </li>
-                </ul>
-                </div>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+              <ul class="navbar-nav ml-auto ">
+                <li class="nav-item">
+                  <a class="nav-link item-dark" href="/news">news</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link item-dark bold" href="#" style="cursor:default">work</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link item-dark no-padding-right" href="/office">contact us</a>
+                </li>
+              </ul>
             </div>
+          </div>
         </nav>
 
         <!-- Page Content -->
-        <div class="container">
+        <div class="container bigger-container">
             <br>
             <br>
             
             <div class="row" id="startchange">
-                <div class="row no-gutters" id="work">
+                <div class="row no-gutters" id="work" style="width: 100%;">
                 </div>
             </div>
             
@@ -89,16 +91,22 @@
                 <p class="m-0 text-center text-white">Copyright &copy; Your Website 2018</p>
             </div>
         </footer>
-
+        
+        
+        
+        
         <!-- Bootstrap core JavaScript -->
-        <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
         <script src="/bootstrap/vendor/jquery/jquery.min.js"></script>
         <script src="/bootstrap/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-        <script src="/js/scrollSpy.js"></script>
+        
+        <!-- FadeIn JS  -->
+        <script src="/js/fadein.js"></script>
 
         <!-- Post scripts -->
+        <script src="/js/scrollSpy.js"></script>
         <script src="/js/markdown-it.min.js"></script>
         <script src="/js/mustache.min.js"></script>
+        <script src="/js/shuffle.min.js"></script>
         <script src="/js/work.js"></script>
 
     </body>

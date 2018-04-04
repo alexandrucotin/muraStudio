@@ -35,6 +35,4 @@ var home = {
     }
 
 };
-
-
 $(document).ready(home.get_images());

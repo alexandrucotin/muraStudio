@@ -88,13 +88,6 @@ def user_login():
 def get_work():
     return dumps({'work': admin.get_work()})
 
-# Get work by category
-@app.route('/get_category', methods = ['POST'])
-def get_category():
-    client_request = request.get_json(force = True)
-    category = client_request['category']
-    return dumps({'work': admin.get_category(category)})
-
 # Get work element
 @app.route('/get_work_element', methods = ['POST'])
 def get_work_element():
@@ -140,14 +133,13 @@ def post_work():
     if not admin.valid_user(username, password):
         return dumps({'user_not_valid': True})
     title = client_request['title']
-    description = client_request['description']
     text = client_request['text']
     image = client_request['image']
     interiors = client_request['interiors']
     architecture = client_request['architecture']
     retail = client_request['retail']
     commercial = client_request['commercial']
-    work_id = admin.post_work(title, description, text, image, interiors, architecture, retail, commercial)
+    work_id = admin.post_work(title, text, image, interiors, architecture, retail, commercial)
     return dumps({'work_id': work_id})
 
 # Get work images
@@ -197,9 +189,8 @@ def modify_work_element():
         return dumps({'user_not_valid': True})
     element_id = client_request['id']
     title = client_request['title']
-    description = client_request['description']
     text = client_request['text']
-    admin.modify_work_element(element_id, title, description, text)
+    admin.modify_work_element(element_id, title, text)
     return dumps({'success': True})
 
 # Delete work element

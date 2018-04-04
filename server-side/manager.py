@@ -41,7 +41,6 @@ class Manager:
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
                 title TEXT NOT NULL,
                 date DATETIME DEFAULT CURRENT_TIMESTAMP,
-                description TEXT NOT NULL,
                 text TEXT NOT NULL,
                 preview_id TEXT NOT NULL UNIQUE
             )

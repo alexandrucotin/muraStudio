@@ -11,44 +11,27 @@ var work = {
         $('#category_all').on('click', function() {
             $('.category_option').css('font-weight', 'normal');
             $('#category_all').css('font-weight', 'bold');
-            work.get_work();
+            work.shuffle.filter();
         });
         $('#category_interiors').on('click', function() {
             $('.category_option').css('font-weight', 'normal');
             $('#category_interiors').css('font-weight', 'bold');
-            work.get_category('interiors');
+            work.shuffle.filter('interiors');
         });
         $('#category_architecture').on('click', function() {
             $('.category_option').css('font-weight', 'normal');
             $('#category_architecture').css('font-weight', 'bold');
-            work.get_category('architecture');
+            work.shuffle.filter('architecture');
         });
         $('#category_retail').on('click', function() {
             $('.category_option').css('font-weight', 'normal');
             $('#category_retail').css('font-weight', 'bold');
-            work.get_category('retail');
+            work.shuffle.filter('retail');
         });
         $('#category_commercial').on('click', function() {
             $('.category_option').css('font-weight', 'normal');
             $('#category_commercial').css('font-weight', 'bold');
-            work.get_category('commercial');
-        });
-    },
-    
-    get_category: function(category) {
-        $.ajax({
-            url: 'get_category',
-            method: 'POST',
-            contentType: 'application/json',
-            dataType: 'json',
-            data: JSON.stringify({category: category}),
-            success: function(response) {
-                response = work.format_work(response);
-                $.get('/html/templates.html', function(content) {
-                    var template = $(content).filter('#get_work').html();
-                    $('#work').html(Mustache.render(template, response));
-                });
-            }
+            work.shuffle.filter('commercial');
         });
     },
     
@@ -63,6 +46,7 @@ var work = {
                 $.get('/html/templates.html', function(content) {
                     var template = $(content).filter('#get_work').html();
                     $('#work').html(Mustache.render(template, response));
+                    work.shuffle = new Shuffle($('#work'), {itemSelector: '.all', sizer: '#work'});
                 });
             }
         });
@@ -72,16 +56,26 @@ var work = {
         var work_list = response.work;
         if(work_list) {
             var new_list = [];
-            var i, current, post_id, title, date, description, text, image;
+            var i, current, post_id, title, date, text, image;
             for (i = 0; i < work_list.length; i++) {
                 current = work_list[i];
                 new_list[i] = {
                     post_id: current[0],
                     title: current[1],
-                    date: work.format_date(current[2]),
-                    description: current[3],
-                    text: current[4],
-                    image: current[5]
+                    year: work.get_year(current[2]),
+                    groups: work.get_groups(
+                        current[3],
+                        current[4],
+                        current[5],
+                        current[6]
+                    ),
+                    categories: work.get_categories(
+                        current[3],
+                        current[4],
+                        current[5],
+                        current[6]
+                    ),
+                    image: current[7]
                 };
             }
             response.work = new_list;
@@ -90,11 +84,54 @@ var work = {
         return [];
     },
     
-    format_date: function(date) {
-        var months = ['jan', 'feb', 'mar', 'apr', 'may', 'jun', 'jul', 'aug', 'sep', 'oct', 'nov', 'dec'];
+    get_year: function(date) {
         date = date.split(' ')[0].split('-');
-        var new_date = date[2] + ' ' + months[date[1] - 1] + ' ' + date[0];
-        return new_date;
+        return date[0];
+    },
+    
+    get_groups: function(interiors, architecture, retail, commercial) {
+        var groups = '[';
+        if (interiors == 1)
+            groups += '"interiors"';
+        if (architecture == 1) {
+            if (groups.length > 1)
+                groups += ', ';
+            groups += '"architecture"';
+        }
+        if (retail == 1) {
+            if (groups.length > 1)
+                groups += ', ';
+            groups += '"retail"';
+        }
+        if (commercial == 1) {
+            if (groups.length > 1)
+                groups += ', ';
+            groups += '"commercial"';
+        }
+        groups += ']';
+        return groups;
+    },
+    
+    get_categories: function(interiors, architecture, retail, commercial) {
+        var categories = '';
+        if (interiors == 1)
+            categories += 'interiors';
+        if (architecture == 1) {
+            if (categories.length > 0)
+                categories += ', ';
+            categories += 'architecture';
+        }
+        if (retail == 1) {
+            if (categories.length > 0)
+                categories += ', ';
+            categories += 'retail';
+        }
+        if (commercial == 1) {
+            if (categories.length > 0)
+                categories += ', ';
+            categories += 'commercial';
+        }
+        return categories;
     }
 
 };

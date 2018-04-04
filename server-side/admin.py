@@ -55,30 +55,20 @@ class Admin:
     # Get work
     def get_work(self):
         return self.manager.read_many('''
-            SELECT w.id, w.title, w.date, w.description, w.text, i.location
+            SELECT w.id, w.title, w.date, c.interiors, c.architecture,
+                   c.retail, c.commercial, i.location
             FROM work w
-            INNER JOIN image i
-            ON (w.preview_id = i.id)
-            ORDER BY w.id DESC
-        ''')
-    
-    # Get work by category
-    def get_category(self, category):
-        return self.manager.read_many('''
-            SELECT w.id, w.title, w.date, w.description, w.text, i.location
-            FROM work w
-            INNER JOIN image i
-            ON (w.preview_id = i.id)
             INNER JOIN category c
             ON (w.id = c.work_id)
-            WHERE c.''' + category + ''' = 1
+            INNER JOIN image i
+            ON (w.preview_id = i.id)
             ORDER BY w.id DESC
         ''')
     
     # Get work element
     def get_work_element(self, element_id):
         return self.manager.read_one('''
-            SELECT w.title, w.date, w.description, w.text, i.location
+            SELECT w.title, w.date, w.text, i.location
             FROM work w
             INNER JOIN image i
             ON (w.preview_id = i.id)
@@ -112,13 +102,13 @@ class Admin:
         ''', (image_id,))
     
     # Post work
-    def post_work(self, title, description, text, image, interiors, architecture, retail, commercial):
+    def post_work(self, title, text, image, interiors, architecture, retail, commercial):
         preview_id = self.upload_image(image)
         cursor = self.manager.g.db.cursor()
         cursor.execute('''
-            INSERT INTO work (title, description, text, preview_id)
-            VALUES (?, ?, ?, ?)
-        ''', (title, description, text, preview_id))
+            INSERT INTO work (title, text, preview_id)
+            VALUES (?, ?, ?)
+        ''', (title, text, preview_id))
         work_id = cursor.lastrowid
         cursor.execute('''
             INSERT INTO category (work_id, interiors, architecture, retail, commercial)
@@ -208,12 +198,12 @@ class Admin:
         ''')
     
     # Modify work element
-    def modify_work_element(self, element_id, title, description, text):
+    def modify_work_element(self, element_id, title, text):
         self.manager.write('''
             UPDATE work
-            SET title = ?, description = ?, text = ?
+            SET title = ?, text = ?
             WHERE id = ?
-        ''', (title, description, text, element_id))
+        ''', (title, text, element_id))
     
     # Delete work element
     def delete_work_post(self, element_id):

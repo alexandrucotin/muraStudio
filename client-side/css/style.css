@@ -1,94 +1,160 @@
-/* navbar style for landingpage */
+/* GENERAL STYLE */
 
-.navbar-brand-custom {
-    font-size: 2.5rem;
-    display: inline-block;
-    padding-top: 0.3125rem;
-    padding-bottom: 0.3125rem;
-    margin-right: 1rem;
-    line-height: inherit;
-    white-space: nowrap;
-    font-family: 'Montserrat', sans-serif;
-}
+        /* ridimensionamento navbar */
+        .bigger-nav {
+            max-width: 1840px!important;
+            padding-right: 0px!important;
+            padding-left:0px!important;
+        }
+        
+        /* no padding ultimo elemento navbar */
 
-.item {
-   font-size: 2.5rem;
-    font-family: 'Montserrat', sans-serif;
-}
+        .no-padding-right {
+            padding-right: 0px!important;
+        }
 
-.navbar-light .navbar-brand-custom {
-  color: rgba(0, 0, 0, 0.9);
-}
+        .navbar-brand-site-dark {
+            color: black!important;
+            font-weight: 700!important;
+        }
 
-.navbar-light .navbar-brand-custom:hover, .navbar-light .navbar-brand-custom:focus {
-  color: rgba(0, 0, 0, 0.9);
-}
+        .item-dark {
+            font-size: 2rem;
+            font-family: 'Montserrat', sans-serif;
+            color:black!important;
+        }
 
-.navbar-dark .navbar-brand-custom {
-  color: #fff;
-}
+        /* fade in */
+        body {
+            opacity: 1;
+            transition: 3s opacity;
+        }
+        body.fade-out {
+            opacity: 0;
+            transition: none;
+        }
+        
+        .bold{
+            font-weight: 700;
+        }
 
-.navbar-dark-custom .navbar-brand:hover, .navbar-dark .navbar-brand-custom:focus {
-  color: #fff;
-}
+/* LANDINGPAGE STYLE */
 
+        /* navbar style for landingpage */
 
-.navbar-brand-custom:hover, .navbar-brand-custom:focus {
-  text-decoration: none;
-}
+        .navbar-brand-custom {
+            font-size: 2rem;
+            display: inline-block;
+            padding-top: 0.3125rem;
+            padding-bottom: 0.3125rem;
+            margin-right: 1rem;
+            line-height: inherit;
+            white-space: nowrap;
+            font-family: 'Montserrat', sans-serif;
+        }
 
-.data {
-  border-bottom: 1px solid grey;
-  margin-top: -2px;
-}
-
-/* social icons style */
-
-.socialIcon {
-  font-size: 2.5rem;
-}
-
-.socialIconMid {
-  font-size: 2.5rem;
-  margin-left: 3.5rem;
-  margin-right: 3.5rem;
-}
-
-.facebook:hover{
-  color: #3b5998;
-}
-
-.instagram:hover{
-  color: #c32aa3;
-}
-
-.twitter:hover{
-  color: #1da1f2;
-}
+        .navbar-dark .navbar-brand-custom {
+          color: white;
+          font-weight: 700;
+        }
 
 
-/* css for slideshow */
+        .navbar-brand-custom:hover, .navbar-brand-custom:focus {
+          text-decoration: none;
+        }
 
-.carousel-item {
-  height: 65vh;
-  min-height: 300px;
-  background: no-repeat center center scroll;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
-}
+        .data {
+          border-bottom: 1px solid grey;
+          margin-top: -2px;
+        }
+        
+        /* elemento navbar landingpage */
 
-/* css for bottom img*/
-.full-width-image-2 {
-    background: no-repeat center center;
-    background-size: cover;
-    text-align: center;
-    height: 450px;
-}
+        .item {
+           font-size: 2rem;
+            font-family: 'Montserrat', sans-serif;
+            color:white!important;
+        }
 
-/* css for second navbar */
+        .btn-nav-color {
+            border-color:white!important;
+        }
 
-.fixed-top-2 {
-    margin-top: 56px;
-}
+
+        /* css for slideshow */
+
+        .carousel-item {
+          height: 100vh;
+          min-height: 300px;
+          background: no-repeat center center scroll;
+          -webkit-background-size: cover;
+          -moz-background-size: cover;
+          -o-background-size: cover;
+          background-size: cover;
+        }
+
+
+
+/* NEWS PAGE CSS*/
+
+        /* navbar news page */
+        
+
+
+/* WORKPAGE CSS*/
+
+
+        /* SECOND NAVBAR IN WORKPAGE */
+
+        .fixed-top-2 {
+            margin-top: 56px;
+        }
+
+        /* BOTTOM IMAGE IN WORK POST */
+
+        .full-width-image-2 {
+            background: no-repeat center center;
+            background-size: cover;
+            text-align: center;
+            height: 450px;
+        }
+
+        /* SOCIAL ICON STYLE */
+
+        .socialIcon {
+          font-size: 2.5rem;
+        }
+
+        .socialIconMid {
+          font-size: 2.5rem;
+          margin-left: 3.5rem;
+          margin-right: 3.5rem;
+        }
+
+        .facebook:hover{
+          color: #3b5998;
+        }
+
+        .instagram:hover{
+          color: #c32aa3;
+        }
+
+        .twitter:hover{
+          color: #1da1f2;
+        }
+        
+        .filter-item-dark {
+                   font-size: 1rem;
+                    font-family: 'Montserrat', sans-serif;
+                    color:black!important;
+                }
+
+
+/* WORKPAGE POST CSS*/
+        
+
+        /* modify height slideshow */
+        
+        .new-height{
+                  height: 65vh!important;
+        }
