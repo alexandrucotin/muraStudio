@@ -53,13 +53,13 @@
     clip-path: inset(-1px);
   }
   .portfolio-item:hover img {
-    -webkit-clip-path: inset(1rem);
-    clip-path: inset(1rem);
+    -webkit-clip-path: inset(0rem);
+    clip-path: inset(0rem);
   }
   .portfolio-item:hover .caption {
-    background-color: rgba(29, 128, 159, 0.9);
-    -webkit-clip-path: inset(1rem);
-    clip-path: inset(1rem);
+    background-color: rgba(0, 0, 0, 0.9);
+    -webkit-clip-path: inset(0rem);
+    clip-path: inset(0rem);
     opacity:1;
     transition: .5 ease;
   }
