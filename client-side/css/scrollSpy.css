@@ -22,10 +22,10 @@
     max-width: 1845px!important;
 }
 
-<<<<<<< HEAD
 .container-navbar{
     padding-left: 0px!important;
-=======
+}
+
 .bigger-col {
     padding-right: 0.2rem!important;
     padding-left: 0.2rem!important;
@@ -39,6 +39,5 @@
 }
 
 .no-padding-right {
->>>>>>> 89e56edff382b98363ed2b42cfd781f0e1011102
     padding-right: 0px!important;
 }
