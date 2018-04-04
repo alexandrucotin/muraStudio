@@ -57,7 +57,7 @@
     clip-path: inset(0rem);
   }
   .portfolio-item:hover .caption {
-    background-color: rgba(0, 0, 0, 0.9);
+    background-color: rgba(0, 0, 0, 0.7);
     -webkit-clip-path: inset(0rem);
     clip-path: inset(0rem);
     opacity:1;
