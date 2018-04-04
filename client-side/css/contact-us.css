@@ -1,0 +1,96 @@
+/********************************/
+.welcome-website {
+    padding: 50px 0px;
+    background: #f5f5f5;
+}
+
+.box {
+    cursor: pointer;
+    box-shadow: 0px 2px 10px -4px #333745;
+    padding: 20px 0px;
+    margin-bottom: 20px;
+  background: #fff;
+}
+
+.incon-box i {
+    font-size: 35px;
+    color: #fff;
+    background: #00137f;
+    height: 55px;
+    width: 55px;
+    line-height: 50px;
+    border: 3px solid transparent;
+    transition: all .4s ease-in;
+}
+.my-video{
+    width:100%;
+    
+}
+.box-tittle {
+    font-size: 20px;
+    text-transform: uppercase;
+    color: #333745;
+    line-height: 60px;
+}
+
+.box:hover .incon-box i {
+    background: #fff;
+    border: 3px solid #00137f;
+    color: #00137f;
+    transition: all .4s ease-in;
+}
+
+
+/********Cotact Us Box ************/
+
+.contact-us-box {
+    position: relative;
+    margin-top: 25px;
+    padding: 50px;
+}
+
+.contact-us-box .incon-box {
+    position: absolute;
+    top: -20px;
+    left: 40%;
+}
+.
+.contact-form label {
+    color: #00137f;
+}
+
+.contact-form input {
+    height: 40px;
+    border-radius: 0px;
+}
+
+.contact-form textarea {
+    border-radius: 0px;
+}
+
+.iframe-map {
+    width: 100%;
+    height: 300px;
+}
+.section-title h2 {
+    font-size: 30px;
+    color: #222;
+    position: relative;
+    padding-bottom: 10px;
+}
+.panel-box {
+    border-radius: 0px!important;
+    
+}
+.section-title h2 span {
+    color: #00137f;
+}
+.send-btn{
+    background: #00137f;
+    border: 1px solid #00137f;
+    border-radius: 0;
+    color: #FFFFFF;
+    display: block;
+    font-family: 'Roboto', sans-serif;
+    padding: 12px 45px;
+}
