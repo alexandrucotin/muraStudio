@@ -12,10 +12,11 @@ $(document).ready(function(){
            if ((scroll_start > offset.top ) && ($(window).width() > 960) ) {
               $(".navbar").css('background-color', 'rgba(255, 255, 255, 0.93)');
               $(".navbar-brand-custom").css('color', 'black');
-              $(".item").css('color', 'black!important');
+              $(".item").css('color', 'black');
 
            } else {
               $('.navbar').css('background-color', 'transparent');
+              $(".navbar-brand-custom").css('color', 'white');
            }
        });
     }
