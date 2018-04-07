@@ -17,6 +17,7 @@ $(document).ready(function(){
            } else {
               $('.navbar').css('background-color', 'transparent');
               $(".navbar-brand-custom").css('color', 'white');
+              $(".item").css('color', 'white');
            }
        });
     }
