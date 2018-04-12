@@ -58,7 +58,7 @@
             margin-right: 1rem;
             line-height: inherit;
             white-space: nowrap;
-            font-family: 'Niagara Solid';
+            font-family: 'Montserrat', sans-serif;
         }
 
         .navbar-dark .navbar-brand-custom {
@@ -80,7 +80,7 @@
 
         .item {
            font-size: 2rem;
-            font-family: 'Niagara Solid';
+            font-family: 'Montserrat', sans-serif;
             color:white;
         }
 
@@ -153,7 +153,7 @@
         
         .filter-item-dark {
                    font-size: 1rem;
-                    font-family: 'Niagara Solid';
+                    font-family: 'Montserrat', sans-serif;
                     color:black!important;
                 }
 
