@@ -47,7 +47,7 @@
         }
 
         .burger-white {
-            background-image: url("http://www.casadellasalutelivorno.it/img/burger-menu.png");
+            background-image: url("http://www.casadellasalutelivorno.it/img/burger-menu.png")!important;
         }
 
 /* LANDINGPAGE STYLE */
