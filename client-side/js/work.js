@@ -48,6 +48,7 @@ var work = {
                     $('#work').html(Mustache.render(template, response));
                     setTimeout(function() {
                         work.shuffle = new Shuffle($('#work'), {itemSelector: '.all', sizer: '#work'});
+                        work.shuffle.options.speed = 750;
                     }, 1000);
                 });
             }
