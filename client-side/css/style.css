@@ -46,6 +46,10 @@
             src: local('Niagara Solid'), url(../font/Niagara Solid.woff') format('woff');
         }
 
+        .burger-white {
+            background-image: url("http://www.casadellasalutelivorno.it/img/burger-menu.png");
+        }
+
 /* LANDINGPAGE STYLE */
 
         /* navbar style for landingpage */
