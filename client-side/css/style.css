@@ -130,32 +130,36 @@
         /* SOCIAL ICON STYLE */
 
         .socialIcon {
-          font-size: 2.5rem;
+            font-size: 2.5rem;
         }
 
         .socialIconMid {
-          font-size: 2.5rem;
-          margin-left: 3.5rem;
-          margin-right: 3.5rem;
+            font-size: 2.5rem;
+            margin-left: 3.5rem;
+            margin-right: 3.5rem;
         }
 
         .facebook:hover{
-          color: #3b5998;
+            color: #3b5998;
         }
 
         .instagram:hover{
-          color: #c32aa3;
+            color: #c32aa3;
         }
 
         .twitter:hover{
-          color: #1da1f2;
+            color: #1da1f2;
         }
         
         .filter-item-dark {
-                   font-size: 1rem;
-                    font-family: 'Montserrat', sans-serif;
-                    color:black!important;
-                }
+            font-size: 1rem;
+            font-family: 'Montserrat', sans-serif;
+            color:black!important;
+        }
+
+        .margin0 {
+            margin-left: 0px!important;
+        }
 
 
 /* WORKPAGE POST CSS*/
