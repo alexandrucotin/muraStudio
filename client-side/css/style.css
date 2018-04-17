@@ -23,7 +23,7 @@
             /*font-family: 'Montserrat', sans-serif; */
             font-family: 'Niagara Solid';
             color:black!important;
-            font-weight: bold;
+            font-weight: 400;
         }
 
         /* fade in */
@@ -91,7 +91,7 @@
             /*font-family: 'Montserrat', sans-serif;*/
             color:white;
             font-family: 'Niagara Solid';
-            font-weight: bold;
+            font-weight: 400;
         }
 
         .btn-nav-color {
@@ -167,7 +167,7 @@
             font-family: 'Niagara Solid';
             color:black!important;
             
-            font-weight: bold;
+            font-weight: 400;
         }
 
         .margin0 {
