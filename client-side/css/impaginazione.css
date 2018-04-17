@@ -16,3 +16,8 @@
         .pagination {
           margin-bottom: 30px;
         }
+
+        .border-left-grey {
+          border-left:5px solid #6c757d;
+          padding-left: 10px;
+        }
