@@ -4,7 +4,7 @@
   overflow: hidden;
   max-width: 530px;
   margin: auto auto 1rem;
-    background-size: auto 100%;
+    background-size: cover;
     background-repeat: no-repeat;
 }
 
