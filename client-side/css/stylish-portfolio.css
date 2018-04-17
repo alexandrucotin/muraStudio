@@ -4,6 +4,8 @@
   overflow: hidden;
   max-width: 530px;
   margin: auto auto 1rem;
+    background-size: cover;
+    background-repeat: no-repeat;
 }
 
 .portfolio-item .caption {
