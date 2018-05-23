@@ -56,6 +56,11 @@
             color:white;
         }
 
+        .social-place{
+            position:absolute;
+            bottom:0;
+        }
+
 /* LANDINGPAGE STYLE */
 
         /* navbar style for landingpage */
