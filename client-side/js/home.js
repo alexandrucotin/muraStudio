@@ -25,6 +25,7 @@ var home = {
             for (i = 0; i < images_list.length; i++) {
                 current = images_list[i];
                 new_list[i] = {
+                    n: i,
                     location: current[1]
                 };
             }
@@ -35,4 +36,6 @@ var home = {
     }
 
 };
+
+
 $(document).ready(home.get_images());
