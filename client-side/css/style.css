@@ -21,7 +21,6 @@
         .item-dark {
             font-size: 2.5rem;
             /*font-family: 'Montserrat', sans-serif; */
-            font-family: 'Niagara Solid';
             color:black!important;
             font-weight: 400;
         }
@@ -45,7 +44,7 @@
         @font-face {
             font-family: 'Niagara Solid';
             font-style: normal;
-            font-weight: normal;
+            font-weight: lighter;
             src: local('Niagara Solid'), url('../font/Niagara Solid.woff') format('woff');
         }
 
