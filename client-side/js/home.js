@@ -10,7 +10,7 @@ var home = {
                 response = home.format_images(response);
                 $.get('/html/templates.html', function(content) {
                     var template = $(content).filter('#landpage_images').html();
-                    $('#images').html(Mustache.render(template, response));
+                    $('#carousel').html(Mustache.render(template, response));
                     $('.carousel-item:first').addClass('active');
                 });
             }
