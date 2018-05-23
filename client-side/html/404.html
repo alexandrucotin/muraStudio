@@ -20,35 +20,34 @@
     </head>
     <body>
 
-        <!-- Navigation -->
-        <nav class="navbar navbar-expand-lg navbar-dark navbar-inverse fixed-top">
+        <script>document.body.className += ' fade-out';</script>
+        
+        <nav class="navbar navbar-expand-lg navbar-default  navbar-dark fixed-top">
           <div class="container bigger-nav ">
-            <a class="navbar-brand-custom " href="/home">mura studio</a>
+            <a class="navbar-brand-site-dark navbar-brand-custom " href="/home">mura studio</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
               <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarResponsive">
               <ul class="navbar-nav ml-auto ">
                 <li class="nav-item">
-                  <a class="nav-link item" href="/news">news</a>
+                  <a class="nav-link item-dark bold" href="#"  style="cursor:default">news</a>
                 </li> 
                 <li class="nav-item">
-                  <a class="nav-link item" href="/work">work</a>
+                  <a class="nav-link item-dark" href="/work">work</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link item no-padding-right" href="/meet-us">meet us</a>
+                  <a class="nav-link item-dark no-padding-right" href="/meet-us">meet us</a>
                 </li>
               </ul>
             </div>
           </div>
         </nav>
-
         <!-- Page Content -->
         <div class="container">
-            <hr id="startchange">
             
             <!-- Page Heading -->
-            <h1 class="my-4">Not found :(</h1>
+            <h1 class="my-4" id="startchange">Not found :(</h1>
             
             <div class="row">
                 <p>
@@ -69,6 +68,9 @@
         <!-- Bootstrap core JavaScript -->
         <script src="/bootstrap/vendor/jquery/jquery.min.js"></script>
         <script src="/bootstrap/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+        <script src="/js/fadein.js"></script>
+        
+        <!-- Custom JS  -->
         <script src="/js/scrollSpy.js"></script>
 
     </body>
