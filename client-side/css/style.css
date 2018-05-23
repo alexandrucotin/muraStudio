@@ -60,6 +60,10 @@
             position:absolute;
             bottom:0;
         }
+        svg{
+    display: block;
+    margin: auto;
+}
 
 /* LANDINGPAGE STYLE */
 
