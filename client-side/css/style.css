@@ -196,7 +196,7 @@
         /* modify height slideshow */
         
         .new-height{
-                  height: 65vh!important;
+                  height: auto!important;
         }
 
         div, div, div, a{
