@@ -198,3 +198,7 @@
         .new-height{
                   height: 65vh!important;
         }
+
+        div, div, div, a{
+            color: #505050;
+        }
