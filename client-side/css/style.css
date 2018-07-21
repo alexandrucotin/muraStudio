@@ -218,8 +218,14 @@
 
 .img-404 {
     max-width: 50%;
+    text-align: right;
 }
 
 .text-404{
     margin-top: 10%;
+}
+
+.button-404 {
+  margin: 0 auto;
+  display: block;
 }
