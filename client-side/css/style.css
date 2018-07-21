@@ -240,3 +240,7 @@
     font-size: 1.3em;
     font-weight: lighter;
 }
+
+.underline{
+    text-decoration: underline;
+}
