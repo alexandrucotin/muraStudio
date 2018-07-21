@@ -214,6 +214,7 @@
 
 .box{
     align-content: center;
+    text-align: center;
 }
 
 .img-404 {
@@ -228,4 +229,14 @@
 .button-404 {
   margin: 0 auto;
   display: block;
+}
+
+.header-404 {
+    font-size: 2.2em;
+    text-transform: uppercase;
+}
+
+.body-404{
+    font-size: 1.3em;
+    font-weight: lighter;
 }
