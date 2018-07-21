@@ -215,3 +215,11 @@
 .box{
     align-content: center;
 }
+
+.img-404 {
+    max-width: 50%;
+}
+
+.text-404{
+    margin-top: 10%;
+}
