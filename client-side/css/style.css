@@ -114,6 +114,10 @@
             border-color:white!important;
         }
 
+        a, .nav-link, .item {
+            color: white;
+        }
+
 
         /* css for slideshow */
 
