@@ -118,6 +118,10 @@
             color: white!important;
         }
 
+        .navbar-dark, .navbar-nav, .nav-link:hover {
+            color: lightgrey!important;
+        }
+
 
         /* css for slideshow */
 
