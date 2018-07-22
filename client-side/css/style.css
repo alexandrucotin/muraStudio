@@ -114,8 +114,8 @@
             border-color:white!important;
         }
 
-        a, .nav-link, .item {
-            color: white;
+        .navbar-dark, .navbar-nav, .nav-link {
+            color: white!important;
         }
 
 
