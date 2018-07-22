@@ -114,7 +114,7 @@
             border-color:white!important;
         }
 
-        .navbar-dark, .navbar-nav, .nav-link, .home-link {
+        a .nav-link .item .home-link .s {
             color: white!important;
         }
 
