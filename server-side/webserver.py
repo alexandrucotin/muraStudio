@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from flask import Flask, g, send_from_directory, request
+from flask import Flask, g, send_from_directory, request, render_template
 from flask_sslify import SSLify
 from manager import Manager
 from admin import Admin
