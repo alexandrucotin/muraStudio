@@ -27,6 +27,9 @@ def close_connection(exception):
 
 
 # SENDING FILES
+@app.route('/meetus2')
+def template_test():
+    return render_template('meetus2.html')
 
 # Not found
 @app.errorhandler(404)
@@ -48,23 +51,7 @@ def send_page(page_name):
 def send_image(image):
     return send_from_directory('../client-side/img/uploads/', image)
 
-# Bootstrap
-@app.route('/bootstrap/<filename>')
-def bootstrap(filename):
-    return send_from_directory('../client-side/bootstrap/', filename)
 
-@app.route('/bootstrap/css/<filename>')
-def bootstrap_css(filename):
-    return send_from_directory('../client-side/bootstrap/css/', filename)
-
-@app.route('/bootstrap/vendor/bootstrap/<directory>/<filename>')
-def bootstrap_vendor(directory, filename):
-    return send_from_directory('../client-side/bootstrap/vendor/bootstrap/' + directory + '/', filename)
-
-# jQuery
-@app.route('/bootstrap/vendor/jquery/<filename>')
-def jquery(filename):
-    return send_from_directory('../client-side/bootstrap/vendor/jquery/', filename)
 
 # Other files
 @app.route('/<directory>/<filename>')
