@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+        <title>Dashboard - Mura Studio</title>
+        
+        <!-- jQuery -->
+        <script
+  src="https://code.jquery.com/jquery-3.3.1.js"
+  integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+  crossorigin="anonymous"></script>
+        <script>
+            var username = sessionStorage.getItem('username');
+            var password = sessionStorage.getItem('password');
+            if (username && password) {
+                $.ajax({
+                    url: 'valid_user',
+                    method: 'POST',
+                    contentType: 'application/json',
+                    dataType: 'json',
+                    data: JSON.stringify({
+                        username: username,
+                        password: password
+                    }),
+                    success: function(response) {
+                        if (!response.valid_user) {
+                            window.location.href = '/login';
+                        }
+                    }
+                });
+            } else window.location.href = '/login';
+        </script>
+
+        <!-- Bootstrap CSS CDN -->
+        <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B" crossorigin="anonymous">
+        <link href="/css/sidebar.css" rel="stylesheet">
+        <link href="/css/spinner.css" rel="stylesheet">
+        
+    </head>
+    <body>
+       
+       
+       
+        <div class="modal fade" id="waiting_modal" role="dialog" data-keyboard="false" data-backdrop="static">
+            <div class="modal-dialog" style="width: 180px; height: 180px; margin: 100px auto;">
+                
+            <!-- Modal content -->
+                <div class="modal-content">
+                    <div class="loader" style="width: 90px; height: 90px; margin: 45px;"></div>
+                </div>
+            
+            </div>
+        </div>
+            
+        
+        <!-- Error modal -->
+        <div class="modal fade" id="error_modal" role="dialog">
+            <div class="modal-dialog">
+                
+            <!-- Modal content -->
+                <div class="modal-content">
+                    <div class="modal-header alert alert-danger">
+                        <h4 class="modal-title">Error!</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p id="error_message"></p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            
+            </div>
+        </div>
+            
+        <!-- Succes modal -->
+        <div class="modal fade" id="success_modal" role="dialog">
+            <div class="modal-dialog">
+                
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header alert alert-success">
+                        <h4 class="modal-title">Success!</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p id="success_message"></p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+
+        <!-- Confirm modal -->
+        <div class="modal fade" id="confirm_modal" role="dialog">
+            <div class="modal-dialog">
+                
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header alert alert-warning">
+                        <h4 class="modal-title">Are you sure?</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>Want to delete this post?<br><b><span id="post_title"></span></b></p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal" id="confirm_delete">Confirm</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+
+        <div class="wrapper">
+
+            <!-- Sidebar Holder -->
+            <nav id="sidebar" class="position-fixed">
+                <div class="sidebar-header">
+                    <h3>Mura Studio</h3>
+                </div>
+
+                <ul class="list-unstyled components">
+                    <li><a href="#" id="landpage_option">Landingpage Setup</a></li>
+                    <li>
+                        <a href="#workSubmenu" data-toggle="collapse" aria-expanded="false">Work Page Setup</a>
+                        <ul class="collapse list-unstyled" id="workSubmenu">
+                            <li><a href="#" id="work_post_option">Add Work Post</a></li>
+                            <li><a href="#" id="work_list_option">Modify/Delete Posts</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#userSubmenu" data-toggle="collapse" aria-expanded="false">User Setup</a>
+                        <ul class="collapse list-unstyled" id="userSubmenu">
+                            <li><a href="#" id="change_password">Change Password</a></li>
+                            <li><a href="#" id="logout">Logout</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </nav>
+
+            <!-- Page Content Holder -->
+            <div id="content" style="width: 100%">
+                
+                <!-- Navbar -->
+                <nav class="navbar navbar-default">
+                    <div class="container-fluid">
+
+                        <div class="navbar-header">
+                            <button type="button" id="sidebarCollapse" class="navbar-btn">
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                            </button>
+                        </div>
+
+                        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                            <ul class="nav navbar-nav navbar-right">
+                                <li><a href="/home">LandingPage</a></li>
+                                <li><a href="/news">News</a></li>
+                                <li><a href="/work">Work</a></li>
+                                <li><a href="/meet-us">Meet Us</a></li>
+                            </ul>
+                        </div>
+                        
+                    </div>
+                </nav>
+                
+                <!-- Landingpage Setup -->
+                <div class="container dashboard_option" style="width: 100%" id="landpage_add">
+                    <h2>Landpage Setup</h2>
+                    <hr>
+                    <h3>Images</h3>
+                    <!-- Img card -->
+                    <div class="row">
+                        <div class="card-group" id="landpage_images">
+                        </div>
+                    </div>
+                    <h3>Upload Image</h3>
+                    <form>
+                        <div class="form-group">
+                            <input type="file" class="form-control-file" id="landpage_image">
+                        </div>
+                    </form>
+                    <br><input type="submit" class="btn btn-info" id="landpage_submit" value="Upload Picture">
+                </div>
+                
+                <!-- Work post form -->
+                <div class="container dashboard_option" style="width: 100%" id="work_post_form">
+                    <h2>Work Page Setup</h2>
+                    <hr>
+                    <h3>Work post form</h3>
+
+                    <form>
+                        <div class="form-group">
+                            <label for="work_title">Title</label>
+                            <textarea class="form-control" id="work_title" name="work_title" rows="1"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="work_text">Full Article</label>
+                            <textarea class="form-control" id="work_text" name="work_text" rows="8"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="preview_image">Upload a picture</label>
+                            <input type="file" class="form-control-file" id="preview_image" name="preview_image">
+                        </div>
+                        <div class="form-group">
+                            <label for="">Select categories</label><br>
+                            <label class="checkbox-inline"><input type="checkbox" id="interiors_checkbox">Interiors</label>
+                            <label class="checkbox-inline"><input type="checkbox" id="architecture_checkbox">Architecture</label>
+                            <label class="checkbox-inline"><input type="checkbox" id="retail_checkbox">Retail</label>
+                            <label class="checkbox-inline"><input type="checkbox" id="commercial_checkbox">Commercial</label>
+                        </div>
+                    </form>
+                    
+                    <br><input type="submit" class="btn btn-info" id="work_submit" value="Post and go to the gallery">        
+                </div>
+                
+                <!-- Work images -->
+                <div class="container dashboard_option" style="width: 100%" id="work_images_form">
+                    <h2>Work Page Setup</h2>
+                    <hr>
+                    <h3>Gallery Images for <b><span id="work_title_value"></span></b></h3>
+                    <div class="row">
+                        <div class="card-group" id="work_images">
+                        </div>
+                    </div>
+                    <h3>Upload Image</h3>
+                    <form>
+                        <div class="form-group">
+                            <input type="file" class="form-control-file" id="work_image">
+                        </div>
+                    </form>
+                    <br><input type="submit" class="btn btn-info" id="work_image_submit" value="Upload Picture">
+                </div>
+                
+                <!-- Work modify form -->
+                <div class="container dashboard_option" style="width: 100%" id="work_modify_form">
+                    <h2>Work Page Setup</h2>
+                    <hr>
+                    <h3>Work modify form</h3>
+
+                    <form>
+                        <div class="form-group">
+                            <label for="work_modify_title">Title</label>
+                            <textarea class="form-control" id="work_modify_title" name="work_modify_title" rows="1"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="work_modify_text">Full Article</label>
+                            <textarea class="form-control" id="work_modify_text" name="work_modify_text" rows="8"></textarea>
+                        </div>
+                    </form>
+                    
+                    <br><input type="submit" class="btn btn-info" id="work_modify_submit" value="Apply and go to the gallery">
+                    
+                </div>
+
+                <!-- Work post list -->
+                <div class="container dashboard_option" style="width: 100%" id="work_post_list">
+                    <h2>Work Page Setup</h2>
+                    <hr>
+                    <h3>Modify Posts </h3>
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                <th scope="col">Title</th>
+                                <th scope="col">Date</th>
+                                <th scope="col">Options</th>
+                                </tr>
+                            </thead>
+                            <tbody id="work_list">
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                
+                <!-- Change Password -->
+                <div class="container dashboard_option" style="width: 100%" id="password_form">
+                    <h2>Change Password</h2>
+                    
+                    <form class="form-horizontal">
+                        <div class="form-group">
+                            <label class="control-label col-sm-2" for="old_pwd">Old password:</label>
+                            <div class="col-sm-10">          
+                                <input type="password" class="form-control" id="old_pwd" placeholder="Old password" name="old_pwd">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-sm-2" for="new_pwd">New password:</label>
+                            <div class="col-sm-10">          
+                                <input type="password" class="form-control" id="new_pwd" placeholder="Enter new password" name="new_pwd">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-sm-2" for="confirm_pwd">Confirm password:</label>
+                            <div class="col-sm-10">          
+                                <input type="password" class="form-control" id="confirm_pwd" placeholder="Confirm password" name="confirm_pwd">
+                            </div>
+                        </div>
+                    </form>
+                    
+                    <div class="col-sm-offset-2 col-sm-10">
+                        <br><input type="submit" class="btn btn-info" id="password_submit" value="Change Password">
+                    </div>
+                    
+                </div>
+                
+            </div>
+        </div>
+
+        <!-- Bootstrap -->
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js" integrity="sha384-o+RDsa0aLu++PJvFqy8fFScvbHFLtbvScb8AjopnFD+iEQ7wo/CG0xlczd+2O/em" crossorigin="anonymous"></script>
+        
+    
+        <!-- Dashboard scripts -->
+        <script src="/js/mustache.min.js"></script>
+        <script src="/js/cryptico.js"></script>
+        <script src="/js/dashboard.js"></script>
+        <script src="/js/sidebar.js"></script>
+    
+    </body>
+</html>
