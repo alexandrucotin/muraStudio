@@ -41,12 +41,12 @@ def home():
 
 #Login Page
 @app.route("/login")
-def login():
+def login_page():
     return send_from_directory('../client-side/html/login.html')
 
 #Dashboard Page
 @app.route("/login")
-def login():
+def dashboard():
     return send_from_directory('../client-side/html/dashboard.html')
 
 #@app.route('/')
