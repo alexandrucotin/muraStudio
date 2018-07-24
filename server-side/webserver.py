@@ -28,16 +28,17 @@ def close_connection(exception):
 
 # SENDING FILES
 
-# Not found
-@app.errorhandler(404)
-def not_found(e):
-    return render_template('404.html')
 
 # Landing page
 
 @app.route("/")
 def home():
     return render_template('home.html')
+
+# Not found
+@app.errorhandler(404)
+def not_found(e):
+    return render_template('404.html')
 
 #Login Page
 @app.route("/login")
@@ -56,7 +57,8 @@ def dashboard():
 # Any page
 @app.route('/<page_name>')
 def send_page(page_name):
-    return render_template(page_name + '.html')
+    filename = page_name + '.html'
+    return render_template(filename)
 
 # Images
 @app.route('/img/uploads/<image>')
