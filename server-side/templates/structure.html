@@ -16,7 +16,7 @@
     <link href="/css/footer.css" rel="stylesheet">
 </head>
 
-<body>
+<body {% if not_found_page %} classe {% endif %}>
     <script>
     document.body.className += ' fade-out';
     </script>
@@ -50,7 +50,6 @@
     <!-- FadeIn JS  -->
     <script src="/js/fadein.js"></script>
     <!-- Post scripts -->
-    <script src="/js/scrollSpy.js"></script>
     {% block scriptcontent %}{% endblock %}
 </body>
 

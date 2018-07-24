@@ -1,50 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>
+ {% extends "structure.html" %}
+  {% block pagecontent %}
 
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <meta name="description" content="">
-        <meta name="author" content="">
-
-        <title></title>
-
-        <!-- Bootstrap core CSS -->
-        <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B" crossorigin="anonymous">
-
-
-        <!-- Custom styles for this template -->
-        <link href="/css/scrollSpy.css" rel="stylesheet">
-        <link href="/css/style.css" rel="stylesheet">
-        <link href="/css/footer.css" rel="stylesheet">
-        
-
-    </head>
-    <body>
-
-        <script>document.body.className += ' fade-out';</script>
-        
-        <nav class="navbar navbar-expand-lg navbar-dark navbar-inverse fixed-top">
-          <div class="container bigger-nav ">
-            <a class="navbar-brand-custom " href="/home">mura studio</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-              <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarResponsive">
-              <ul class="navbar-nav ml-auto ">
-                <li class="nav-item">
-                  <a class="nav-link item" href="/news">news</a>
-                </li> 
-                <li class="nav-item">
-                  <a class="nav-link item" href="/work">work</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link item no-padding-right" href="/meet-us">meet us</a>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </nav>
         
         <header>
           <div id="carousel" class="carousel slide " data-ride="carousel">
@@ -76,31 +32,23 @@
             </div>
         </div>
         <div class="full-width-image-2"></div>
-
+        {% endblock %}
+        {% block footercontent %} 
         <!-- Footer -->
         <footer class="py-5 bg-dark">
             <div class="container">
                 <p class="m-0 text-center text-white">Copyright &copy; MuraStudio 2018</p>
             </div>
         </footer>
-
-        <!-- Bootstrap core JavaScript -->
-        <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
-        <script
-  src="https://code.jquery.com/jquery-3.3.1.js"
-  integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
-  crossorigin="anonymous"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js" integrity="sha384-o+RDsa0aLu++PJvFqy8fFScvbHFLtbvScb8AjopnFD+iEQ7wo/CG0xlczd+2O/em" crossorigin="anonymous"></script>
+        {% endblock %}
         
-        
-        <!-- FadeIn JS  -->
-        <script src="/js/fadein.js"></script>
-
+        {% block scriptcontent %}
         <!-- Post scripts -->
         <script src="/js/scrollSpy2.js"></script>
         <script src="/js/markdown-it.min.js"></script>
         <script src="/js/mustache.min.js"></script>
         <script src="/js/post.js"></script>
+        {% endblock %}
 
     </body>
 </html>

@@ -38,7 +38,7 @@ def home():
 # Not found
 @app.errorhandler(404)
 def not_found(e):
-    return render_template('404.html')
+    return render_template('404.html', classe = 'class="center_404"', not_found_page = True)
 
 # Server error
 @app.errorhandler(500)
