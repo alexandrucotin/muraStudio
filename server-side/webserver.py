@@ -49,12 +49,12 @@ def send_page(page_name):
 #Login Page
 @app.route("/login")
 def login_page():
-    return send_from_directory('../client-side/html/login.html')
+    return send_from_directory('../client-side/html/', 'login.html')
 
 #Dashboard Page
 @app.route("/dashboard")
 def dashboard():
-    return send_from_directory('../client-side/html/dashboard.html')
+    return send_from_directory('../client-side/html/', 'dashboard.html')
 
 
 # Images
