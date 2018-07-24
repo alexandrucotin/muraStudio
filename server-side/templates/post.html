@@ -1,54 +1,44 @@
- {% extends "structure.html" %}
-  {% block pagecontent %}
-
-        
-        <header>
-          <div id="carousel" class="carousel slide " data-ride="carousel">
-          </div>
-        </header>
-
-        <!-- Page Content -->
-        <div class="container" id="startchange">
-            <div class="row">
-
-                <!-- Post Content Column -->
-                <div class="col-lg-8" id="work_element">
+ {% extends "structure.html" %} {% block pagecontent %}
+<header>
+    <div id="carousel" class="carousel slide " data-ride="carousel">
+    </div>
+</header>
+<!-- Page Content -->
+<div class="container" id="startchange">
+    <div class="row">
+        <!-- Post Content Column -->
+        <div class="col-lg-8" id="work_element">
+        </div>
+        <hr>
+        <!-- SOCIAL LINKS -->
+        <div class="col-md-4">
+            <!-- Side Widget -->
+            <div class="card my-4">
+                <h5 class="card-header">Social Links</h5>
+                <div class="card-body text-center">
+                    <a href="https://www.facebook.com/MuraStudioArh/"><i class="fab fa-facebook-square socialIcon facebook"></i></a>
+                    <a href="https://www.instagram.com/mura.studio/"><i class="fab fa-instagram socialIconMid instagram"></i></a>
+                    <a href="https://twitter.com/murastudioarh?lang=en"><i class="fab fa-twitter socialIcon twitter"></i></a>
                 </div>
-                <hr>
-
-                <!-- SOCIAL LINKS -->
-                <div class="col-md-4">
-                    <!-- Side Widget -->
-                    <div class="card my-4">
-                        <h5 class="card-header">Social Links</h5>
-                        <div class="card-body text-center">
-                            <a href="https://www.facebook.com/MuraStudioArh/"><i class="fab fa-facebook-square socialIcon facebook"></i></a>
-                            <a href="https://www.instagram.com/mura.studio/"><i class="fab fa-instagram socialIconMid instagram"></i></a>
-                            <a href="https://twitter.com/murastudioarh?lang=en"><i class="fab fa-twitter socialIcon twitter"></i></a>
-                        </div>
-                    </div>
-                </div>
-
             </div>
         </div>
-        <div class="full-width-image-2"></div>
-        {% endblock %}
-        {% block footercontent %} 
-        <!-- Footer -->
-        <footer class="py-5 bg-dark">
-            <div class="container">
-                <p class="m-0 text-center text-white">Copyright &copy; MuraStudio 2018</p>
-            </div>
-        </footer>
-        {% endblock %}
-        
-        {% block scriptcontent %}
-        <!-- Post scripts -->
-        <script src="/js/scrollSpy2.js"></script>
-        <script src="/js/markdown-it.min.js"></script>
-        <script src="/js/mustache.min.js"></script>
-        <script src="/js/post.js"></script>
-        {% endblock %}
+    </div>
+</div>
+<div class="full-width-image-2"></div>
+{% endblock %} {% block footercontent %}
+<!-- Footer -->
+<footer class="py-5 bg-dark">
+    <div class="container">
+        <p class="m-0 text-center text-white">Copyright &copy; MuraStudio 2018</p>
+    </div>
+</footer>
+{% endblock %} {% block scriptcontent %}
+<!-- Post scripts -->
+<script src="/js/scrollSpy2.js"></script>
+<script src="/js/markdown-it.min.js"></script>
+<script src="/js/mustache.min.js"></script>
+<script src="/js/post.js"></script>
+{% endblock %}
+</body>
 
-    </body>
 </html>
