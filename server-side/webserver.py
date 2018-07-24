@@ -33,7 +33,7 @@ def close_connection(exception):
 
 @app.route('/')
 def home():
-    return render_template('home.html')
+    return render_template('home.html' , inv = True )
 
 # Not found
 @app.errorhandler(404)
@@ -48,8 +48,9 @@ def server_error(e):
 # Any page
 @app.route('/<page_name>')
 def send_page(page_name):
-    filename = page_name + '.html'
-    return render_template(filename)
+    if page_name == 'post':
+        return render_template(page_name + '.html', inv = True)
+    return render_template(page_name + '.html')
 
 #Login Page
 @app.route('/login')
