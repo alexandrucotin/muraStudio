@@ -27,14 +27,11 @@ def close_connection(exception):
 
 
 # SENDING FILES
-@app.route('/meetus2')
-def template_test():
-    return render_template('meetus2.html')
 
 # Not found
 @app.errorhandler(404)
 def not_found(e):
-    return send_from_directory('../client-side/html/', '404.html')
+    return render_template('404.html')
 
 # Landing page
 
@@ -44,7 +41,7 @@ def home():
 
 #@app.route('/')
 #def home():
-#    return send_from_directory('../client-side/html/', 'home.html')
+#return send_from_directory('../client-side/html/', 'home.html')
 
 # Any page
 @app.route('/<page_name>')
