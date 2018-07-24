@@ -39,6 +39,16 @@ def not_found(e):
 def home():
     return render_template('home.html')
 
+#Login Page
+@app.route("/login")
+def login():
+    return send_from_directory('../client-side/html/login.html')
+
+#Dashboard Page
+@app.route("/login")
+def login():
+    return send_from_directory('../client-side/html/dashboard.html')
+
 #@app.route('/')
 #def home():
 #return send_from_directory('../client-side/html/', 'home.html')
@@ -52,7 +62,6 @@ def send_page(page_name):
 @app.route('/img/uploads/<image>')
 def send_image(image):
     return send_from_directory('../client-side/img/uploads/', image)
-
 
 
 # Other files
