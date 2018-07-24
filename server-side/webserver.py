@@ -46,7 +46,7 @@ def login_page():
     return send_from_directory('../client-side/html/login.html')
 
 #Dashboard Page
-@app.route("/login")
+@app.route("/dashboard")
 def dashboard():
     return send_from_directory('../client-side/html/dashboard.html')
 
