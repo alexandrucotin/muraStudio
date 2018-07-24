@@ -1,50 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-
-  <head>
-
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
-
-    <title>Mura Studio</title>
-
-    <!-- Bootstrap core CSS -->
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B" crossorigin="anonymous">
-    
-    <!-- Custom  CSS -->
-    <link href="/css/style.css" rel="stylesheet">
-
-  </head>
-
-  <body>
-    
-    <script>document.body.className += ' fade-out';</script>
-
-    <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg  navbar-dark navbar-inverse fixed-top">
-      <div class="container bigger-nav ">
-        <a class="navbar-brand-custom " href="/home">mura studio</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon burger-white"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarResponsive">
-          <ul class="navbar-nav ml-auto ">
-            <li class="nav-item">
-              <a class="nav-link item home-link home-link2" href="/news">news</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link item home-link home-link2" href="/work">work</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link item home-link home-link2" href="/meet-us">meet us</a>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </nav>
-
+ {% extends "structure.html" %}
+  {% block pagecontent %}
     <header>
       <div id="carousel" class="carousel slide" data-ride="carousel" data-interval="5000">
       </div>
@@ -60,21 +15,11 @@
           <a xlink:href="https://twitter.com/murastudioarh?lang=en">
             <path fill="currentColor" d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"></path></svg><!-- <i class="fab fa-twitter socialIcon twitter"></i> -->
     </div>
+
+    {% endblock %}
     <!-- Bootstrap core JavaScript -->
-    <script
-  src="https://code.jquery.com/jquery-3.3.1.js"
-  integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
-  crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js" integrity="sha384-o+RDsa0aLu++PJvFqy8fFScvbHFLtbvScb8AjopnFD+iEQ7wo/CG0xlczd+2O/em" crossorigin="anonymous"></script>
-    
-    
-    <!-- FadeIn JS  -->
-    <script src="/js/fadein.js"></script>
-    
+    {% block scriptcontent %}
     <!-- Landpage scripts -->
     <script src="/js/mustache.min.js"></script>
     <script src="/js/home.js"></script>
-
-  </body>
-
-</html>
+{% endblock %}

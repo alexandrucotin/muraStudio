@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from flask import Flask, g, send_from_directory, request, render_template
-from flask_sslify import SSLify
+#from flask_sslify import SSLify
 from manager import Manager
 from admin import Admin
 from json import dumps
@@ -10,7 +10,7 @@ from json import dumps
 # GLOBAL VARIABLES
 
 app = Flask(__name__)
-ssLify = SSLify(app)
+#ssLify = SSLify(app)
 manager = Manager(g, 'database.db')
 admin = Admin(manager, 'piper_nigrum', app)
 
@@ -37,9 +37,14 @@ def not_found(e):
     return send_from_directory('../client-side/html/', '404.html')
 
 # Landing page
-@app.route('/')
+
+@app.route("/")
 def home():
-    return send_from_directory('../client-side/html/', 'home.html')
+    return render_template('home.html')
+
+#@app.route('/')
+#def home():
+#    return send_from_directory('../client-side/html/', 'home.html')
 
 # Any page
 @app.route('/<page_name>')
