@@ -20,6 +20,7 @@
     document.body.className += ' fade-out';
     </script>
     <!-- principal navbar  -->
+    {% block secondnavbar %} {% endblock %}
     <nav class="navbar navbar-expand-lg navbar-default  navbar-dark fixed-top">
         <div class="container bigger-nav ">
             <a class="navbar-brand-site-dark navbar-brand-custom " href="/home">mura studio</a>
@@ -41,13 +42,7 @@
             </div>
         </div>
     </nav>
-    {% block pagecontent %} {% endblock %}
-    <!-- Footer -->
-    <footer class="py-5 bg-dark" style="margin-top: 40px;">
-        <div class="container">
-            <p class="m-0 text-center text-white">Copyright &copy; MuraStudio 2018</p>
-        </div>
-    </footer>
+    {% block pagecontent %} {% endblock %} {% block footercontent %} {% endblock %}
     <!-- Bootstrap core JavaScript -->
     <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js" integrity="sha384-o+RDsa0aLu++PJvFqy8fFScvbHFLtbvScb8AjopnFD+iEQ7wo/CG0xlczd+2O/em" crossorigin="anonymous"></script>

@@ -29,7 +29,7 @@ def close_connection(exception):
 # SENDING FILES
 @app.route('/meetus2')
 def template_test():
-    return render_template('templates/meetus2.html')
+    return render_template('meetus2.html')
 
 # Not found
 @app.errorhandler(404)
@@ -49,7 +49,7 @@ def home():
 # Any page
 @app.route('/<page_name>')
 def send_page(page_name):
-    return send_from_directory('../client-side/html/', page_name + '.html')
+    return render_template(page_name + '.html')
 
 # Images
 @app.route('/img/uploads/<image>')

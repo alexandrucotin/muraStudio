@@ -1,5 +1,7 @@
+ {% extends "structure.html" %}
  {% block stylecontent %}
-<link href="/css/impaginazione.css" rel="stylesheet"> {% endblock %} {% block pagecontent %}
+<link href="/css/impaginazione.css" rel="stylesheet"> {% endblock %} 
+{% block pagecontent %}
 <div class="container" id="startchange">
     </br>
     </br>
@@ -43,6 +45,8 @@
         </div>
     </form>
 </div>
+
+
 {% endblock %} {% block scriptcontent %}
 <!-- Custom JS  -->
 <script src="/js/scrollSpy.js"></script>
