@@ -1,0 +1,68 @@
+ {% extends "structure.html" %}
+  {% block stylecontent %}
+        <!-- custom css -->
+        <link href="/css/impaginazione.css" rel="stylesheet">
+        <link href="/css/stylish-portfolio.css" rel="stylesheet">
+        
+        <!-- IE compatibility -->
+        <script src="https://cdn.polyfill.io/v2/polyfill.min.js"></script>
+        {% endblock %}
+        <!-- filter navbar  -->
+        {% block secondnavbar %}
+       <nav class="navbar navbar-expand-lg navbar-default  navbar-dark fixed-top fixed-top-2">
+           <div class="container bigger-nav">
+            <div class="navbar-collapse collapse">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link category_option filter-item-dark" href="#" id="category_all">all</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link category_option filter-item-dark" href="#" id="category_interiors">interiors</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link category_option filter-item-dark" href="#" id="category_architecture">architecture</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link category_option filter-item-dark" href="#" id="category_retail">retail</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link category_option no-padding-right filter-item-dark" href="#" id="category_commercial">commercial</a>
+                    </li>
+                </ul>
+            </div>
+            </div>
+        </nav>
+
+        {% endblock %}
+        
+        {% block pagecontent %}
+        <!-- Page Content -->
+        <div class="container bigger-container">
+            <br>
+            <br>
+            
+            <div class="row" id="startchange">
+                <div class="row margin0" id="work" style="width: 100%;">
+                </div>
+            </div>
+            
+        </div>
+        {% endblock %}
+
+        {% block footercontent %}
+        <!-- Footer -->
+        <footer class="py-5 bg-dark" style="margin-top: 40px;">
+            <div class="container">
+                <p class="m-0 text-center text-white">Copyright &copy; MuraStudio 2018</p>
+            </div>
+        </footer>
+
+        {% endblock %}
+
+        {% block scriptcontent %}
+        <!-- Post scripts -->
+        <script src="/js/mustache.min.js"></script>
+        <script src="/js/shuffle.min.js"></script>
+        <script src="/js/work.js"></script>
+
+        {% endblock %}
