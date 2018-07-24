@@ -48,7 +48,7 @@ def server_error(e):
 # Any page
 @app.route('/<page_name>')
 def send_page(page_name):
-    if page_name == 'post':
+    if page_name == 'post' or page_name == 'home':
         return render_template(page_name + '.html', inv = True)
     return render_template(page_name + '.html')
 

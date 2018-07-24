@@ -30,13 +30,13 @@
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav ml-auto ">
                     <li class="nav-item">
-                        <a class="nav-link {% if inv  %} item-dark {% endif %}" href="news">news</a>
+                        <a class="nav-link {% if not inv %} item-dark {% endif %}" href="news">news</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link {% if inv  %} item-dark {% endif %}" href="work">work</a>
+                        <a class="nav-link {% if not inv %} item-dark {% endif %}" href="work">work</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link {% if inv  %} item-dark {% endif %} no-padding-right" href="meet-us">meet us</a>
+                        <a class="nav-link {% if not inv %} item-dark {% endif %} no-padding-right" href="meet-us">meet us</a>
                     </li>
                 </ul>
             </div>
