@@ -31,13 +31,18 @@ def close_connection(exception):
 
 # Landing page
 
-@app.route("/")
+@app.route('/')
 def home():
     return render_template('home.html')
 
 # Not found
 @app.errorhandler(404)
 def not_found(e):
+    return render_template('404.html')
+
+# Server error
+@app.errorhandler(500)
+def server_error(e):
     return render_template('404.html')
 
 # Any page
@@ -47,12 +52,12 @@ def send_page(page_name):
     return render_template(filename)
 
 #Login Page
-@app.route("/login")
+@app.route('/login')
 def login_page():
     return send_from_directory('../client-side/html/', 'login.html')
 
 #Dashboard Page
-@app.route("/dashboard")
+@app.route('/dashboard')
 def dashboard():
     return send_from_directory('../client-side/html/', 'dashboard.html')
 
