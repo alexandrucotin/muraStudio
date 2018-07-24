@@ -40,6 +40,12 @@ def home():
 def not_found(e):
     return render_template('404.html')
 
+# Any page
+@app.route('/<page_name>')
+def send_page(page_name):
+    filename = page_name + '.html'
+    return render_template(filename)
+
 #Login Page
 @app.route("/login")
 def login_page():
@@ -50,15 +56,6 @@ def login_page():
 def dashboard():
     return send_from_directory('../client-side/html/dashboard.html')
 
-#@app.route('/')
-#def home():
-#return send_from_directory('../client-side/html/', 'home.html')
-
-# Any page
-@app.route('/<page_name>')
-def send_page(page_name):
-    filename = page_name + '.html'
-    return render_template(filename)
 
 # Images
 @app.route('/img/uploads/<image>')
