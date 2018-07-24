@@ -1,82 +1,20 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <meta name="description" content="">
-        <meta name="author" content="">
-
-        <title>News - Mura Studio</title>
-
-        <!-- Bootstrap core CSS -->
-        <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B" crossorigin="anonymous">
-
-        <!-- custom css -->
-        <link href="/css/style.css" rel="stylesheet">
-        <link href="/css/scrollSpy.css" rel="stylesheet">
-        <link href="/css/impaginazione.css" rel="stylesheet">
-        <link href="/css/footer.css" rel="stylesheet">
-     
-    </head>
-    <body>
-        
-        <script>document.body.className += ' fade-out';</script>
-        
-        <nav class="navbar navbar-expand-lg navbar-default  navbar-dark fixed-top">
-          <div class="container bigger-nav ">
-            <a class="navbar-brand-site-dark navbar-brand-custom " href="/home">mura studio</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-              <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarResponsive">
-              <ul class="navbar-nav ml-auto ">
-                <li class="nav-item">
-                  <a class="nav-link item-dark bold" href="#"  style="cursor:default">news</a>
-                </li> 
-                <li class="nav-item">
-                  <a class="nav-link item-dark" href="/work">work</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link item-dark no-padding-right" href="/meet-us">meet us</a>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </nav>
-
-        <!-- Page Content -->
-        <div class="container bigger-container">
-            
-            <!-- Instagram widget -->
-            <div class="row" id="startchange">
-                <script src="https://assets.juicer.io/embed.js" type="text/javascript"></script>
-                <link href="https://assets.juicer.io/embed.css" media="all" rel="stylesheet" type="text/css" />
-                <ul class="juicer-feed" data-feed-id="mura-studio"><h1 class="referral"></h1></ul>
-            </div>
-            
-        </div>
-
-        <!-- Footer -->
-        <footer class="py-5 bg-dark">
-            <div class="container">
-                <p class="m-0 text-center text-white">Copyright &copy; MuraStudio 2018</p>
-            </div>
-        </footer>
-        
-        
-        <!-- Bootstrap core JavaScript -->
-        <script
-  src="https://code.jquery.com/jquery-3.3.1.js"
-  integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
-  crossorigin="anonymous"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js" integrity="sha384-o+RDsa0aLu++PJvFqy8fFScvbHFLtbvScb8AjopnFD+iEQ7wo/CG0xlczd+2O/em" crossorigin="anonymous"></script>
-        
-        <!-- FadeIn JS  -->
-        <script src="/js/fadein.js"></script>
-        
-        <!-- Custom JS  -->
-        <script src="/js/scrollSpy.js"></script>
-
-    </body>
-</html>
+ {% extends "structure.html" %} {% block stylecontent %}
+<link href="/css/impaginazione.css" rel="stylesheet"> {% endblock %} {% block pagecontent %}
+<div class="container bigger-container">
+    <!-- Instagram widget -->
+    <div class="row" id="startchange">
+        <script src="https://assets.juicer.io/embed.js" type="text/javascript"></script>
+        <link href="https://assets.juicer.io/embed.css" media="all" rel="stylesheet" type="text/css" />
+        <ul class="juicer-feed" data-feed-id="mura-studio">
+            <h1 class="referral"></h1></ul>
+    </div>
+</div>
+{% endblock %} {% block footercontent %}
+<footer class="py-5 bg-dark">
+    <div class="container">
+        <p class="m-0 text-center text-white">Copyright &copy; MuraStudio 2018</p>
+    </div>
+</footer>
+{% endblock %} {% block scriptcontent %}
+<script src="/js/scrollSpy.js"></script>
+{% endblock %}
