@@ -253,3 +253,7 @@
 .underline{
     text-decoration: underline;
 }
+
+.nav-current:hover {
+    color: black;
+}

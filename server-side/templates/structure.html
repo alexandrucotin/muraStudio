@@ -30,21 +30,21 @@
                 <ul class="navbar-nav ml-auto ">
                     <li class="nav-item">
                         {% if page == 'news' %}
-                            <a class="nav-link {% if page == 'home' or page == 'post' %} item {% else %} item-dark {% endif %}" href="#" style="cursor: default;"><b>news</b></a>
+                            <a class="nav-link nav-current {% if page == 'home' or page == 'post' %} item {% else %} item-dark {% endif %}" href="#" style="cursor: default;"><b>news</b></a>
                         {% else %}
                             <a class="nav-link {% if page == 'home' or page == 'post' %} item {% else %} item-dark {% endif %}" href="news">news</a>
                         {% endif %}
                     </li>
                     <li class="nav-item">
                         {% if page == 'work' %}
-                            <a class="nav-link {% if page == 'home' or page == 'post' %} item {% else %} item-dark {% endif %}" href="#" style="cursor: default;"><b>work</b></a>
+                            <a class="nav-link nav-current {% if page == 'home' or page == 'post' %} item {% else %} item-dark {% endif %}" href="#" style="cursor: default;"><b>work</b></a>
                         {% else %}
                             <a class="nav-link {% if page == 'home' or page == 'post' %} item {% else %} item-dark {% endif %}" href="work">work</a>
                         {% endif %}
                     </li>
                     <li class="nav-item">
                         {% if page == 'meet-us' %}
-                            <a class="nav-link {% if page == 'home' or page == 'post' %} item {% else %} item-dark {% endif %} no-padding-right" href="#" style="cursor: default;"><b>meet us</b></a>
+                            <a class="nav-link nav-current {% if page == 'home' or page == 'post' %} item {% else %} item-dark {% endif %} no-padding-right" href="#" style="cursor: default;"><b>meet us</b></a>
                         {% else %}
                             <a class="nav-link {% if page == 'home' or page == 'post' %} item {% else %} item-dark {% endif %} no-padding-right" href="meet-us">meet us</a>
                         {% endif %}
