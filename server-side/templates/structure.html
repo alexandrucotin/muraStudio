@@ -29,13 +29,13 @@
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav ml-auto ">
                     <li class="nav-item">
-                        <a class="nav-link {% if page == 'home' or page == 'post' %} item {% else %} item-dark {% endif %}" href="news">news</a>
+                        <a class="nav-link {% if page == 'home' or page == 'post' %} item {% else %} item-dark {% endif %}" href="news">{% if page == 'news' %}<b>news</b>{% else %}news{% endif %}</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link {% if page == 'home' or page == 'post' %} item {% else %} item-dark {% endif %}" href="work">work</a>
+                        <a class="nav-link {% if page == 'home' or page == 'post' %} item {% else %} item-dark {% endif %}" href="work">{% if page == 'work' %}<b>work</b>{% else %}work{% endif %}</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link {% if page == 'home' or page == 'post' %} item {% else %} item-dark {% endif %} no-padding-right" href="meet-us">meet us</a>
+                        <a class="nav-link {% if page == 'home' or page == 'post' %} item {% else %} item-dark {% endif %} no-padding-right" href="meet-us">{% if page == 'meet-us' %}<b>meet us</b>{% else %}meet us{% endif %}</a>
                     </li>
                 </ul>
             </div>
