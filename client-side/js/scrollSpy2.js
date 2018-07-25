@@ -14,6 +14,7 @@ $(document).ready(function(){
               $(".navbar").css('background-color', 'rgba(255, 255, 255, 0.93)');
               $(".navbar-brand-custom").css('color', 'black');
               $(".item").css('color', 'black');
+        $(".filter-navbar").remove();
 
            } else {
               $('.navbar').css('background-color', 'transparent');
