@@ -255,5 +255,5 @@
 }
 
 .nav-current:hover {
-    color: black;
+    color: black!important;
 }
