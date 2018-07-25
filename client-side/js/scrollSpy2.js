@@ -19,7 +19,7 @@ $(document).ready(function(){
               $('.navbar').css('background-color', 'transparent');
               $(".navbar-brand-custom").css('color', 'white');
               $(".item").css('color', 'white');
-               $(".navbar-toggler-icon").css('background-image','url("http://www.casadellasalutelivorno.it/img/burger-menu.png")')
+              $(".navbar-toggler-icon").css('background-image','url("http://www.casadellasalutelivorno.it/img/burger-menu.png")')
            }
        });
     }
