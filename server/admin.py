@@ -8,14 +8,14 @@ from os.path import realpath, dirname, join
 
 
 class Admin:
-
+    
     # Initializing
     def __init__(self, manager, pepper, app):
         self.manager = manager
         self.pepper = pepper
         self.path = dirname(realpath(__file__))
         self.add_admin(app)
-
+    
     # Adding admin user
     def add_admin(self, app):
         with app.app_context():
@@ -32,7 +32,7 @@ class Admin:
                     VALUES (?, ?, ?)
                 ''', ('admin', password, salt))
             self.manager.close_connection()
-
+    
     # User login
     def valid_user(self, username, password):
         valid = False
@@ -46,7 +46,7 @@ class Admin:
             salt = result[1]
             valid = password_hash == sha256(password + salt + self.pepper).hexdigest()
         return valid
-
+    
     # Salt generating
     def generate_salt(self):
         alphabet = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
