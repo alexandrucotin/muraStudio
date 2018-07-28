@@ -1,3 +1,5 @@
+## ⚠️ This does not currently work fully ⚠️ ##
+
 ### The application ###
 
 The application has 2 docker containers.
@@ -53,3 +55,4 @@ to shutdown gracefully
 ```bash
 docker-compose down
 ```
+
