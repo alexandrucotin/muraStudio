@@ -23,10 +23,7 @@ class Admin:
             presence = self.manager.read_presence('SELECT * FROM user')
             if not presence:
                 salt = self.generate_salt()
-                password = sha256(
-                        (sha256('admin'.encode('utf-8')).hexdigest() +
-                        salt + self.pepper).encode('utf-8')
-                    ).hexdigest()
+                password = sha256(sha256('admin').hexdigest() + salt + self.pepper).hexdigest()
                 self.manager.write('''
                     INSERT INTO user (username, password, salt)
                     VALUES (?, ?, ?)
@@ -234,7 +231,7 @@ class Admin:
             DELETE FROM work_image
             WHERE work_id = ?
         ''', (element_id,))
-
+    
     # Change password
     def change_password(self, username, password):
         salt = self.generate_salt()

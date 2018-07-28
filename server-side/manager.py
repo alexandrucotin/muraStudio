@@ -5,14 +5,14 @@ from sqlite3 import connect
 
 
 class Manager:
-
+    
     # Initializing
     def __init__(self, g, db_filename):
         self.g = g
         path = dirname(realpath(__file__))
         self.path = join(path, db_filename)
         self.init_db()
-
+    
     # Creating tables
     def init_db(self):
         database = connect(self.path)
