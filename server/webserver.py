@@ -48,29 +48,32 @@ def server_error(e):
 # Any page
 @app.route('/<page_name>')
 def send_page(page_name):
-    return render_template(page_name + '.html', page = page_name)
+    try:
+        return render_template(page_name + '.html', page = page_name)
+    except:
+        return ''
 
 #Login Page
 @app.route('/login')
 def login_page():
-    return send_from_directory('../client-side/html/', 'login.html')
+    return send_from_directory('../client/html/', 'login.html')
 
 #Dashboard Page
 @app.route('/dashboard')
 def dashboard():
-    return send_from_directory('../client-side/html/', 'dashboard.html')
+    return send_from_directory('../client/html/', 'dashboard.html')
 
 
 # Images
 @app.route('/img/uploads/<image>')
 def send_image(image):
-    return send_from_directory('../client-side/img/uploads/', image)
+    return send_from_directory('../client/img/uploads/', image)
 
 
 # Other files
 @app.route('/<directory>/<filename>')
 def send_files(directory, filename):
-    return send_from_directory('../client-side/' + directory + '/', filename)
+    return send_from_directory('../client/' + directory + '/', filename)
 
 
 # CONTEXTS

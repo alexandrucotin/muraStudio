@@ -168,7 +168,7 @@ class Admin:
         self.manager.g.db.commit()
         cursor.close()
         return image_id
-    
+
     # Writes and moves image
     def write_and_move(self, image, image_name, image_location):
         image_data = b64decode(image.split(',')[1])
@@ -176,9 +176,9 @@ class Admin:
         f = open(image_path, 'wb')
         f.write(image_data)
         f.close()
-        upload_path = join(self.path, '../client-side' + image_location)
+        upload_path = join(self.path, '../client' + image_location)
         rename(image_path, upload_path)
-    
+
     # Image deleting
     def delete_image(self, image_id):
         location = self.manager.read_field('''
@@ -190,8 +190,8 @@ class Admin:
             DELETE FROM image
             WHERE id = ?
         ''', (image_id,))
-        remove(join(self.path, '../client-side' + location))
-    
+        remove(join(self.path, '../client' + location))
+
     # Get work list
     def get_work_list(self):
         return self.manager.read_many('''
