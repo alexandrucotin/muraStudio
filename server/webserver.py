@@ -54,26 +54,30 @@ def send_page(page_name):
         return ''
 
 #Login Page
-@app.route('/login')
-def login_page():
-    return send_from_directory('../client/html/', 'login.html')
+# this should be commentedout as the route is handled by nginx
+# @app.route('/login')
+# def login_page():
+#     return send_from_directory('../client/html/', 'login.html')
 
 #Dashboard Page
-@app.route('/dashboard')
-def dashboard():
-    return send_from_directory('../client/html/', 'dashboard.html')
+# this should be commentedout as the route is handled by nginx
+# @app.route('/dashboard')
+# def dashboard():
+#     return send_from_directory('../client/html/', 'dashboard.html')
 
 
 # Images
-@app.route('/img/uploads/<image>')
-def send_image(image):
-    return send_from_directory('../client/img/uploads/', image)
+# this should be commentedout as the route is handled by nginx
+# @app.route('/img/uploads/<image>')
+# def send_image(image):
+#     return send_from_directory('../client/img/uploads/', image)
 
 
 # Other files
-@app.route('/<directory>/<filename>')
-def send_files(directory, filename):
-    return send_from_directory('../client/' + directory + '/', filename)
+# this should be commentedout as the route is handled by nginx
+# @app.route('/<directory>/<filename>')
+# def send_files(directory, filename):
+#     return send_from_directory('../client/' + directory + '/', filename)
 
 
 # CONTEXTS
@@ -225,4 +229,4 @@ def change_password():
 # STARTING SERVER
 
 if __name__ == '__main__':
-    app.run(threaded = True)
+    app.run(host="0.0.0.0", threaded = True)
