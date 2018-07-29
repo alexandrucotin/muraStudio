@@ -1,9 +1,13 @@
-## ⚠️ This does not currently work fully ⚠️ ##
+### When running the application with containers it is not the same as running using python ###
+The changes to files will not be hot loading, you will have to rebuild the containers
 
 ### The application ###
 
 The application has 2 docker containers.
 One has an nginx server, the other has the flask application.
+static files will be served by the nginx container, the templates will be rendered by the application
+
+When you run the app using docker it is accesible at http://localhost/
 
 You need to have docker-compose installed in your virtual environment.
 
@@ -47,12 +51,21 @@ It will rebuild the images if required. app_server is part of the docker-compose
 ```docker-compose.yml``` is the file that manages the structure of the set of containers that are run.
 
 ```bash
-docker-compose up --scale app_server=2 --build
+docker-compose up --build
 ```
 
-to shutdown gracefully
+to shutdown gracefully when running in the background
 
 ```bash
 docker-compose down
+```
+
+to stop while running in terminal in foreground: ```CTRL + c```
+
+Sometimes it can fail so you have to run
+
+```bash
+docker-compose stop #this stops running containers, you can't remove a container that is already running
+docker-compose rm  #this removes the containers
 ```
 
